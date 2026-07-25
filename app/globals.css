@@ -466,7 +466,7 @@ footer {
 .social-icon svg { width: 18px; height: 18px; fill: rgba(255,255,255,.65); }
 .social-icon:hover svg { fill: #fff; }
 
-.footer-col h4 {
+.footer-col-title {
   font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.2em;
@@ -573,9 +573,9 @@ footer {
   .footer-tagline { max-width: 100%; text-align: center; }
   .footer-social { justify-content: center; }
   .footer-col { text-align: left; border-top: 1px solid rgba(255,255,255,.12); }
-  .footer-col h4 { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0; padding: 16px 0; cursor: pointer; font-size: 0.85rem; letter-spacing: 0.15em; user-select: none; }
-  .footer-col h4 .acc-icon { font-size: 1.3rem; font-weight: 300; line-height: 1; color: rgba(255,255,255,.5); transition: transform .3s; }
-  .footer-col.acc-open h4 .acc-icon { transform: rotate(45deg); }
+  .footer-col-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0; padding: 16px 0; cursor: pointer; font-size: 0.85rem; letter-spacing: 0.15em; user-select: none; }
+  .footer-col-title .acc-icon { font-size: 1.3rem; font-weight: 300; line-height: 1; color: rgba(255,255,255,.5); transition: transform .3s; }
+  .footer-col.acc-open .footer-col-title .acc-icon { transform: rotate(45deg); }
   .footer-col ul, .footer-col .footer-contact-wrap { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; padding: 0; }
   .footer-col.acc-open ul, .footer-col.acc-open .footer-contact-wrap { max-height: 400px; padding-bottom: 16px; }
   .footer-col ul { gap: 0; }

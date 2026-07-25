@@ -449,7 +449,7 @@ export default function HomePage() {
                 ].map((item, i) => (
                   <li key={i} className="why-item">
                     <div className="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#a73184" strokeWidth="2">{item.svg}</svg></div>
-                    <div className="why-text"><h4>{item.title}</h4><p>{item.desc}</p></div>
+                    <div className="why-text"><h3>{item.title}</h3><p>{item.desc}</p></div>
                   </li>
                 ))}
               </ul>

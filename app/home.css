@@ -373,7 +373,7 @@
 .why-item:hover .why-icon { background: var(--magenta); }
 .why-item:hover .why-icon svg path, .why-item:hover .why-icon svg polyline, .why-item:hover .why-icon svg circle { stroke: #fff; }
 .why-icon svg { width: 20px; height: 20px; }
-.why-text h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 4px; }
+.why-text h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 4px; }
 .why-text p { font-size: 0.8rem !important; color: var(--ink-soft); line-height: 1.6; }
 
 /* ─── REVIEWS ───────────────────────────── */

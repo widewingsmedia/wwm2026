@@ -32,10 +32,10 @@ export default function Footer() {
         return;
       }
       cols.forEach(col => {
-        const h4 = col.querySelector('h4');
-        if (!h4 || (h4 as HTMLElement).dataset.accBound) return;
-        (h4 as HTMLElement).dataset.accBound = '1';
-        h4.addEventListener('click', () => col.classList.toggle('acc-open'));
+        const title = col.querySelector('.footer-col-title');
+        if (!title || (title as HTMLElement).dataset.accBound) return;
+        (title as HTMLElement).dataset.accBound = '1';
+        title.addEventListener('click', () => col.classList.toggle('acc-open'));
       });
     }
     initFooterAccordion();
@@ -71,7 +71,7 @@ export default function Footer() {
           </div>
 
           <div className="footer-col">
-            <h4>Services <span className="acc-icon">+</span></h4>
+            <div className="footer-col-title">Services <span className="acc-icon">+</span></div>
             <ul>
               <li><Link href="/web-design-company-dubai/">Web &amp; App Development</Link></li>
               <li><Link href="/creative-branding/">Creative &amp; Branding</Link></li>
@@ -82,7 +82,7 @@ export default function Footer() {
           </div>
 
           <div className="footer-col">
-            <h4>Company <span className="acc-icon">+</span></h4>
+            <div className="footer-col-title">Company <span className="acc-icon">+</span></div>
             <ul>
               <li><Link href="/">Home</Link></li>
               <li><Link href="/about">About Us</Link></li>
@@ -93,7 +93,7 @@ export default function Footer() {
           </div>
 
           <div className="footer-col">
-            <h4>Contact Us <span className="acc-icon">+</span></h4>
+            <div className="footer-col-title">Contact Us <span className="acc-icon">+</span></div>
             <div className="footer-contact-wrap">
               <div className="footer-contact-item">
                 Wide Wings Media, LLC<br />
