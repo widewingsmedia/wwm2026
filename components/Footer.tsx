@@ -74,7 +74,7 @@ export default function Footer() {
             <div className="footer-col-title">Services <span className="acc-icon">+</span></div>
             <ul>
               <li><Link href="/web-design-company-dubai/">Web &amp; App Development</Link></li>
-              <li><Link href="/creative-branding/">Creative &amp; Branding</Link></li>
+              <li><Link href="/branding-agency-dubai/">Creative &amp; Branding</Link></li>
               <li><Link href="/ppc-advertising-company-dubai/">Paid Advertising &amp; Media Buying</Link></li>
               <li><Link href="/social-media-marketing-agency-in-dubai/">Social Media Management</Link></li>
               <li><Link href="/seo-services-dubai/">SEO &amp; Performance Management</Link></li>

@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next';
+import { SITE_URL } from '@/lib/seo';
 
 // The site is not publicly live yet (still on a preview domain) — block all
 // crawling so search engines don't index the preview URL and cause duplicate
@@ -21,5 +22,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/admin',
     },
+    sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }

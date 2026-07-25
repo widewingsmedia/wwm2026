@@ -92,15 +92,15 @@ const pages: Page[] = [
   { id: 'terms-conditions', title: 'Terms & Conditions', slug: '/terms-conditions', content: '', status: 'published', createdAt: '2025-01-01', updatedAt: '2026-06-21' },
   // Service detail pages (URLs match old wide-wings.ae slugs)
   { id: 'web-app-development', title: 'Web & App Development', slug: '/web-design-company-dubai/', content: '', status: 'published', createdAt: '2025-01-01', updatedAt: '2026-06-21' },
-  { id: 'creative-branding', title: 'Creative & Branding', slug: '/creative-branding/', content: '', status: 'published', createdAt: '2025-01-01', updatedAt: '2026-06-21' },
+  { id: 'creative-branding', title: 'Creative & Branding', slug: '/branding-agency-dubai/', content: '', status: 'published', createdAt: '2025-01-01', updatedAt: '2026-07-25' },
   { id: 'paid-advertising', title: 'Paid Advertising & Media Buying', slug: '/ppc-advertising-company-dubai/', content: '', status: 'published', createdAt: '2025-01-01', updatedAt: '2026-06-21' },
   { id: 'social-media-management', title: 'Social Media Management', slug: '/social-media-marketing-agency-in-dubai/', content: '', status: 'published', createdAt: '2025-01-01', updatedAt: '2026-06-21' },
   { id: 'content-creation', title: 'Content Creation & Graphic Design', slug: '/content-creation-graphic-design/', content: '', status: 'published', createdAt: '2025-01-01', updatedAt: '2026-06-21' },
-  { id: 'email-sms-crm', title: 'Email, SMS & CRM Marketing', slug: '/email-sms-crm-marketing/', content: '', status: 'published', createdAt: '2025-01-01', updatedAt: '2026-06-21' },
+  { id: 'email-sms-crm', title: 'Email, SMS & CRM Marketing', slug: '/email-marketing-dubai/', content: '', status: 'published', createdAt: '2025-01-01', updatedAt: '2026-07-25' },
   { id: 'seo-performance', title: 'SEO & Performance Management', slug: '/seo-services-dubai/', content: '', status: 'published', createdAt: '2025-01-01', updatedAt: '2026-06-21' },
   { id: 'ooh-advertising', title: 'OOH Advertising', slug: '/outdoor-advertising-dubai/', content: '', status: 'published', createdAt: '2025-01-01', updatedAt: '2026-06-21' },
   { id: 'analytics-performance', title: 'Analytics & Performance Marketing', slug: '/analytics-performance-marketing/', content: '', status: 'published', createdAt: '2025-01-01', updatedAt: '2026-06-21' },
-  { id: 'pr-management', title: 'PR Management', slug: '/pr-management/', content: '', status: 'published', createdAt: '2025-01-01', updatedAt: '2026-06-21' },
+  { id: 'pr-management', title: 'PR Management', slug: '/pr-agency-dubai/', content: '', status: 'published', createdAt: '2025-01-01', updatedAt: '2026-07-25' },
 ];
 
 // SEO metadata fetched from the corresponding pages on the legacy wide-wings.ae
@@ -271,7 +271,7 @@ const seoData: SeoData[] = [
     featuredImageAlt: 'Wide Wings Media — Web & App Development Agency Dubai',
   },
   {
-    ...makeSeo('creative-branding', 'Creative & Branding', '/creative-branding/',
+    ...makeSeo('creative-branding', 'Creative & Branding', '/branding-agency-dubai/',
       'Creative & Branding | Wide Wings Media Digital Agency Dubai',
       'We create brands that look sharp, speak clearly, and actually perform, from strategy to design and content.',
       'Service'),
@@ -315,7 +315,7 @@ const seoData: SeoData[] = [
     featuredImageAlt: 'Wide Wings Media — Content Creation & Graphic Design Dubai',
   },
   {
-    ...makeSeo('email-sms-crm', 'Email, SMS & CRM Marketing', '/email-sms-crm-marketing/',
+    ...makeSeo('email-sms-crm', 'Email, SMS & CRM Marketing', '/email-marketing-dubai/',
       'Email, SMS & CRM Marketing | Wide Wings Media Digital Agency Dubai',
       'We create campaigns that people open, read, and act on. From welcome flows to retention sequences, every message has a purpose and a result behind it.',
       'Service'),
@@ -359,7 +359,7 @@ const seoData: SeoData[] = [
     featuredImageAlt: 'Wide Wings Media — Analytics & Performance Marketing Dubai',
   },
   {
-    ...makeSeo('pr-management', 'PR Management', '/pr-management/',
+    ...makeSeo('pr-management', 'PR Management', '/pr-agency-dubai/',
       'PR Management | Wide Wings Media Digital Agency Dubai',
       'We position your brand where it matters. Through the right narratives, the right platforms, and the right timing. Every move is intentional, built to strengthen credibility and visibility.',
       'Service'),
@@ -371,7 +371,11 @@ const seoData: SeoData[] = [
   },
 ];
 
-const redirects: Redirect[] = [];
+const redirects: Redirect[] = [
+  { id: 'rd-001', from: '/creative-branding', to: '/branding-agency-dubai/', type: '301', createdAt: '2026-07-25T00:00:00Z' },
+  { id: 'rd-002', from: '/email-sms-crm-marketing', to: '/email-marketing-dubai/', type: '301', createdAt: '2026-07-25T00:00:00Z' },
+  { id: 'rd-003', from: '/pr-management', to: '/pr-agency-dubai/', type: '301', createdAt: '2026-07-25T00:00:00Z' },
+];
 
 const mediaItems: MediaItem[] = [];
 // Initialise from file so data survives hot-reloads and lambda warm starts

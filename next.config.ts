@@ -1,29 +1,33 @@
 import type { NextConfig } from "next";
 
-// Old wide-wings.ae slugs — kept identical so link equity carries over at domain cutover.
+// Current live service slugs — the app/services/<slug> folder names match these exactly.
 const SERVICE_SLUGS = [
-  'creative-branding',
+  'branding-agency-dubai',
   'web-design-company-dubai',
   'ppc-advertising-company-dubai',
   'social-media-marketing-agency-in-dubai',
   'content-creation-graphic-design',
-  'email-sms-crm-marketing',
+  'email-marketing-dubai',
   'seo-services-dubai',
   'outdoor-advertising-dubai',
   'analytics-performance-marketing',
-  'pr-management',
+  'pr-agency-dubai',
 ];
 
-// Short slugs used during the pre-launch build, now redirected to the old-site slugs above.
+// Retired slugs (short pre-launch slugs + old wide-wings.ae slugs), redirected to the current slugs above.
 const LEGACY_SERVICE_REDIRECTS: Record<string, string> = {
   'web-app-development': 'web-design-company-dubai',
   'paid-advertising': 'ppc-advertising-company-dubai',
   'social-media-management': 'social-media-marketing-agency-in-dubai',
   'content-creation': 'content-creation-graphic-design',
-  'email-sms-crm': 'email-sms-crm-marketing',
+  'email-sms-crm': 'email-marketing-dubai',
   'seo-performance': 'seo-services-dubai',
   'ooh-advertising': 'outdoor-advertising-dubai',
   'analytics-performance': 'analytics-performance-marketing',
+  // Renamed for SEO (recommended URL changes, 2026-07-25)
+  'creative-branding': 'branding-agency-dubai',
+  'email-sms-crm-marketing': 'email-marketing-dubai',
+  'pr-management': 'pr-agency-dubai',
 };
 
 const nextConfig: NextConfig = {

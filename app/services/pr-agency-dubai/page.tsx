@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo';
 import '../services.css';
 import '../service-page.css';
-import './pr-management.css';
+import './pr-agency-dubai.css';
 
 const EXPERTISE = [
   {

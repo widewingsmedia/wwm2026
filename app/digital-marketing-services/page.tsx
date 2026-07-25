@@ -18,7 +18,7 @@ const SERVICES = [
   {
     num: '02',
     title: 'Creative & Branding',
-    slug: '/creative-branding',
+    slug: '/branding-agency-dubai',
     desc: 'We craft identities that resonate. From logo design to full brand systems, we ensure your brand speaks clearly across every touchpoint.',
   },
   {
@@ -42,7 +42,7 @@ const SERVICES = [
   {
     num: '06',
     title: 'Email, SMS & CRM Marketing',
-    slug: '/email-sms-crm-marketing',
+    slug: '/email-marketing-dubai',
     desc: 'Keep your audience engaged and your pipeline full. We design and automate email and SMS campaigns that nurture leads into loyal customers.',
   },
   {
@@ -66,7 +66,7 @@ const SERVICES = [
   {
     num: '10',
     title: 'PR Management',
-    slug: '/pr-management',
+    slug: '/pr-agency-dubai',
     desc: 'From press releases to crisis communications, we protect and elevate your reputation through strategic media relations and influencer outreach.',
   },
 ];
