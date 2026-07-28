@@ -85,9 +85,7 @@ const pages: Page[] = [
   { id: 'services', title: 'Services', slug: '/digital-marketing-services/', content: '', status: 'published', createdAt: '2025-01-01', updatedAt: '2026-06-21' },
   { id: 'blogs', title: 'Blogs', slug: '/insights/', content: '', status: 'published', createdAt: '2025-01-01', updatedAt: '2026-06-21' },
   { id: 'news', title: 'News', slug: '/news', content: '', status: 'published', createdAt: '2025-01-01', updatedAt: '2026-06-21' },
-  { id: 'privacy', title: 'Privacy', slug: '/privacy', content: '', status: 'published', createdAt: '2025-01-01', updatedAt: '2026-06-21' },
   { id: 'privacy-policy', title: 'Privacy Policy', slug: '/privacy-policy', content: '', status: 'published', createdAt: '2025-01-01', updatedAt: '2026-06-21' },
-  { id: 'terms', title: 'Terms', slug: '/terms', content: '', status: 'published', createdAt: '2025-01-01', updatedAt: '2026-06-21' },
   { id: 'terms-conditions', title: 'Terms & Conditions', slug: '/terms-conditions', content: '', status: 'published', createdAt: '2025-01-01', updatedAt: '2026-06-21' },
   // Service detail pages (URLs match old wide-wings.ae slugs)
   { id: 'web-app-development', title: 'Web & App Development', slug: '/web-design-company-dubai/', content: '', status: 'published', createdAt: '2025-01-01', updatedAt: '2026-06-21' },
@@ -208,16 +206,6 @@ const seoData: SeoData[] = [
     nofollow: true,
   },
   {
-    ...makeSeo('privacy', 'Privacy', '/privacy',
-      'Privacy Policy | Wide Wings Media',
-      'Wide Wings Media, LLC is committed to protecting your privacy. Read our Privacy Policy to understand how we collect, use, and disclose your personal information.'),
-    focusKeyword: 'Wide Wings Media privacy policy',
-    secondaryKeywords: 'data privacy UAE, marketing agency privacy policy, GDPR compliance Dubai',
-    ogImage: '/Logoblack.webp',
-    featuredImage: '/Logoblack.webp',
-    featuredImageAlt: 'Wide Wings Media — Privacy Policy',
-  },
-  {
     ...makeSeo('privacy-policy', 'Privacy Policy', '/privacy-policy',
       'Privacy Policy | Wide Wings Media',
       'Wide Wings Media, LLC is committed to protecting your privacy. Read our Privacy Policy to understand how we collect, use, and disclose your personal information.'),
@@ -226,16 +214,6 @@ const seoData: SeoData[] = [
     ogImage: '/Logoblack.webp',
     featuredImage: '/Logoblack.webp',
     featuredImageAlt: 'Wide Wings Media — Privacy Policy',
-  },
-  {
-    ...makeSeo('terms', 'Terms', '/terms',
-      'Terms & Conditions | Wide Wings Media',
-      'Read the Terms & Conditions for Wide Wings Media, LLC. Understand our usage policies, user rights, and legal agreements for our digital marketing services.'),
-    focusKeyword: 'Wide Wings Media terms and conditions',
-    secondaryKeywords: 'marketing agency terms UAE, service agreement Dubai, legal terms Wide Wings',
-    ogImage: '/Logoblack.webp',
-    featuredImage: '/Logoblack.webp',
-    featuredImageAlt: 'Wide Wings Media — Terms & Conditions',
   },
   {
     ...makeSeo('terms-conditions', 'Terms & Conditions', '/terms-conditions',
