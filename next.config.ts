@@ -62,6 +62,10 @@ const nextConfig: NextConfig = {
       { source: '/blogs', destination: '/insights/', permanent: true },
       { source: '/blogs/:slug', destination: '/:slug/', permanent: true },
       { source: '/case-studies/sbk-properties', destination: '/case-studies/batterjee-properties/', permanent: true },
+      { source: '/contact-us', destination: '/contact/', permanent: true },
+      // /about was a placeholder "Coming Soon" stub — /about-us is the real, fully-built page
+      // and matches the old wide-wings.ae site's exact canonical URL.
+      { source: '/about', destination: '/about-us/', permanent: true },
     ];
   },
 };

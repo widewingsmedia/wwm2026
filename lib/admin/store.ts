@@ -79,7 +79,6 @@ export interface ChatEvent {
 const pages: Page[] = [
   // Static pages
   { id: 'home', title: 'Home', slug: '/', content: '', status: 'published', createdAt: '2025-01-01', updatedAt: '2026-06-01' },
-  { id: 'about', title: 'About', slug: '/about', content: '', status: 'published', createdAt: '2025-01-01', updatedAt: '2026-06-10' },
   { id: 'about-us', title: 'About Us', slug: '/about-us', content: '', status: 'published', createdAt: '2025-01-01', updatedAt: '2026-06-10' },
   { id: 'contact', title: 'Contact', slug: '/contact', content: '', status: 'published', createdAt: '2025-01-01', updatedAt: '2026-06-05' },
   { id: 'thank-you', title: 'Thank You', slug: '/contact/thank-you', content: '', status: 'published', createdAt: '2026-07-10', updatedAt: '2026-07-10' },
@@ -139,17 +138,6 @@ const seoData: SeoData[] = [
     ogImage: '/Logoblack.webp',
     featuredImage: '/Logoblack.webp',
     featuredImageAlt: 'Wide Wings Media — Leading Digital Marketing Agency in Dubai, UAE',
-  },
-  {
-    ...makeSeo('about', 'About', '/about',
-      'Wide Wings Media: A Digital Marketing Partner You Can Trust.',
-      'Wide Wings Media is a digital marketing company in Dubai, driving growth through SEO, paid media, and social marketing. Reach out for more.',
-      'Organization'),
-    focusKeyword: 'digital marketing company Dubai',
-    secondaryKeywords: 'marketing agency UAE, Wide Wings Media, Dubai marketing team',
-    ogImage: '/Logoblack.webp',
-    featuredImage: '/Logoblack.webp',
-    featuredImageAlt: 'Wide Wings Media — A Digital Marketing Partner You Can Trust',
   },
   {
     ...makeSeo('about-us', 'About Us', '/about-us',

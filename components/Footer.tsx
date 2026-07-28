@@ -85,7 +85,7 @@ export default function Footer() {
             <div className="footer-col-title">Company <span className="acc-icon">+</span></div>
             <ul>
               <li><Link href="/">Home</Link></li>
-              <li><Link href="/about">About Us</Link></li>
+              <li><Link href="/about-us/">About Us</Link></li>
               <li><Link href="/insights/">Blogs</Link></li>
               <li><Link href="/news">News</Link></li>
               <li><Link href="/contact">Contact Us</Link></li>
