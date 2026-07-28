@@ -42,7 +42,10 @@ export function CaseSplit({ image, images, collage, imageAlt, reverse, children 
                   src={src}
                   alt={imageAlt}
                   fill
-                  sizes={`(max-width: 900px) ${Math.round(90 / collage.length)}vw, ${Math.round(45 / collage.length)}vw`}
+                  // Sized for the full split-media box, not the resting quarter-tile —
+                  // .cs-collage-item:hover expands a tile to 100% of the container, so
+                  // the image needs to be downloaded at that larger size upfront.
+                  sizes="(max-width: 900px) 90vw, 45vw"
                   className="cs-collage-img"
                 />
               </div>
