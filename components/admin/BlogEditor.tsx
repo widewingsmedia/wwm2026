@@ -271,7 +271,7 @@ export default function BlogEditor() {
 
   const post = POSTS.find(p => p.slug === slug);
   const wordCount = html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().split(' ').filter(Boolean).length;
-  const liveUrl = `https://wwm-mu.vercel.app/${slug}`;
+  const liveUrl = `https://wide-wings.ae/${slug}`;
 
   return (
     <div className="blog-editor">

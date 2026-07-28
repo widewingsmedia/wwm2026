@@ -3,7 +3,7 @@ import { store, type SeoData } from './admin/store';
 import { getSeoOverride } from './admin/seo-kv';
 
 // Matches the canonical URL base already hardcoded in lib/admin/store.ts's makeSeo().
-export const SITE_URL = 'https://wwm-mu.vercel.app';
+export const SITE_URL = 'https://wide-wings.ae';
 
 // Resolves the SEO data for a page: an admin-saved override (Vercel KV) takes
 // priority, falling back to the hardcoded defaults in lib/admin/store.ts.
