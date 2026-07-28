@@ -28,6 +28,11 @@ const LEGACY_SERVICE_REDIRECTS: Record<string, string> = {
   'creative-branding': 'branding-agency-dubai',
   'email-sms-crm-marketing': 'email-marketing-dubai',
   'pr-management': 'pr-agency-dubai',
+  // Orphan slugs referenced internally on the old wide-wings.ae site (breadcrumbs/links)
+  // but never matching that site's own canonical page slug — redirect so old inbound links don't 404.
+  'outdoor-advertising': 'outdoor-advertising-dubai',
+  'social-media-services': 'social-media-marketing-agency-in-dubai',
+  'creative-services': 'branding-agency-dubai',
 };
 
 const nextConfig: NextConfig = {
