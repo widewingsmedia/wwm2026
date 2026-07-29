@@ -4,6 +4,7 @@ import CaseHero from '../CaseHero';
 import CaseGallery, { type GalleryImage } from '../CaseGallery';
 import CaseVideoGallery, { type GalleryVideo } from '../CaseVideoGallery';
 import CaseFeatureVideo from '../CaseFeatureVideo';
+import CaseDonut from '../CaseDonut';
 import {
   CaseIntro,
   CaseSplit,
@@ -74,6 +75,15 @@ export default function MakeAWishSaudiArabiaCaseStudy() {
                 'Explaining the role of NGOs and NPOs in supporting children and families emotionally, not only financially—showing how a wish can bring hope, strength, and joy during difficult medical journeys.',
               ]}
             />
+            <div style={{ marginTop: 40 }}>
+              <CaseDonut
+                title="Content Focus Split"
+                segments={[
+                  { label: 'Wish Stories', value: 64, color: 'var(--magenta)' },
+                  { label: 'Community Awareness', value: 36, color: 'var(--gold)' },
+                ]}
+              />
+            </div>
           </CaseSplit>
         </div>
       </section>
