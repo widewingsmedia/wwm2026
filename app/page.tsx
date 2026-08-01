@@ -258,7 +258,7 @@ export default function HomePage() {
               <span className="section-label">03 — Our Expertise</span>
               <h2 className="expertise-h2">Results-Driven<br/><span className="gradient-text">Digital Marketing</span><br/>Agency in Dubai</h2>
               <p className="expertise-body">We specialize in creating and executing result-driven digital marketing campaigns that go beyond basic social media management, SEO, and Google Ads. We transform how companies leverage digital opportunities and guide them toward increased brand awareness, lead generation, and revenue growth.</p>
-              <Link href="#" className="btn-primary">Learn About Us</Link>
+              <Link href="/about-us/" className="btn-primary">Learn About Us</Link>
             </div>
             <div className="expertise-right">
               {[
@@ -294,12 +294,12 @@ export default function HomePage() {
           </div>
           <div className="services-grid">
             {[
-              { num:'01', title:'Web & App Development', desc:'High-performing websites and mobile applications — fast, secure, and user-first.', tags:['Web Dev','App Dev','UX Design','E-commerce'], back:'From custom websites to full mobile apps — built fast, built to convert.' },
-              { num:'02', title:'Creative & Branding', desc:'Brands that look sharp, speak clearly, and actually perform — from identity to execution.', tags:['Brand Identity','Positioning','Visual Design'], back:'We craft brand identities that command attention and build lasting recognition.' },
-              { num:'03', title:'Paid Advertising & Media', desc:'Campaigns planned, executed, and optimized to maximize reach, conversions, and ROI.', tags:['Google Ads','Media Buying','PPC'], back:'Every dirham spent is tracked, optimized, and pointed at results that matter.' },
-              { num:'04', title:'Social Media Management', desc:'Strategic content, consistent engagement, and platform-specific growth tactics.', tags:['Content','Engagement','Community'], back:'We grow your social presence with content that connects, engages, and converts.' },
-              { num:'05', title:'SEO & Performance', desc:'Rank higher, attract quality traffic, and improve long-term digital performance.', tags:['SEO','Rankings','Traffic'], back:'Rank where it matters. We build sustainable search visibility that drives real traffic.' },
-              { num:'06', title:'OOH & PR Management', desc:'Impactful out-of-home advertising and PR campaigns that amplify your brand.', tags:['Billboards','Media Relations','OOH'], back:'From Dubai billboards to regional PR — we put your brand in front of the right eyes.' },
+              { num:'01', title:'Web & App Development', desc:'High-performing websites and mobile applications — fast, secure, and user-first.', tags:['Web Dev','App Dev','UX Design','E-commerce'], back:'From custom websites to full mobile apps — built fast, built to convert.', href:'/web-design-company-dubai/' },
+              { num:'02', title:'Creative & Branding', desc:'Brands that look sharp, speak clearly, and actually perform — from identity to execution.', tags:['Brand Identity','Positioning','Visual Design'], back:'We craft brand identities that command attention and build lasting recognition.', href:'/branding-agency-dubai/' },
+              { num:'03', title:'Paid Advertising & Media', desc:'Campaigns planned, executed, and optimized to maximize reach, conversions, and ROI.', tags:['Google Ads','Media Buying','PPC'], back:'Every dirham spent is tracked, optimized, and pointed at results that matter.', href:'/ppc-advertising-company-dubai/' },
+              { num:'04', title:'Social Media Management', desc:'Strategic content, consistent engagement, and platform-specific growth tactics.', tags:['Content','Engagement','Community'], back:'We grow your social presence with content that connects, engages, and converts.', href:'/social-media-marketing-agency-in-dubai/' },
+              { num:'05', title:'SEO & Performance', desc:'Rank higher, attract quality traffic, and improve long-term digital performance.', tags:['SEO','Rankings','Traffic'], back:'Rank where it matters. We build sustainable search visibility that drives real traffic.', href:'/seo-services-dubai/' },
+              { num:'06', title:'OOH & PR Management', desc:'Impactful out-of-home advertising and PR campaigns that amplify your brand.', tags:['Billboards','Media Relations','OOH'], back:'From Dubai billboards to regional PR — we put your brand in front of the right eyes.', href:'/digital-marketing-services/' },
             ].map(svc => (
               <div key={svc.num} className="svc-card">
                 <div className="svc-card-inner">
@@ -316,13 +316,13 @@ export default function HomePage() {
                       <div className="svc-back-title">{svc.title}</div>
                       <div className="svc-back-desc">{svc.back}</div>
                     </div>
-                    <div className="svc-back-bottom"><Link href="#" className="svc-back-link">Find Out More →</Link></div>
+                    <div className="svc-back-bottom"><Link href={svc.href} className="svc-back-link">Find Out More →</Link></div>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-          <div className="svc-more-wrap"><Link href="#" className="btn-svc-more">View All Services <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></Link></div>
+          <div className="svc-more-wrap"><Link href="/digital-marketing-services/" className="btn-svc-more">View All Services <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></Link></div>
         </div>
       </section>
 
@@ -380,7 +380,7 @@ export default function HomePage() {
                 <span className="badge"><div className="badge-dot"></div>4.9★ Client Rating</span>
                 <span className="badge"><div className="badge-dot"></div>No Minimum Retainer</span>
               </div>
-              <Link href="#" className="btn-primary">Learn More About Wide Wings</Link>
+              <Link href="/about-us/" className="btn-primary">Learn More About Wide Wings</Link>
             </div>
           </div>
         </div>
@@ -435,7 +435,7 @@ export default function HomePage() {
               <p className="why-body">We deliver strategic thinking, outstanding execution, and trackable results — which is why growing brands trust Wide Wings as their long-term marketing partner.</p>
               <div style={{display:'flex',gap:'14px',flexWrap:'wrap'}}>
                 <Link href="/contact" className="btn-primary">Boost Your Marketing</Link>
-                <Link href="#" className="btn-outline">Get The Full Story</Link>
+                <Link href="/about-us/" className="btn-outline">Get The Full Story</Link>
               </div>
             </div>
             <div className="why-right">
