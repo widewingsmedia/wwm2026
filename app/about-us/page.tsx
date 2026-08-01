@@ -11,7 +11,6 @@ import { getPageSchema } from '@/lib/schema';
 const PAGE_SCHEMA = getPageSchema('about-us');
 
 const team = [
-  { name: 'Mina Banoub',              title: 'Sales Director',           img: '/Mina.webp' },
   { name: 'Alaa Mokhless Ali',        title: 'Account Manager',          img: '/Alaa.webp' },
   { name: 'Nouran Mamdouh',           title: 'Account Manager',          img: '/nowran.webp' },
   { name: 'Ebtehal Elnoras',          title: 'Account Manager',          img: '/Ebtehal.webp' },
