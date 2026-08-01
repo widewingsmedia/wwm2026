@@ -215,7 +215,7 @@ export default function HomePage() {
             <p className="hero-sub">Unlock your brand&apos;s potential with our proven marketing expertise. From strategy to execution, we drive measurable growth.</p>
             <div className="hero-actions">
               <Link href="/contact" className="btn-primary">Free Consultation <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></Link>
-              <Link href="#services" className="btn-outline" style={{borderColor:'rgba(255,255,255,.3)',color:'#fff'}}>Our Services</Link>
+              <Link href="/digital-marketing-services/" className="btn-outline" style={{borderColor:'rgba(255,255,255,.3)',color:'#fff'}}>Our Services</Link>
             </div>
             <div className="hero-stats">
               <div className="stat-item"><div className="stat-number">5+</div><div className="stat-label">Years Experience</div></div>
@@ -301,7 +301,7 @@ export default function HomePage() {
               { num:'05', title:'SEO & Performance', desc:'Rank higher, attract quality traffic, and improve long-term digital performance.', tags:['SEO','Rankings','Traffic'], back:'Rank where it matters. We build sustainable search visibility that drives real traffic.', href:'/seo-services-dubai/' },
               { num:'06', title:'OOH & PR Management', desc:'Impactful out-of-home advertising and PR campaigns that amplify your brand.', tags:['Billboards','Media Relations','OOH'], back:'From Dubai billboards to regional PR — we put your brand in front of the right eyes.', href:'/digital-marketing-services/' },
             ].map(svc => (
-              <div key={svc.num} className="svc-card">
+              <Link key={svc.num} href={svc.href} className="svc-card">
                 <div className="svc-card-inner">
                   <div className="svc-face svc-face-front">
                     <div className="svc-number">{svc.num}</div>
@@ -316,10 +316,10 @@ export default function HomePage() {
                       <div className="svc-back-title">{svc.title}</div>
                       <div className="svc-back-desc">{svc.back}</div>
                     </div>
-                    <div className="svc-back-bottom"><Link href={svc.href} className="svc-back-link">Find Out More →</Link></div>
+                    <div className="svc-back-bottom"><span className="svc-back-link">Find Out More →</span></div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
           <div className="svc-more-wrap"><Link href="/digital-marketing-services/" className="btn-svc-more">View All Services <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></Link></div>
@@ -494,7 +494,7 @@ export default function HomePage() {
           <p className="cta-band-sub">Book a free strategy session with our team. No commitment — just clarity on what&apos;s possible for your brand.</p>
           <div className="cta-band-actions">
             <Link href="/contact" className="btn-white">Free Consultation <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></Link>
-            <Link href="#services" className="btn-ghost">Explore Services</Link>
+            <Link href="/digital-marketing-services/" className="btn-ghost">Explore Services</Link>
           </div>
         </div>
       </section>
