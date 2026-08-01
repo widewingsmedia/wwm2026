@@ -217,7 +217,7 @@ export default function ContactPage() {
                         <p style={{ color: '#e53e3e', fontSize: '0.85rem', marginBottom: 14 }} role="alert">{error}</p>
                       )}
                       <div className="form-submit-row">
-                        <p className="form-privacy">By submitting, you agree to our<br/><Link href="#">Privacy Policy</Link> &amp; <Link href="#">Terms of Service</Link>.</p>
+                        <p className="form-privacy">By submitting, you agree to our<br/><Link href="/privacy-policy/">Privacy Policy</Link> &amp; <Link href="/terms-conditions/">Terms of Service</Link>.</p>
                         <button type="submit" className="btn-submit" disabled={submitting}>
                           {submitting ? 'Sending…' : "Let's Talk"}
                           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>

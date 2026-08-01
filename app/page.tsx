@@ -299,7 +299,7 @@ export default function HomePage() {
               { num:'03', title:'Paid Advertising & Media', desc:'Campaigns planned, executed, and optimized to maximize reach, conversions, and ROI.', tags:['Google Ads','Media Buying','PPC'], back:'Every dirham spent is tracked, optimized, and pointed at results that matter.', href:'/ppc-advertising-company-dubai/' },
               { num:'04', title:'Social Media Management', desc:'Strategic content, consistent engagement, and platform-specific growth tactics.', tags:['Content','Engagement','Community'], back:'We grow your social presence with content that connects, engages, and converts.', href:'/social-media-marketing-agency-in-dubai/' },
               { num:'05', title:'SEO & Performance', desc:'Rank higher, attract quality traffic, and improve long-term digital performance.', tags:['SEO','Rankings','Traffic'], back:'Rank where it matters. We build sustainable search visibility that drives real traffic.', href:'/seo-services-dubai/' },
-              { num:'06', title:'OOH & PR Management', desc:'Impactful out-of-home advertising and PR campaigns that amplify your brand.', tags:['Billboards','Media Relations','OOH'], back:'From Dubai billboards to regional PR — we put your brand in front of the right eyes.', href:'/digital-marketing-services/' },
+              { num:'06', title:'OOH & PR Management', desc:'Impactful out-of-home advertising and PR campaigns that amplify your brand.', tags:['Billboards','Media Relations','OOH'], back:'From Dubai billboards to regional PR — we put your brand in front of the right eyes.', href:'/outdoor-advertising-dubai/' },
             ].map(svc => (
               <Link key={svc.num} href={svc.href} className="svc-card">
                 <div className="svc-card-inner">
