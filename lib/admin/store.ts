@@ -437,9 +437,9 @@ const BLOG_SEO: Record<string, { metaTitle: string; focusKeyword: string; second
     secondaryKeywords: 'social media pricing UAE, SME marketing packages Dubai, affordable social media UAE',
   },
   'digital-marketing-strategies-for-smes': {
-    metaTitle: 'Digital Marketing for SMEs in Dubai: Strategies that Work',
+    metaTitle: 'Digital Marketing for SMEs in Dubai: Strategies That Work in 2026',
     focusKeyword: 'digital marketing for SMEs in Dubai',
-    secondaryKeywords: 'SME marketing Dubai, small business digital marketing UAE, online marketing SMEs',
+    secondaryKeywords: 'digital marketing strategy Dubai, SEO for small businesses Dubai, social media marketing Dubai, WhatsApp marketing UAE, paid advertising Dubai, AI search optimization Dubai',
   },
   'local-seo-agency-for-startups': {
     metaTitle: 'Top Local SEO Agency in Dubai | Wide Wings Media UAE',

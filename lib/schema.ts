@@ -85,6 +85,48 @@ const CUSTOM_SCHEMA: Record<string, Record<string, unknown>[]> = {
       ],
     },
   ],
+  'digital-marketing-strategies-for-smes': [
+    {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'BlogPosting',
+          mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': 'https://wide-wings.ae/digital-marketing-strategies-for-smes/',
+          },
+          headline: 'Digital Marketing for SMEs in Dubai: Strategies That Work in 2026',
+          description: 'Discover practical digital marketing strategies for SMEs in Dubai in 2026, including SEO, AI search, social media, WhatsApp marketing, paid advertising, and growth-focused marketing planning.',
+          image: 'https://wide-wings.ae/blog/digital-marketing-strategies-for-smes.webp',
+          author: { '@type': 'Organization', name: 'Wide Wings Media' },
+          publisher: {
+            '@type': 'Organization',
+            name: 'Wide Wings Media',
+            logo: { '@type': 'ImageObject', url: 'https://wide-wings.ae/Logoblack.webp' },
+          },
+          datePublished: '2026-08-12',
+          dateModified: '2026-08-12',
+          articleSection: 'Digital Marketing',
+          keywords: [
+            'digital marketing for SMEs in Dubai',
+            'digital marketing strategy Dubai',
+            'SEO for small businesses Dubai',
+            'social media marketing Dubai',
+            'WhatsApp marketing UAE',
+            'paid advertising Dubai',
+          ],
+        },
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://wide-wings.ae/' },
+            { '@type': 'ListItem', position: 2, name: 'Insights', item: 'https://wide-wings.ae/insights/' },
+            { '@type': 'ListItem', position: 3, name: 'Digital Marketing for SMEs in Dubai: Strategies That Work in 2026', item: 'https://wide-wings.ae/digital-marketing-strategies-for-smes/' },
+          ],
+        },
+      ],
+    },
+  ],
 };
 
 // Returns the page-specific ld+json block(s) for a given key. Checks the
