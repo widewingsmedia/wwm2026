@@ -587,9 +587,9 @@ const BLOG_SEO: Record<string, { metaTitle: string; focusKeyword: string; second
     secondaryKeywords: 'cinema ads UAE, movie theater advertising Dubai, film advertising Middle East',
   },
   'best-time-to-post-on-instagram-in-uae': {
-    metaTitle: 'Find out the best times to post on Instagram in UAE',
-    focusKeyword: 'best times to post on Instagram UAE',
-    secondaryKeywords: 'Instagram posting schedule UAE, when to post Instagram Dubai, UAE Instagram strategy',
+    metaTitle: 'Best Time to Post on Instagram in UAE: 2026 Posting Guide',
+    focusKeyword: 'best time to post on instagram in uae',
+    secondaryKeywords: 'best time to post on instagram, best time of day to post on instagram, best time to post on instagram monday, best time to post on instagram sunday, best time to post on instagram weekend, best day and time to post on instagram, best time to post videos on instagram, best time to post a video on instagram',
   },
   'guide-to-effective-social-media-campaign': {
     metaTitle: 'Guide to a Successful Social Media Campaign',
