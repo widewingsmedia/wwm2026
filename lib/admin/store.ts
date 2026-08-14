@@ -538,8 +538,8 @@ const BLOG_SEO: Record<string, { metaTitle: string; focusKeyword: string; second
   },
   'image-optimization-tips': {
     metaTitle: 'Boost Website Traffic: Image Optimization Guide for Bloggers',
-    focusKeyword: 'image optimization for bloggers',
-    secondaryKeywords: 'image SEO tips, compress images for web, website speed optimization UAE',
+    focusKeyword: 'image optimization',
+    secondaryKeywords: 'image SEO, Core Web Vitals, WebP, AVIF, website speed optimization, visual search optimization',
   },
   'best-digital-marketing-agency-in-abu-dhabi': {
     metaTitle: 'Digital Marketing Agency in Abu Dhabi That Focuses on Growth',

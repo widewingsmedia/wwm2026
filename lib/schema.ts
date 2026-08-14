@@ -127,6 +127,50 @@ const CUSTOM_SCHEMA: Record<string, Record<string, unknown>[]> = {
       ],
     },
   ],
+  'image-optimization-tips': [
+    {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'BlogPosting',
+          mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': 'https://wide-wings.ae/image-optimization-tips/',
+          },
+          headline: 'Boost Website Traffic: Image Optimization Guide for Bloggers',
+          alternativeHeadline: 'Image Optimization Tips for Faster Websites and Better SEO',
+          description: 'Follow this practical image optimization workflow using AVIF, WebP, responsive sizing, Core Web Vitals, alt text and visual search best practices.',
+          image: 'https://wide-wings.ae/blog/image-optimization-tips.webp',
+          author: { '@type': 'Organization', name: 'Wide Wings Media' },
+          publisher: {
+            '@type': 'Organization',
+            name: 'Wide Wings Media',
+            logo: { '@type': 'ImageObject', url: 'https://wide-wings.ae/Logoblack.webp' },
+          },
+          datePublished: '2026-08-12',
+          dateModified: '2026-08-12',
+          articleSection: 'SEO',
+          keywords: [
+            'image optimization',
+            'image SEO',
+            'Core Web Vitals',
+            'WebP',
+            'AVIF',
+            'website speed optimization',
+            'visual search optimization',
+          ],
+        },
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://wide-wings.ae/' },
+            { '@type': 'ListItem', position: 2, name: 'Insights', item: 'https://wide-wings.ae/insights/' },
+            { '@type': 'ListItem', position: 3, name: 'Boost Website Traffic: Image Optimization Guide for Bloggers', item: 'https://wide-wings.ae/image-optimization-tips/' },
+          ],
+        },
+      ],
+    },
+  ],
 };
 
 // Returns the page-specific ld+json block(s) for a given key. Checks the
