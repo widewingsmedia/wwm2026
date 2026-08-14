@@ -417,9 +417,9 @@ const BLOG_SEO: Record<string, { metaTitle: string; focusKeyword: string; second
     secondaryKeywords: 'startup SEO Dubai, local SEO UAE, SEO for new businesses Dubai',
   },
   'ai-trend': {
-    metaTitle: 'AI Trends UAE: Generative AI & Intelligent Automation',
+    metaTitle: 'AI Trends UAE Businesses Should Watch in 2026',
     focusKeyword: 'AI trends UAE',
-    secondaryKeywords: 'generative AI UAE, artificial intelligence Dubai, AI automation Middle East',
+    secondaryKeywords: 'artificial intelligence UAE, agentic AI UAE, AI automation UAE, AI governance UAE, UAE AI strategy, bilingual AI UAE',
   },
   'real-estate-content-writing-uae': {
     metaTitle: 'Real Estate Content Writing Services in the UAE',

@@ -171,6 +171,49 @@ const CUSTOM_SCHEMA: Record<string, Record<string, unknown>[]> = {
       ],
     },
   ],
+  'ai-trend': [
+    {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'BlogPosting',
+          mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': 'https://wide-wings.ae/ai-trend/',
+          },
+          headline: 'AI Trends in the UAE: What Businesses Should Watch in 2026',
+          description: 'Explore the most important AI trends in the UAE for 2026, including agentic AI, bilingual AI, intelligent automation, AI governance, and practical adoption strategies for businesses.',
+          image: 'https://wide-wings.ae/blog/ai-trend.webp',
+          author: { '@type': 'Organization', name: 'Wide Wings Media' },
+          publisher: {
+            '@type': 'Organization',
+            name: 'Wide Wings Media',
+            logo: { '@type': 'ImageObject', url: 'https://wide-wings.ae/Logoblack.webp' },
+          },
+          datePublished: '2026-08-12',
+          dateModified: '2026-08-12',
+          articleSection: 'Artificial Intelligence',
+          keywords: [
+            'AI trends UAE',
+            'artificial intelligence UAE',
+            'agentic AI UAE',
+            'AI automation UAE',
+            'AI governance UAE',
+            'UAE AI strategy',
+            'bilingual AI UAE',
+          ],
+        },
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://wide-wings.ae/' },
+            { '@type': 'ListItem', position: 2, name: 'Insights', item: 'https://wide-wings.ae/insights/' },
+            { '@type': 'ListItem', position: 3, name: 'AI Trends in the UAE: What Businesses Should Watch in 2026', item: 'https://wide-wings.ae/ai-trend/' },
+          ],
+        },
+      ],
+    },
+  ],
 };
 
 // Returns the page-specific ld+json block(s) for a given key. Checks the
