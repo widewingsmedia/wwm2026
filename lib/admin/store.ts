@@ -602,9 +602,9 @@ const BLOG_SEO: Record<string, { metaTitle: string; focusKeyword: string; second
     secondaryKeywords: 'grow YouTube channel, YouTube analytics tips, video SEO UAE',
   },
   'ai-video-creation-trends': {
-    metaTitle: 'AI Video Creation Trends: Insights & Future Projections',
+    metaTitle: 'AI Video Creation Trends Shaping the Industry in 2026',
     focusKeyword: 'AI video creation trends',
-    secondaryKeywords: 'AI video tools, generative AI video, AI content creation UAE',
+    secondaryKeywords: 'AI video tools, generative AI video, AI video marketing, AI video translation, content authenticity',
   },
   'successfully-rebrand-your-business': {
     metaTitle: 'How to Develop Your Rebranding Strategy',
