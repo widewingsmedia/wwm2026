@@ -20,7 +20,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: '/admin',
+      disallow: ['/admin', '/leadsheet'],
     },
     sitemap: `${SITE_URL}/sitemap.xml`,
   };
