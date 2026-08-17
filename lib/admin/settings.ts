@@ -76,6 +76,7 @@ export async function appendToSheet(row: {
   phone: string;
   service: string;
   message: string;
+  source?: string;
 }): Promise<boolean> {
   const settings = await getSheetSettings();
   if (!settings.enabled || !settings.webhookUrl) return false;

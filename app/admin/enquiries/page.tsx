@@ -7,10 +7,35 @@ import type { Enquiry } from '@/lib/admin/store';
 import type { SheetSettings } from '@/lib/admin/settings';
 
 const APPS_SCRIPT_CODE = `function doPost(e) {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   var d = JSON.parse(e.postData.contents);
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet;
+
+  if (d.source === 'leadsheet') {
+    // /leadsheet submissions — target the tab by its sheet ID (the "gid" in the
+    // tab's URL) so it always lands in the right tab even if the tab is renamed.
+    // Find your gid by opening the tab and reading the number after "gid=" in
+    // the browser address bar.
+    var LEADSHEET_TAB_GID = 1999455495;
+    sheet = ss.getSheets().find(function (s) { return s.getSheetId() === LEADSHEET_TAB_GID; });
+    if (!sheet) {
+      throw new Error('No tab with gid ' + LEADSHEET_TAB_GID + ' was found in this spreadsheet.');
+    }
+  } else {
+    // Regular /contact submissions — targets the "Website Leads" tab by name
+    // (trimmed, case-insensitive so stray spacing/capitalization doesn't break
+    // the match) so rows always land there, regardless of which tab was last
+    // active in the UI.
+    sheet = ss.getSheets().find(function (s) {
+      return s.getName().trim().toLowerCase() === 'website leads';
+    });
+    if (!sheet) {
+      throw new Error('No tab named "Website Leads" was found in this spreadsheet.');
+    }
+  }
+
   if (sheet.getLastRow() === 0) {
-    sheet.appendRow(['Received At', 'Name', 'Email', 'Phone', 'Service', 'Message']);
+    sheet.appendRow(['Date', 'Full Name', 'Email', 'Phone', 'Requested Service', 'Message']);
   }
   sheet.appendRow([d.receivedAt, d.name, d.email, d.phone, d.service, d.message]);
   return ContentService.createTextOutput(JSON.stringify({ ok: true }))
@@ -113,7 +138,7 @@ export default function EnquiriesAdmin() {
             <div>
               <div className="adm-card-title">Google Sheets Sync</div>
               <div style={{ fontSize: '0.8rem', color: '#9ca3af', marginTop: 3 }}>
-                Every contact form submission is also saved as a row in your Google Sheet.
+                Every contact form submission is also saved as a row in your Google Sheet — /contact goes to the &quot;Website Leads&quot; tab, /leadsheet goes to its own tab in the same sheet.
               </div>
             </div>
             <span className={`adm-badge ${sheets.enabled ? 'adm-badge-new' : 'adm-badge-read'}`}>
@@ -186,9 +211,13 @@ export default function EnquiriesAdmin() {
               <ol style={{ paddingLeft: 20, marginTop: 10, display: 'grid', gap: 6 }}>
                 <li>Open (or create) your Google Sheet, then go to <strong>Extensions → Apps Script</strong>.</li>
                 <li>Delete any code there and paste the script below, then click <strong>Save</strong>.</li>
-                <li>Click <strong>Deploy → New deployment → Web app</strong>. Set <em>Execute as: Me</em> and <em>Who has access: Anyone</em>, then click <strong>Deploy</strong> and authorise it.</li>
+                <li>Update <code>LEADSHEET_TAB_GID</code> in the script to match the <code>gid=…</code> number in your leadsheet tab&apos;s URL, and make sure a tab named exactly &quot;Website Leads&quot; exists for regular contact-form submissions.</li>
+                <li>
+                  If you already have a deployment: <strong>Deploy → Manage deployments</strong>, click the pencil icon, and choose <strong>New version</strong> so the same Web app URL picks up the updated code.<br />
+                  If this is a first-time setup: <strong>Deploy → New deployment → Web app</strong>. Set <em>Execute as: Me</em> and <em>Who has access: Anyone</em>, then click <strong>Deploy</strong> and authorise it.
+                </li>
                 <li>Copy the <strong>Web app URL</strong> (ends in <code>/exec</code>) and paste it in the field above, along with your sheet&apos;s normal link.</li>
-                <li>Tick the checkbox, click <strong>Save Settings</strong>, then <strong>Send Test Row</strong> to confirm a row appears in the sheet.</li>
+                <li>Tick the checkbox, click <strong>Save Settings</strong>, then <strong>Send Test Row</strong> to confirm a row appears in the &quot;Website Leads&quot; tab (test rows always use the default /contact routing).</li>
               </ol>
               <pre style={{ background: '#0f0f1a', color: '#d1d5db', padding: 14, borderRadius: 6, overflowX: 'auto', fontSize: '0.75rem', marginTop: 10 }}>
                 {APPS_SCRIPT_CODE}

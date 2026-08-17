@@ -65,6 +65,7 @@ export interface Enquiry {
   message: string;
   status: 'new' | 'read';
   receivedAt: string;
+  source?: string; // 'contact' (default) or 'leadsheet' — which form submitted this
 }
 
 export interface ChatEvent {

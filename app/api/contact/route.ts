@@ -15,6 +15,7 @@ export async function POST(req: NextRequest) {
   const phone = typeof body.phone === 'string' ? body.phone.trim() : '';
   const service = typeof body.service === 'string' ? body.service.trim() : '';
   const message = typeof body.message === 'string' ? body.message.trim() : '';
+  const source = body.source === 'leadsheet' ? 'leadsheet' : 'contact';
 
   if (!name || !email || !service || !message) {
     return NextResponse.json({ error: 'Please fill in all required fields.' }, { status: 400 });
@@ -26,13 +27,13 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'One of the fields is too long.' }, { status: 400 });
   }
 
-  const enquiry = store.enquiries.add({ name, email, phone, service, message });
+  const enquiry = store.enquiries.add({ name, email, phone, service, message, source });
 
   // Mirror to Google Sheets if the webadmin has configured sync.
   // A sheet failure never blocks the submission — the enquiry is already stored.
   const sheetSynced = await appendToSheet({
     receivedAt: enquiry.receivedAt,
-    name, email, phone, service, message,
+    name, email, phone, service, message, source,
   });
 
   return NextResponse.json({ ok: true, id: enquiry.id, sheetSynced });
