@@ -617,6 +617,26 @@ const BLOG_SEO: Record<string, { metaTitle: string; focusKeyword: string; second
     focusKeyword: 'audience engagement strategies',
     secondaryKeywords: 'keep audience engaged, content engagement tips, audience retention UAE',
   },
+  'how-to-build-trust-with-online-reviews-in-the-uae': {
+    metaTitle: 'How to Build Trust with Online Reviews in the UAE',
+    focusKeyword: 'online reviews UAE',
+    secondaryKeywords: 'reputation management UAE, Google reviews Dubai, local SEO reviews, review generation strategy',
+  },
+  'why-seo-matters': {
+    metaTitle: 'Why SEO Still Matters in the UAE in 2026',
+    focusKeyword: 'SEO UAE 2026',
+    secondaryKeywords: 'AI search SEO, GEO UAE, local SEO Dubai, technical SEO, bilingual SEO UAE',
+  },
+  'digital-marketing-trends-uae': {
+    metaTitle: 'Digital Marketing Trends UAE: What Businesses Need in 2026',
+    focusKeyword: 'digital marketing trends UAE',
+    secondaryKeywords: 'digital marketing UAE 2026, GEO UAE, AI search UAE, WhatsApp marketing UAE, bilingual SEO UAE',
+  },
+  'newsletters-that-convert': {
+    metaTitle: 'Newsletters That Convert: UAE Email Best Practices',
+    focusKeyword: 'newsletter best practices UAE',
+    secondaryKeywords: 'email marketing UAE, bilingual email marketing, email segmentation, UAE data protection law email',
+  },
 };
 
 // Pre-fills SEO for a blog post that hasn't been edited in the SEO Manager yet,
