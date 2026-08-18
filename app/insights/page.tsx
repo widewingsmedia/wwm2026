@@ -3,11 +3,15 @@ import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo';
 import '../blogs/blogs.css';
 import BlogsClient from '../blogs/BlogsClient';
-import { POSTS } from '../blogs/posts-data';
+import { POSTS, isPublished } from '../blogs/posts-data';
 import SchemaScripts from '@/components/SchemaScripts';
 import { getPageSchema } from '@/lib/schema';
 
 const PAGE_SCHEMA = getPageSchema('insights');
+
+// Re-checked periodically so scheduled posts (see posts-data.ts publishAt)
+// appear in the listing on their own, without a new deploy.
+export const revalidate = 300;
 
 export async function generateMetadata(): Promise<Metadata> {
   return getPageMetadata('blogs');
@@ -32,7 +36,7 @@ export default function InsightsPage() {
       </section>
 
       {/* Paginated grid — client component */}
-      <BlogsClient posts={POSTS} />
+      <BlogsClient posts={POSTS.filter(isPublished)} />
     </>
   );
 }

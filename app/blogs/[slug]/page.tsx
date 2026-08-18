@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { POSTS } from '../posts-data';
+import { POSTS, isPublished } from '../posts-data';
 import '../blog-post.css';
 import FaqAccordion from './FaqAccordion';
 import { getBlogContent } from '@/lib/admin/blog-kv';
@@ -6390,14 +6390,14 @@ Outsourcing your writing gives you the chance to focus more on your core busines
 
 /* ── Related posts helper ── */
 function getRelated(slug: string, category: string) {
-  return POSTS.filter(p => p.slug !== slug && p.category === category).slice(0, 4);
+  return POSTS.filter(p => p.slug !== slug && p.category === category && isPublished(p)).slice(0, 4);
 }
 
 /* ── Page ── */
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = POSTS.find(p => p.slug === slug);
-  if (!post) notFound();
+  if (!post || !isPublished(post)) notFound();
 
   // KV content (set via admin) takes priority over hardcoded CONTENT
   const kvHtml = await getBlogContent(slug);

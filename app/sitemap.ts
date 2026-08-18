@@ -1,8 +1,12 @@
 import type { MetadataRoute } from 'next';
 import { store } from '@/lib/admin/store';
-import { POSTS } from '@/app/blogs/posts-data';
+import { POSTS, isPublished } from '@/app/blogs/posts-data';
 import { CASE_STUDIES } from '@/app/case-studies/cases-data';
 import { SITE_URL } from '@/lib/seo';
+
+// Re-checked periodically so scheduled posts (see posts-data.ts publishAt)
+// drop into the sitemap on their own, without a new deploy.
+export const revalidate = 300;
 
 // Only served with real entries once the site is live — see app/robots.ts for
 // the same NEXT_PUBLIC_SITE_LIVE gate, so search engines never index the
@@ -37,7 +41,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ];
 
-  const blogPages: MetadataRoute.Sitemap = POSTS.map(post => {
+  const blogPages: MetadataRoute.Sitemap = POSTS.filter(isPublished).map(post => {
     const seo = seoByPageId.get(`blog-${post.slug}`);
     return {
       url: `${SITE_URL}/${post.slug}/`,
