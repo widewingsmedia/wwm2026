@@ -227,7 +227,7 @@ const CUSTOM_SCHEMA: Record<string, Record<string, unknown>[]> = {
           },
           headline: 'How to Build Trust with Online Reviews in the UAE',
           description: 'Learn how UAE businesses can use online reviews to build trust, strengthen local SEO, manage reputation, improve customer experience, and support conversions.',
-          image: 'https://wide-wings.ae/blog/power-of-reputation-management.webp',
+          image: 'https://wide-wings.ae/how-to-build-trust-with-online-reviews-in-the-uae.jpg',
           author: { '@type': 'Person', name: 'Doha' },
           publisher: {
             '@type': 'Organization',
@@ -278,7 +278,7 @@ const CUSTOM_SCHEMA: Record<string, Record<string, unknown>[]> = {
           },
           headline: 'Why SEO Will Still Matter in the UAE in 2026',
           description: 'Discover why SEO still matters for UAE businesses in 2026, including AI search, GEO, local SEO, bilingual SEO, technical SEO, structured data, trust, and conversions.',
-          image: 'https://wide-wings.ae/blog/systematic-search-engine-optimization.webp',
+          image: 'https://wide-wings.ae/why-seo-matters.jpg',
           author: { '@type': 'Person', name: 'Doha' },
           publisher: {
             '@type': 'Organization',
@@ -328,7 +328,7 @@ const CUSTOM_SCHEMA: Record<string, Record<string, unknown>[]> = {
           },
           headline: 'Digital Marketing Trends in the UAE: What Businesses Need to Do in 2026',
           description: 'Explore the key digital marketing trends shaping the UAE in 2026, including social search, AI visibility, GEO, bilingual SEO, WhatsApp marketing, creator content, first-party data, paid media, and performance measurement.',
-          image: 'https://wide-wings.ae/blog/digital-marketing-strategy-for-b2bs.webp',
+          image: 'https://wide-wings.ae/digital-marketing-trends-uae.jpg',
           author: { '@type': 'Organization', name: 'Wide Wings Media' },
           publisher: {
             '@type': 'Organization',
@@ -388,7 +388,7 @@ const CUSTOM_SCHEMA: Record<string, Record<string, unknown>[]> = {
           },
           headline: 'Newsletters That Convert: Best Practices for UAE Marketers',
           description: 'Discover newsletter best practices for UAE marketers, including segmentation, bilingual email journeys, automation, privacy, mobile design, cross-channel marketing, and performance measurement.',
-          image: 'https://wide-wings.ae/blog/content-repurposing.webp',
+          image: 'https://wide-wings.ae/newsletters-that-convert.jpg',
           author: { '@type': 'Person', name: 'Doha' },
           publisher: {
             '@type': 'Organization',
