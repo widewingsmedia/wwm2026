@@ -11,12 +11,12 @@ import { getPageSchema } from '@/lib/schema';
 const PAGE_SCHEMA = getPageSchema('about-us');
 
 const team = [
+  { name: 'Asad Hayat',               title: 'Chief Operating Officer',  img: '/AsadHayat.png' },
   { name: 'Alaa Mokhless Ali',        title: 'Account Manager',          img: '/Alaa.webp' },
   { name: 'Nouran Mamdouh',           title: 'Account Manager',          img: '/nowran.webp' },
   { name: 'Ebtehal Elnoras',          title: 'Account Manager',          img: '/Ebtehal.webp' },
   { name: 'Rawan Akram',              title: 'Account Manager',          img: '/RawanAkram.webp' },
   { name: 'Mohamed Shaarawi',         title: 'Full-Stack Web Developer', img: '/Shaarawi.webp' },
-  { name: 'Lawrence Peter Watyabuko', title: 'SEO Specialist',           img: '/Lawrence.webp' },
   { name: 'Mohamed Ibrahim Juba',     title: 'Graphic Designer',         img: '/MohamedIbrahimJuba.webp' },
   { name: 'Mahmoud Ismail',           title: 'Graphic Designer',         img: '/MahmoudIsmail.webp' },
   { name: 'Prasanna Veeramani',       title: 'Graphic Designer',         img: '/Prasanna.webp' },
@@ -26,6 +26,7 @@ const team = [
   { name: 'Eslam Deif',               title: 'Media Buyer',              img: '/Eslam.webp' },
   { name: 'Kareem Ayman Abdu',        title: 'Media Buyer',              img: '/Kareemayman.webp' },
   { name: 'Rana Amir Irshad',         title: 'Cash Flow In-charge',      img: '/Amir.webp' },
+  { name: 'Vivian D’Souza',      title: 'SEO Executive',            img: '/VivianDSouza.png' },
 ];
 
 function HeroParallaxButtons() {
