@@ -7,6 +7,7 @@ import { isPublished } from '../blogs/posts-data';
 import SchemaScripts from '@/components/SchemaScripts';
 import { getPageSchema } from '@/lib/schema';
 import { getAllPosts } from '@/lib/admin/all-posts';
+import { getHiddenSlugs } from '@/lib/admin/post-visibility-kv';
 
 const PAGE_SCHEMA = getPageSchema('insights');
 
@@ -19,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function InsightsPage() {
-  const posts = await getAllPosts();
+  const [posts, hiddenSlugs] = await Promise.all([getAllPosts(), getHiddenSlugs()]);
   return (
     <>
       <SchemaScripts blocks={PAGE_SCHEMA} />
@@ -38,7 +39,7 @@ export default async function InsightsPage() {
       </section>
 
       {/* Paginated grid — client component */}
-      <BlogsClient posts={posts.filter(isPublished)} />
+      <BlogsClient posts={posts.filter(p => isPublished(p) && !hiddenSlugs.includes(p.slug))} />
     </>
   );
 }

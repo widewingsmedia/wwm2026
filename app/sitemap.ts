@@ -4,6 +4,7 @@ import { isPublished } from '@/app/blogs/posts-data';
 import { CASE_STUDIES } from '@/app/case-studies/cases-data';
 import { SITE_URL } from '@/lib/seo';
 import { getAllPosts } from '@/lib/admin/all-posts';
+import { getHiddenSlugs } from '@/lib/admin/post-visibility-kv';
 
 // Re-checked periodically so scheduled posts (see posts-data.ts publishAt)
 // drop into the sitemap on their own, without a new deploy.
@@ -42,8 +43,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   ];
 
-  const posts = await getAllPosts();
-  const blogPages: MetadataRoute.Sitemap = posts.filter(isPublished).map(post => {
+  const [posts, hiddenSlugs] = await Promise.all([getAllPosts(), getHiddenSlugs()]);
+  const blogPages: MetadataRoute.Sitemap = posts.filter(p => isPublished(p) && !hiddenSlugs.includes(p.slug)).map(post => {
     const seo = seoByPageId.get(`blog-${post.slug}`);
     return {
       url: `${SITE_URL}/${post.slug}/`,

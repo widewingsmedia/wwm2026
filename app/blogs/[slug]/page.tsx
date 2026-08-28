@@ -12,6 +12,7 @@ import { getPageSchema } from '@/lib/schema';
 import SchemaScripts from '@/components/SchemaScripts';
 import { getAllPosts } from '@/lib/admin/all-posts';
 import { getNewPost } from '@/lib/admin/new-posts-kv';
+import { getHiddenSlugs } from '@/lib/admin/post-visibility-kv';
 import { buildBlogSchema } from '@/lib/schema-builder';
 import type { Post } from '../posts-data';
 
@@ -6393,23 +6394,26 @@ Outsourcing your writing gives you the chance to focus more on your core busines
 };
 
 /* ── Related posts helper ── */
-function getRelated(allPosts: Post[], slug: string, category: string) {
-  return allPosts.filter(p => p.slug !== slug && p.category === category && isPublished(p)).slice(0, 4);
+function getRelated(allPosts: Post[], hiddenSlugs: string[], slug: string, category: string) {
+  return allPosts
+    .filter(p => p.slug !== slug && p.category === category && isPublished(p) && !hiddenSlugs.includes(p.slug))
+    .slice(0, 4);
 }
 
 /* ── Page ── */
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const allPosts = await getAllPosts();
+  const hiddenSlugs = await getHiddenSlugs();
   const post = allPosts.find(p => p.slug === slug);
-  if (!post || !isPublished(post)) notFound();
+  if (!post || !isPublished(post) || hiddenSlugs.includes(slug)) notFound();
 
   // KV content (set via admin) takes priority over hardcoded CONTENT
   const kvHtml = await getBlogContent(slug);
   const content = kvHtml
     ? <div dangerouslySetInnerHTML={{ __html: kvHtml }} />
     : CONTENT[slug];
-  const related = getRelated(allPosts, slug, post.category);
+  const related = getRelated(allPosts, hiddenSlugs, slug, post.category);
 
   // Hand-authored schema (lib/schema.ts) takes priority; posts created via
   // the admin "New Blog Post" upload have none there, so build it on the fly
