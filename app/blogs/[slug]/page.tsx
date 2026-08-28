@@ -10,6 +10,10 @@ import { getBlogContent } from '@/lib/admin/blog-kv';
 import { getPageMetadata } from '@/lib/seo';
 import { getPageSchema } from '@/lib/schema';
 import SchemaScripts from '@/components/SchemaScripts';
+import { getAllPosts } from '@/lib/admin/all-posts';
+import { getNewPost } from '@/lib/admin/new-posts-kv';
+import { buildBlogSchema } from '@/lib/schema-builder';
+import type { Post } from '../posts-data';
 
 export const revalidate = 0; // always fetch fresh from KV, never cache
 
@@ -6389,14 +6393,15 @@ Outsourcing your writing gives you the chance to focus more on your core busines
 };
 
 /* ── Related posts helper ── */
-function getRelated(slug: string, category: string) {
-  return POSTS.filter(p => p.slug !== slug && p.category === category && isPublished(p)).slice(0, 4);
+function getRelated(allPosts: Post[], slug: string, category: string) {
+  return allPosts.filter(p => p.slug !== slug && p.category === category && isPublished(p)).slice(0, 4);
 }
 
 /* ── Page ── */
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = POSTS.find(p => p.slug === slug);
+  const allPosts = await getAllPosts();
+  const post = allPosts.find(p => p.slug === slug);
   if (!post || !isPublished(post)) notFound();
 
   // KV content (set via admin) takes priority over hardcoded CONTENT
@@ -6404,8 +6409,26 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const content = kvHtml
     ? <div dangerouslySetInnerHTML={{ __html: kvHtml }} />
     : CONTENT[slug];
-  const related = getRelated(slug, post.category);
-  const postSchema = getPageSchema(slug);
+  const related = getRelated(allPosts, slug, post.category);
+
+  // Hand-authored schema (lib/schema.ts) takes priority; posts created via
+  // the admin "New Blog Post" upload have none there, so build it on the fly
+  // from their stored fields instead.
+  let postSchema = getPageSchema(slug);
+  if (postSchema.length === 0) {
+    const dynamicPost = await getNewPost(slug);
+    if (dynamicPost) {
+      postSchema = buildBlogSchema({
+        slug: dynamicPost.slug,
+        title: dynamicPost.title,
+        metaDescription: dynamicPost.metaDescription || dynamicPost.excerpt,
+        image: dynamicPost.image,
+        category: dynamicPost.category,
+        createdAt: dynamicPost.createdAt,
+        faqItems: dynamicPost.faqItems,
+      });
+    }
+  }
 
   /* TOC: pull h2 headings from content string representation */
   const tocItems = [

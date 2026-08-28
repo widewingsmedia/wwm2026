@@ -3,9 +3,10 @@ import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo';
 import '../blogs/blogs.css';
 import BlogsClient from '../blogs/BlogsClient';
-import { POSTS, isPublished } from '../blogs/posts-data';
+import { isPublished } from '../blogs/posts-data';
 import SchemaScripts from '@/components/SchemaScripts';
 import { getPageSchema } from '@/lib/schema';
+import { getAllPosts } from '@/lib/admin/all-posts';
 
 const PAGE_SCHEMA = getPageSchema('insights');
 
@@ -17,7 +18,8 @@ export async function generateMetadata(): Promise<Metadata> {
   return getPageMetadata('blogs');
 }
 
-export default function InsightsPage() {
+export default async function InsightsPage() {
+  const posts = await getAllPosts();
   return (
     <>
       <SchemaScripts blocks={PAGE_SCHEMA} />
@@ -36,7 +38,7 @@ export default function InsightsPage() {
       </section>
 
       {/* Paginated grid — client component */}
-      <BlogsClient posts={POSTS.filter(isPublished)} />
+      <BlogsClient posts={posts.filter(isPublished)} />
     </>
   );
 }

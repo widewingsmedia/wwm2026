@@ -5,7 +5,17 @@ export function isPublished(post: { publishAt?: string }): boolean {
   return !post.publishAt || new Date(post.publishAt).getTime() <= Date.now();
 }
 
-export const POSTS = [
+export interface Post {
+  slug: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  image: string;
+  cta: string;
+  publishAt?: string;
+}
+
+export const POSTS: Post[] = [
   { slug: 'ecommerce-website-development-dubai', title: 'Ecommerce Website Development in Dubai for Scalable Growth', excerpt: 'Get high-converting ecommerce website development in Dubai & UAE. Fast, secure, mobile-first online stores designed for sales growth and ROI.', category: 'Web Development', image: '/blog-ecommerce.webp', cta: 'Build your online store' },
   { slug: 'search-engine-marketing-company-dubai', title: 'Search Engine Marketing Company in Dubai — SEM Services UAE', excerpt: 'ROI-focused search engine marketing company in Dubai delivering high-intent PPC campaigns built for UAE buyers. Get a free SEM audit today.', category: 'SEM', image: '/blog-sem.webp', cta: 'Get your free SEM audit' },
   { slug: 'ppc-for-ecommerce-dubai', title: 'PPC for E-commerce Websites in Dubai: Where to Start', excerpt: 'Smart PPC for e-commerce websites in Dubai that aligns with buyer intent — not clicks. Decision-led Google Ads and Shopping campaigns.', category: 'PPC', image: '/blog-ppc.webp', cta: 'Turn clicks into sales' },
