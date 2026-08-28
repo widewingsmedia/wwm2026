@@ -60,11 +60,11 @@ export default function BlogVisibilityList({ initialPosts, initialHidden }: {
   }
 
   function statusFor(p: PostRow): { label: string; color: string } {
-    if (hidden.has(p.slug)) return { label: 'Hidden', color: '#f87171' };
+    if (hidden.has(p.slug)) return { label: 'Hidden', color: '#ef4444' };
     if (p.publishAt && new Date(p.publishAt).getTime() > now) {
-      return { label: `Scheduled — ${new Date(p.publishAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}`, color: '#facc15' };
+      return { label: `Scheduled — ${new Date(p.publishAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}`, color: '#ca8a04' };
     }
-    return { label: 'Live', color: '#4ade80' };
+    return { label: 'Live', color: '#16a34a' };
   }
 
   return (
@@ -82,7 +82,7 @@ export default function BlogVisibilityList({ initialPosts, initialHidden }: {
           style={{ width: '100%' }}
         />
         {error && (
-          <div style={{ marginTop: 10, padding: '8px 12px', borderRadius: 6, background: '#450a0a', color: '#f87171', fontSize: '0.8rem' }}>
+          <div style={{ marginTop: 10, padding: '8px 12px', borderRadius: 6, background: '#fef2f2', border: '1px solid #fecaca', color: '#ef4444', fontSize: '0.8rem' }}>
             ✕ {error}
           </div>
         )}
@@ -96,13 +96,13 @@ export default function BlogVisibilityList({ initialPosts, initialHidden }: {
           return (
             <div key={p.slug} style={{
               display: 'flex', alignItems: 'center', gap: 12,
-              padding: '10px 0', borderBottom: '1px solid #1f2937',
+              padding: '10px 0', borderBottom: '1px solid #f3f4f6',
             }}>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#e2e8f0', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#0f0f1a', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                   {p.title}
                 </div>
-                <div style={{ fontSize: '0.72rem', color: '#64748b' }}>/{p.slug}/ · {p.category}</div>
+                <div style={{ fontSize: '0.72rem', color: '#6b7280' }}>/{p.slug}/ · {p.category}</div>
               </div>
               <span style={{ fontSize: '0.72rem', fontWeight: 700, color: status.color, whiteSpace: 'nowrap' }}>
                 {status.label}

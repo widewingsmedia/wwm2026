@@ -322,7 +322,7 @@ export default function BlogEditor() {
             {/* Results list — shown only when searching */}
             {search && (
               <div style={{
-                border: '1px solid #374151', borderRadius: 8, background: '#111827',
+                border: '1px solid #e5e7eb', borderRadius: 8, background: '#fff',
                 maxHeight: 280, overflowY: 'auto', marginBottom: 10,
               }}>
                 {filteredPosts.length === 0 ? (
@@ -333,15 +333,15 @@ export default function BlogEditor() {
                     onClick={() => { setSlug(p.slug); setSearch(''); }}
                     style={{
                       display: 'block', width: '100%', textAlign: 'left',
-                      padding: '10px 16px', background: p.slug === slug ? '#1e3a5f' : 'transparent',
-                      border: 'none', borderBottom: '1px solid #1f2937', cursor: 'pointer',
-                      color: p.slug === slug ? '#93c5fd' : '#d1d5db',
+                      padding: '10px 16px', background: p.slug === slug ? '#fdf2f8' : 'transparent',
+                      border: 'none', borderBottom: '1px solid #f3f4f6', cursor: 'pointer',
+                      color: p.slug === slug ? '#a73184' : '#374151',
                     }}
-                    onMouseEnter={e => { if (p.slug !== slug) (e.currentTarget as HTMLButtonElement).style.background = '#1f2937'; }}
+                    onMouseEnter={e => { if (p.slug !== slug) (e.currentTarget as HTMLButtonElement).style.background = '#f9fafb'; }}
                     onMouseLeave={e => { if (p.slug !== slug) (e.currentTarget as HTMLButtonElement).style.background = 'transparent'; }}
                   >
                     <div style={{ fontSize: '0.83rem', fontWeight: 600, marginBottom: 2 }}>{p.title}</div>
-                    <div style={{ fontSize: '0.72rem', color: '#64748b' }}>/{p.slug}</div>
+                    <div style={{ fontSize: '0.72rem', color: '#6b7280' }}>/{p.slug}</div>
                   </button>
                 ))}
               </div>
@@ -350,17 +350,17 @@ export default function BlogEditor() {
 
           {/* Selected post info */}
           {post && (
-            <div style={{ marginTop: 8, padding: '12px 16px', background: '#0f172a', borderRadius: 8, border: '1px solid #1e3a5f' }}>
-              <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#e2e8f0', marginBottom: 4 }}>
+            <div style={{ marginTop: 8, padding: '12px 16px', background: '#f9fafb', borderRadius: 8, border: '1px solid #e5e7eb' }}>
+              <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#0f0f1a', marginBottom: 4 }}>
                 ✓ {post.title}
               </div>
-              <div style={{ fontSize: '0.75rem', color: '#64748b', marginBottom: 6 }}>
-                Category: <span style={{ color: '#94a3b8' }}>{post.category}</span>
+              <div style={{ fontSize: '0.75rem', color: '#6b7280', marginBottom: 6 }}>
+                Category: <span style={{ color: '#374151' }}>{post.category}</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-                <span style={{ fontSize: '0.72rem', color: '#64748b' }}>Live URL:</span>
+                <span style={{ fontSize: '0.72rem', color: '#6b7280' }}>Live URL:</span>
                 <a href={liveUrl} target="_blank" rel="noopener noreferrer"
-                  style={{ fontSize: '0.72rem', color: '#3b82f6', wordBreak: 'break-all' }}>
+                  style={{ fontSize: '0.72rem', color: '#2563eb', wordBreak: 'break-all' }}>
                   {liveUrl}
                 </a>
               </div>
@@ -388,13 +388,13 @@ export default function BlogEditor() {
         {tab === 'edit' ? (
           <div style={{ padding: '0 24px 16px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10 }}>
-              <p style={{ fontSize: '0.8rem', color: '#9ca3af', margin: 0 }}>
-                Paste your full HTML page, or upload an <strong style={{ color: '#d1d5db' }}>.html file</strong> — wrapper tags are stripped automatically.
+              <p style={{ fontSize: '0.8rem', color: '#6b7280', margin: 0 }}>
+                Paste your full HTML page, or upload an <strong style={{ color: '#374151' }}>.html file</strong> — wrapper tags are stripped automatically.
               </p>
               <label style={{
                 display: 'inline-flex', alignItems: 'center', gap: 6, cursor: 'pointer',
                 padding: '6px 14px', borderRadius: 6, fontSize: '0.8rem', fontWeight: 600,
-                background: '#1f2937', color: '#d1d5db', border: '1px solid #374151',
+                background: '#f3f4f6', color: '#374151', border: '1px solid #d1d5db',
                 whiteSpace: 'nowrap', flexShrink: 0,
               }}>
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -433,14 +433,14 @@ export default function BlogEditor() {
           </div>
         ) : (
           <div
-            style={{ padding: '20px 24px', minHeight: 300, color: '#e5e7eb', lineHeight: 1.8 }}
+            style={{ padding: '20px 24px', minHeight: 300, color: '#374151', lineHeight: 1.8 }}
             className="bp-article"
             dangerouslySetInnerHTML={{ __html: html || '<p style="color:#6b7280;font-style:italic">Nothing to preview yet.</p>' }}
           />
         )}
 
         {/* Actions */}
-        <div style={{ padding: '12px 24px 20px', borderTop: '1px solid #1f2937', display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap' }}>
+        <div style={{ padding: '12px 24px 20px', borderTop: '1px solid #f3f4f6', display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap' }}>
           <button
             className="adm-btn adm-btn-primary"
             onClick={handleSave}
@@ -468,8 +468,9 @@ export default function BlogEditor() {
           {status && (
             <span style={{
               fontSize: '0.82rem', padding: '6px 12px', borderRadius: 6,
-              background: status.type === 'success' ? '#052e16' : '#450a0a',
-              color: status.type === 'success' ? '#4ade80' : '#f87171',
+              background: status.type === 'success' ? '#f0fdf4' : '#fef2f2',
+              color: status.type === 'success' ? '#16a34a' : '#ef4444',
+              border: status.type === 'success' ? '1px solid #bbf7d0' : '1px solid #fecaca',
             }}>
               {status.type === 'success' ? '✓ ' : '✕ '}{status.msg}
             </span>

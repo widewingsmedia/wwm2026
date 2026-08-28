@@ -155,7 +155,8 @@ export default function TeamAdmin() {
         {msg && (
           <div style={{
             margin: '0 24px 16px', fontSize: '0.85rem', fontWeight: 600, padding: '10px 14px', borderRadius: 6,
-            background: msg.kind === 'ok' ? '#052e16' : '#450a0a', color: msg.kind === 'ok' ? '#4ade80' : '#f87171',
+            background: msg.kind === 'ok' ? '#f0fdf4' : '#fef2f2', color: msg.kind === 'ok' ? '#16a34a' : '#ef4444',
+            border: msg.kind === 'ok' ? '1px solid #bbf7d0' : '1px solid #fecaca',
           }}>
             {msg.kind === 'ok' ? '✓ ' : '✕ '}{msg.text}
           </div>
@@ -171,7 +172,7 @@ export default function TeamAdmin() {
             {rows.map((r, i) => (
               <div key={r._key} style={{
                 display: 'flex', alignItems: 'center', gap: 14, padding: 14,
-                background: '#0f172a', border: '1px solid #1e293b', borderRadius: 10,
+                background: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: 10,
               }}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                   <button className="adm-btn adm-btn-outline adm-btn-sm" style={{ padding: '2px 8px' }} onClick={() => moveRow(r._key, -1)} disabled={i === 0} title="Move up">↑</button>
@@ -181,9 +182,9 @@ export default function TeamAdmin() {
                 <label style={{ cursor: 'pointer', flexShrink: 0 }} title="Click to upload a photo">
                   {r.img ? (
                     // eslint-disable-next-line @next/next/no-img-element
-                    <img src={r.img} alt={r.name || 'Team member'} width={64} height={64} style={{ borderRadius: 8, objectFit: 'cover', width: 64, height: 64, border: '1px solid #334155' }} />
+                    <img src={r.img} alt={r.name || 'Team member'} width={64} height={64} style={{ borderRadius: 8, objectFit: 'cover', width: 64, height: 64, border: '1px solid #e5e7eb' }} />
                   ) : (
-                    <div style={{ width: 64, height: 64, borderRadius: 8, background: '#1e293b', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#64748b', fontSize: '0.65rem', textAlign: 'center', border: '1px dashed #334155' }}>
+                    <div style={{ width: 64, height: 64, borderRadius: 8, background: '#f3f4f6', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#9ca3af', fontSize: '0.65rem', textAlign: 'center', border: '1px dashed #d1d5db' }}>
                       Upload photo
                     </div>
                   )}

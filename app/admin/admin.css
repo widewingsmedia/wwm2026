@@ -6,6 +6,7 @@
   min-height: 100vh;
   background: #f1f3f8;
   font-family: 'Calibri', Arial, sans-serif;
+  overflow-x: hidden;
 }
 
 /* ── SIDEBAR ── */
@@ -75,6 +76,7 @@
 /* ── MAIN ── */
 .adm-main {
   flex: 1;
+  min-width: 0; /* let flex item shrink to viewport instead of growing to fit a wide child (long URL, unwrapped table row, etc.) */
   margin-left: 240px;
   min-height: 100vh;
 }

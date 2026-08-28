@@ -176,7 +176,7 @@ export default function NewBlogPostUploader() {
               <input type="file" accept=".docx" onChange={handleFile} disabled={uploading} style={{ display: 'none' }} />
             </label>
             {error && (
-              <div style={{ marginTop: 16, padding: '10px 16px', borderRadius: 6, background: '#450a0a', color: '#f87171', fontSize: '0.82rem', textAlign: 'left' }}>
+              <div style={{ marginTop: 16, padding: '10px 16px', borderRadius: 6, background: '#fef2f2', border: '1px solid #fecaca', color: '#ef4444', fontSize: '0.82rem', textAlign: 'left' }}>
                 ✕ {error}
               </div>
             )}
@@ -187,10 +187,10 @@ export default function NewBlogPostUploader() {
       {parsed && !result && (
         <>
           {parsed.warnings.length > 0 && (
-            <div className="adm-card" style={{ marginBottom: 16, borderColor: '#92640a' }}>
-              <div style={{ padding: '14px 20px', background: '#3a2a05' }}>
-                <div style={{ fontWeight: 700, color: '#facc15', fontSize: '0.82rem', marginBottom: 6 }}>⚠ Check before publishing</div>
-                <ul style={{ margin: 0, paddingLeft: 18, color: '#fde68a', fontSize: '0.8rem', lineHeight: 1.6 }}>
+            <div className="adm-card" style={{ marginBottom: 16, borderColor: '#f6d78b' }}>
+              <div style={{ padding: '14px 20px', background: '#fff7e6' }}>
+                <div style={{ fontWeight: 700, color: '#92640a', fontSize: '0.82rem', marginBottom: 6 }}>⚠ Check before publishing</div>
+                <ul style={{ margin: 0, paddingLeft: 18, color: '#78350f', fontSize: '0.8rem', lineHeight: 1.6 }}>
                   {parsed.warnings.map((w, i) => <li key={i}>{w}</li>)}
                 </ul>
               </div>
@@ -243,13 +243,13 @@ export default function NewBlogPostUploader() {
                 <label style={{
                   display: 'inline-flex', alignItems: 'center', gap: 6, cursor: 'pointer',
                   padding: '7px 14px', borderRadius: 6, fontSize: '0.78rem', fontWeight: 600,
-                  background: '#1f2937', color: '#d1d5db', border: '1px solid #374151',
+                  background: '#f3f4f6', color: '#374151', border: '1px solid #d1d5db',
                 }}>
                   Upload Image
                   <input type="file" accept="image/*" onChange={handleImageUpload} style={{ display: 'none' }} />
                 </label>
                 {parsed.suggestedImage && !image && (
-                  <div style={{ fontSize: '0.72rem', color: '#facc15', marginTop: 6 }}>
+                  <div style={{ fontSize: '0.72rem', color: '#ca8a04', marginTop: 6 }}>
                     Suggested from doc: &ldquo;{parsed.suggestedImage}&rdquo;
                   </div>
                 )}
@@ -257,7 +257,7 @@ export default function NewBlogPostUploader() {
               {image && (
                 <div style={{ gridColumn: '1 / -1', marginTop: 4 }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={image} alt="Featured" style={{ maxWidth: 240, borderRadius: 8, border: '1px solid #374151' }} />
+                  <img src={image} alt="Featured" style={{ maxWidth: 240, borderRadius: 8, border: '1px solid #e5e7eb' }} />
                 </div>
               )}
             </div>
@@ -265,15 +265,15 @@ export default function NewBlogPostUploader() {
 
           <div className="adm-card" style={{ marginBottom: 16 }}>
             <div className="adm-card-head"><div className="adm-card-title">Body Preview ({parsed.faqItems.length} FAQ{parsed.faqItems.length === 1 ? '' : 's'})</div></div>
-            <div className="bp-article" style={{ padding: '20px 24px', maxHeight: 500, overflowY: 'auto', color: '#e5e7eb', lineHeight: 1.8 }}
+            <div className="bp-article" style={{ padding: '20px 24px', maxHeight: 500, overflowY: 'auto', color: '#374151', lineHeight: 1.8 }}
               dangerouslySetInnerHTML={{ __html: parsed.bodyHtml }} />
             {parsed.faqItems.length > 0 && (
               <div style={{ padding: '0 24px 20px' }}>
-                <div style={{ fontWeight: 700, color: '#9ca3af', fontSize: '0.82rem', marginBottom: 8 }}>FAQ</div>
+                <div style={{ fontWeight: 700, color: '#6b7280', fontSize: '0.82rem', marginBottom: 8 }}>FAQ</div>
                 {parsed.faqItems.map((f, i) => (
                   <div key={i} style={{ marginBottom: 10 }}>
-                    <div style={{ color: '#e2e8f0', fontWeight: 600, fontSize: '0.85rem' }}>{f.q}</div>
-                    <div style={{ color: '#9ca3af', fontSize: '0.82rem' }}>{f.a}</div>
+                    <div style={{ color: '#0f0f1a', fontWeight: 600, fontSize: '0.85rem' }}>{f.q}</div>
+                    <div style={{ color: '#6b7280', fontSize: '0.82rem' }}>{f.a}</div>
                   </div>
                 ))}
               </div>
@@ -290,7 +290,7 @@ export default function NewBlogPostUploader() {
               )}
             </button>
             {publishError && (
-              <span style={{ fontSize: '0.82rem', padding: '6px 12px', borderRadius: 6, background: '#450a0a', color: '#f87171' }}>
+              <span style={{ fontSize: '0.82rem', padding: '6px 12px', borderRadius: 6, background: '#fef2f2', border: '1px solid #fecaca', color: '#ef4444' }}>
                 ✕ {publishError}
               </span>
             )}
@@ -302,7 +302,7 @@ export default function NewBlogPostUploader() {
         <div className="adm-card">
           <div style={{ padding: '32px 24px', textAlign: 'center' }}>
             <div style={{ fontSize: '1.4rem', marginBottom: 8 }}>✓</div>
-            <div style={{ fontWeight: 700, color: '#e2e8f0', marginBottom: 8 }}>
+            <div style={{ fontWeight: 700, color: '#0f0f1a', marginBottom: 8 }}>
               {publishAt ? 'Scheduled!' : 'Published!'}
             </div>
             <a href={result.url} target="_blank" rel="noopener noreferrer" style={{ color: '#3b82f6', fontSize: '0.85rem', wordBreak: 'break-all' }}>
