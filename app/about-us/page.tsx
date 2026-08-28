@@ -2,32 +2,14 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import './about-us.css';
 import CtaCanvas from '../services/CtaCanvas';
 import SchemaScripts from '@/components/SchemaScripts';
 import { getPageSchema } from '@/lib/schema';
+import { DEFAULT_TEAM, type TeamMember } from '@/lib/team-defaults';
 
 const PAGE_SCHEMA = getPageSchema('about-us');
-
-const team = [
-  { name: 'Asad Hayat',               title: 'Chief Operating Officer',  img: '/AsadHayat.png' },
-  { name: 'Alaa Mokhless Ali',        title: 'Account Manager',          img: '/Alaa.webp' },
-  { name: 'Nouran Mamdouh',           title: 'Account Manager',          img: '/nowran.webp' },
-  { name: 'Ebtehal Elnoras',          title: 'Account Manager',          img: '/Ebtehal.webp' },
-  { name: 'Rawan Akram',              title: 'Account Manager',          img: '/RawanAkram.webp' },
-  { name: 'Mohamed Shaarawi',         title: 'Full-Stack Web Developer', img: '/Shaarawi.webp' },
-  { name: 'Mohamed Ibrahim Juba',     title: 'Graphic Designer',         img: '/MohamedIbrahimJuba.webp' },
-  { name: 'Mahmoud Ismail',           title: 'Graphic Designer',         img: '/MahmoudIsmail.webp' },
-  { name: 'Prasanna Veeramani',       title: 'Graphic Designer',         img: '/Prasanna.webp' },
-  { name: 'Nesma Ibrahim',            title: 'Graphic Designer',         img: '/Nesma.webp' },
-  { name: 'Asmaa Mostafa',            title: 'Content Creator',          img: '/Asmaa.webp' },
-  { name: 'Doha Ghareeb',             title: 'Content Creator',          img: '/Doha.webp' },
-  { name: 'Eslam Deif',               title: 'Media Buyer',              img: '/Eslam.webp' },
-  { name: 'Kareem Ayman Abdu',        title: 'Media Buyer',              img: '/Kareemayman.webp' },
-  { name: 'Rana Amir Irshad',         title: 'Cash Flow In-charge',      img: '/Amir.webp' },
-  { name: 'Vivian D’Souza',      title: 'SEO Executive',            img: '/VivianDSouza.png' },
-];
 
 function HeroParallaxButtons() {
   useEffect(() => {
@@ -227,6 +209,14 @@ function CtaSection() {
 }
 
 export default function AboutUsPage() {
+  const [team, setTeam] = useState<TeamMember[]>(DEFAULT_TEAM);
+  useEffect(() => {
+    fetch('/api/team')
+      .then(r => r.ok ? r.json() : null)
+      .then(data => { if (Array.isArray(data) && data.length) setTeam(data); })
+      .catch(() => {});
+  }, []);
+
   return (
     <div id="au-page">
       <SchemaScripts blocks={PAGE_SCHEMA} />
@@ -386,7 +376,7 @@ export default function AboutUsPage() {
             const col  = i % 4;
             const delay = (row === 0 ? col : col) * 0.05;
             return (
-              <div key={m.name} className="au-cast-card" data-reveal data-reveal-delay={String(Math.floor(i / 4) * 60 + (i % 4) * 50)} style={{ '--d': `${delay}s` } as React.CSSProperties}>
+              <div key={m.id || m.name} className="au-cast-card" data-reveal data-reveal-delay={String(Math.floor(i / 4) * 60 + (i % 4) * 50)} style={{ '--d': `${delay}s` } as React.CSSProperties}>
                 <div className="frame">
                   <Image src={m.img} alt={m.name} fill sizes="300px" style={{ objectFit:'cover', objectPosition:'center 12%' }} loading="lazy" />
                   <div className="spotlight" />
