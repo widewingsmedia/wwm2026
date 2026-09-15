@@ -192,7 +192,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main>
+    <main className="home-dark">
       <SchemaScripts blocks={HOME_SCHEMA} />
       {/* HERO */}
       <section id="hero">

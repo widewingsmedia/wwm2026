@@ -442,6 +442,44 @@
 .blog-excerpt { font-size: 1rem; color: var(--ink-soft); line-height: 1.65; }
 .blog-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 18px; font-size: 0.75rem; font-weight: 700; color: var(--magenta); letter-spacing: 0.08em; text-transform: uppercase; }
 
+/* ─── DARK THEME — every section below except #hero, scoped to the
+   .home-dark wrapper on <main> so nothing outside the homepage (or the
+   hero itself, which never reads these variables) is affected. ────── */
+.home-dark {
+  --off-white: #131320;
+  --ink: #f0f0f2;
+  --ink-soft: rgba(240, 240, 242, .68);
+  color: #f0f0f2;
+}
+.home-dark #clients { background: #0a0a0a; border-top-color: rgba(255,255,255,.08); border-bottom-color: rgba(255,255,255,.08); }
+.home-dark .ticker-label { color: rgba(240,240,242,.4); }
+
+.home-dark #expertise { background: #0a0a1a; }
+.home-dark .exp-card { background: #16162a; border-color: rgba(255,255,255,.09); }
+
+.home-dark .svc-face-front { background: #16162a; }
+.home-dark .svc-tags span { border-color: rgba(255,255,255,.15); color: rgba(240,240,242,.5); }
+.home-dark .btn-svc-more { color: #f0f0f2; border-color: rgba(255,255,255,.35); }
+.home-dark .btn-svc-more::after { background: #f0f0f2; }
+
+.home-dark #about { background: #0a0a1a; }
+.home-dark .about-h2 { color: #f0f0f2; }
+.home-dark .about-stat-lbl { color: rgba(240,240,242,.45); }
+
+.home-dark .cases-arrow { border-color: rgba(255,255,255,.18); color: #f0f0f2; }
+
+.home-dark #why { background: #0a0a1a; }
+.home-dark .why-item { border-bottom-color: rgba(255,255,255,.08); }
+
+.home-dark #reviews { background: #0a0a1a; }
+.home-dark .review-card { border-color: rgba(255,255,255,.09); }
+.home-dark .review-company { color: rgba(240,240,242,.4); }
+
+.home-dark #cta-band { background: #000000; }
+
+.home-dark .blog-card { background: #16162a; }
+.home-dark .blog-date { color: rgba(240,240,242,.4); }
+
 /* ─── RESPONSIVE ────────────────────────── */
 @media (max-width: 1024px) {
   #hero .hero-inner { grid-template-columns: 1fr; text-align: center; }
