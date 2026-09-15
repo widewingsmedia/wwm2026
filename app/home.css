@@ -527,6 +527,7 @@
 .home-dark .blog-thumb { border-radius: 12px; }
 .home-dark .blog-thumb-tag { border-radius: 999px; background: rgba(10,10,13,.75); backdrop-filter: blur(4px); color: var(--gold); font-weight: 700; letter-spacing: 0.1em; padding: 6px 14px; bottom: 14px; left: 14px; }
 .home-dark .blog-date { color: rgba(240,240,242,.4); }
+.home-dark .blog-title { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .home-dark .blog-excerpt { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .home-dark .blog-link { color: #d34ba4; transition: color .25s; }
 .home-dark .blog-card:hover .blog-link { color: var(--gold); }
