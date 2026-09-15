@@ -503,7 +503,10 @@
 /* CTA band — matches /index2 and /index3: pure black, pink "Grow", pill
    buttons, thin eyebrow label, bigger heading, Back to Top link. */
 .home-dark #cta-band { padding: 100px 0 64px; background: #000000; }
-.home-dark .cta-band-label { font-family: 'Nexa', 'Arial Black', sans-serif; font-weight: 300; }
+.home-dark .cta-band-label { font-family: 'Nexa', 'Arial Black', sans-serif; font-weight: 300; font-size: 0.85rem; letter-spacing: 0.22em; color: rgba(244, 243, 239, 0.55); }
+@media (max-width: 560px) {
+  .home-dark .cta-band-label { color: rgba(244, 243, 239, 0.85); }
+}
 .home-dark .cta-band-h2 { font-size: clamp(36px, 7vw, 84px); }
 .home-dark .cta-band-h2 em {
   background: none;
@@ -563,6 +566,7 @@
 
 @media (max-width: 768px) {
   .section-label { font-size: 0.64rem; }
+  .home-dark .cta-band-label { font-size: 0.64rem; }
   #hero { min-height: 100svh; }
   #hero .hero-inner { padding: 100px 20px 64px; gap: 0; text-align: center; display: flex; flex-direction: column; }
   #hero .hero-badge { margin: 36px auto 28px; }
