@@ -45,8 +45,11 @@ export default function Header() {
 
   const isActive = (href: string) => pathname === href;
 
+  const DARK_PAGES = ['/', '/about-us', '/about-us/', '/index2', '/index2/', '/index3', '/index3/'];
+  const isDarkPage = DARK_PAGES.includes(pathname);
+
   return (
-    <header ref={headerRef} id="site-header">
+    <header ref={headerRef} id="site-header" className={isDarkPage ? 'header-on-dark' : undefined}>
       <div className="header-inner">
       <Link href="/" className="nav-logo">
         <LogoWhite width={160} height={64} className="logo-white" uid="hdr" />
