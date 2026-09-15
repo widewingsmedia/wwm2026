@@ -225,7 +225,7 @@ export default function DigitalMarketingServicesPage() {
         <span className="svc-values-watermark" aria-hidden="true">WIDE WINGS</span>
         <div className="svc-values-inner">
           <div data-reveal className="svc-values-head">
-            <div className="svc-eyebrow"><span className="svc-dot" />Why Choose Us</div>
+            <div className="svc-eyebrow">Why Choose Us</div>
             <h2 className="svc-values-h2">Take the Leap from<br /><em>Experiments to Conversions</em></h2>
           </div>
           <div className="svc-values-grid">

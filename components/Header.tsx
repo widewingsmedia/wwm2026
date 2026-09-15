@@ -45,7 +45,7 @@ export default function Header() {
 
   const isActive = (href: string) => pathname === href;
 
-  const DARK_PAGES = ['/', '/about-us', '/about-us/', '/index2', '/index2/', '/index3', '/index3/'];
+  const DARK_PAGES = ['/', '/about-us', '/about-us/', '/digital-marketing-services', '/digital-marketing-services/', '/index2', '/index2/', '/index3', '/index3/'];
   const isDarkPage = DARK_PAGES.includes(pathname);
 
   return (
