@@ -7,7 +7,11 @@ import ServiceFlipText from '@/components/ServiceFlipText';
 import LogoWhite from '@/components/LogoWhite';
 import { CASE_STUDIES } from '@/app/case-studies/cases-data';
 import CaseStoryCard from '@/app/case-studies/CaseStoryCard';
+import type { Post } from '@/app/blogs/posts-data';
 import './index3.css';
+
+const formatBlogDate = (iso?: string) =>
+  iso ? new Date(iso).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : '';
 
 // Same client roster as the original ticker — deduped once, then rendered
 // twice back-to-back for the seamless-loop marquee (matches /index2).
@@ -17,13 +21,23 @@ const TRUSTED_BRANDS = ['Zaina Cafe', 'Saudi German Hospital', 'Batterjee Proper
 // only the colors change (see index3.css, a dark-themed copy of home.css).
 // No SchemaScripts here: this page is noindex and shouldn't duplicate the
 // real homepage's structured data.
-export default function Index3() {
+export default function Index3({ posts }: { posts: Post[] }) {
   const casesTrackRef = useRef<HTMLDivElement>(null);
+  const blogsTrackRef = useRef<HTMLDivElement>(null);
+  const blogsFillRef = useRef<HTMLSpanElement>(null);
 
   const scrollCases = (dir: 1 | -1) => {
     const track = casesTrackRef.current;
     if (!track) return;
     const card = track.querySelector<HTMLElement>('.case-card');
+    const step = card ? card.offsetWidth + 24 : track.clientWidth * 0.9;
+    track.scrollBy({ left: dir * step, behavior: 'smooth' });
+  };
+
+  const scrollBlogs = (dir: 1 | -1) => {
+    const track = blogsTrackRef.current;
+    if (!track) return;
+    const card = track.querySelector<HTMLElement>('.blog-card');
     const step = card ? card.offsetWidth + 24 : track.clientWidth * 0.9;
     track.scrollBy({ left: dir * step, behavior: 'smooth' });
   };
@@ -195,6 +209,26 @@ export default function Index3() {
     }
   }, []);
 
+  useEffect(() => {
+    const track = blogsTrackRef.current;
+    const fill = blogsFillRef.current;
+    if (!track || !fill) return;
+    const updateFill = () => {
+      const max = track.scrollWidth - track.clientWidth;
+      const visibleRatio = Math.min(1, track.clientWidth / track.scrollWidth);
+      const progress = max > 0 ? track.scrollLeft / max : 0;
+      fill.style.width = `${visibleRatio * 100}%`;
+      fill.style.left = `${progress * (100 - visibleRatio * 100)}%`;
+    };
+    updateFill();
+    track.addEventListener('scroll', updateFill, { passive: true });
+    window.addEventListener('resize', updateFill);
+    return () => {
+      track.removeEventListener('scroll', updateFill);
+      window.removeEventListener('resize', updateFill);
+    };
+  }, [posts]);
+
   return (
     <main className="idx3-page">
       {/* HERO */}
@@ -296,6 +330,13 @@ export default function Index3() {
             <h2 className="services-h2">Full-Service <ServiceFlipText /> Agency</h2>
             <p className="services-sub">Every service we offer is designed to work together — so your brand grows with momentum, not just isolated wins.</p>
           </div>
+          <div className="svc-grid-frame">
+            <span className="svc-frame-corner svc-frame-tl"></span>
+            <span className="svc-frame-corner svc-frame-tr"></span>
+            <span className="svc-frame-corner svc-frame-bl"></span>
+            <span className="svc-frame-corner svc-frame-br"></span>
+            <span className="svc-frame-plus" style={{ left: '33.333%' }}></span>
+            <span className="svc-frame-plus" style={{ left: '66.666%' }}></span>
           <div className="services-grid">
             {[
               { num:'01', title:'Web & App Development', desc:'High-performing websites and mobile applications — fast, secure, and user-first.', tags:['Web Dev','App Dev','UX Design','E-commerce'], back:'From custom websites to full mobile apps — built fast, built to convert.', href:'/web-design-company-dubai/' },
@@ -325,6 +366,7 @@ export default function Index3() {
                 </div>
               </Link>
             ))}
+          </div>
           </div>
           <div className="svc-more-wrap"><Link href="/digital-marketing-services/" className="btn-svc-more">View All Services <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></Link></div>
         </div>
@@ -464,7 +506,8 @@ export default function Index3() {
 
       {/* REVIEWS */}
       <section id="reviews">
-        <div className="container">
+        <div className="reviews-bg-grid"></div>
+        <div className="container" style={{position:'relative',zIndex:1}}>
           <div className="reviews-header">
             <span className="section-label">Client Reviews</span>
             <h2 className="reviews-h2">What Our Clients <span className="gradient-text">Say</span></h2>
@@ -497,9 +540,10 @@ export default function Index3() {
           <h2 className="cta-band-h2">Ready to <em>Grow</em> Your Brand?</h2>
           <p className="cta-band-sub">Book a free strategy session with our team. No commitment — just clarity on what&apos;s possible for your brand.</p>
           <div className="cta-band-actions">
-            <Link href="/contact" className="btn-white">Free Consultation <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></Link>
+            <Link href="/contact" className="btn-white">Free Consultation</Link>
             <Link href="/digital-marketing-services/" className="btn-ghost">Explore Services</Link>
           </div>
+          <a href="#hero" className="cta-band-back">&uarr; Back to Top</a>
         </div>
       </section>
 
@@ -510,25 +554,30 @@ export default function Index3() {
             <div><span className="section-label">Insights</span><h2 className="blogs-h2">Recent <span className="gradient-text">Blogs</span></h2></div>
             <Link href="/insights/" className="btn-outline">All Articles</Link>
           </div>
-          <div className="blogs-grid">
-            {[
-              { img:'blog-ecommerce.webp', tag:'E-Commerce', date:'January 15, 2026', title:'Ecommerce Website Development in Dubai for Scalable Growth', excerpt:'Get high-converting ecommerce website development in Dubai & UAE. Fast, secure, mobile-first online stores built for growth.', href:'/ecommerce-website-development-dubai/', cta:'See how to grow your brand' },
-              { img:'blog-sem.webp', tag:'SEM', date:'January 13, 2026', title:'Search Engine Marketing Company in Dubai — SEM Services UAE', excerpt:'ROI-focused search engine marketing company in Dubai delivering high-intent PPC campaigns built for the UAE market.', href:'/search-engine-marketing-company-dubai/', cta:'Get the full story' },
-              { img:'blog-ppc.webp', tag:'PPC', date:'January 8, 2026', title:'PPC for E-commerce Websites in Dubai: Where to Start', excerpt:"Smart PPC for e-commerce websites in Dubai that aligns with buyer intent — decision-led Google Ads strategies that convert.", href:'/ppc-for-ecommerce-dubai/', cta:'Explore more strategies' },
-            ].map((blog, i) => (
-              <Link key={i} href={blog.href} className="blog-card">
+          <div className="blogs-grid" ref={blogsTrackRef}>
+            {posts.map(post => (
+              <Link key={post.slug} href={`/${post.slug}/`} className="blog-card">
                 <div className="blog-thumb">
-                  <div className="blog-thumb-img" style={{backgroundImage:`url('/${blog.img}')`}}></div>
-                  <div className="blog-thumb-tag">{blog.tag}</div>
+                  <div className="blog-thumb-img" style={{backgroundImage:`url('${post.image}')`}}></div>
+                  <div className="blog-thumb-tag">{post.category}</div>
                 </div>
                 <div className="blog-body">
-                  <div className="blog-date">{blog.date}</div>
-                  <div className="blog-title">{blog.title}</div>
-                  <div className="blog-excerpt">{blog.excerpt}</div>
-                  <span className="blog-link">{blog.cta} →</span>
+                  {post.publishAt && <div className="blog-date">{formatBlogDate(post.publishAt)}</div>}
+                  <div className="blog-title">{post.title}</div>
+                  <div className="blog-excerpt">{post.excerpt}</div>
+                  <span className="blog-link">{post.cta} →</span>
                 </div>
               </Link>
             ))}
+          </div>
+          <div className="blogs-slider-nav">
+            <button type="button" aria-label="Previous blog posts" className="blogs-arrow" onClick={() => scrollBlogs(-1)}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            </button>
+            <div className="blogs-slider-track"><span ref={blogsFillRef} className="blogs-slider-fill"></span></div>
+            <button type="button" aria-label="Next blog posts" className="blogs-arrow" onClick={() => scrollBlogs(1)}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
           </div>
         </div>
       </section>
