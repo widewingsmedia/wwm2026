@@ -475,27 +475,66 @@
 .home-dark .review-card { border-color: rgba(255,255,255,.09); }
 .home-dark .review-company { color: rgba(240,240,242,.4); }
 
-.home-dark #cta-band { background: #000000; }
-
-.home-dark .blog-card { background: #16162a; }
-.home-dark .blog-date { color: rgba(240,240,242,.4); }
-
 /* Flatten every text gradient (section headings, stat numbers, quotes) to
    solid gold — the hero's own "Captivate" shimmer (.hw.grad .hw-inner) is
-   intentionally left alone, it isn't a .gradient-text/em element. */
+   intentionally left alone, it isn't a .gradient-text/em element. The CTA
+   band's "Grow" is handled separately below (matches /index2 and /index3:
+   pink, not gold). */
 .home-dark .gradient-text,
 .home-dark .stat-number,
 .home-dark .about-card-quote em,
 .home-dark .about-stat-num,
 .home-dark .flip-item,
-.home-dark .flip-item.flip-active,
-.home-dark .cta-band-h2 em {
+.home-dark .flip-item.flip-active {
   background: none;
   -webkit-background-clip: initial;
   background-clip: initial;
   -webkit-text-fill-color: initial;
   color: var(--gold);
   animation: none;
+}
+
+/* CTA band — matches /index2 and /index3: pure black, pink "Grow", pill
+   buttons, thin eyebrow label, bigger heading, Back to Top link. */
+.home-dark #cta-band { padding: 100px 0 64px; background: #000000; }
+.home-dark .cta-band-label { font-family: 'Nexa', 'Arial Black', sans-serif; font-weight: 300; }
+.home-dark .cta-band-h2 { font-size: clamp(36px, 7vw, 84px); }
+.home-dark .cta-band-h2 em {
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: initial;
+  color: #d34ba4;
+}
+.home-dark .cta-band-actions { margin-bottom: 32px; }
+.home-dark .btn-white { padding: 13px 28px; background: #d34ba4; color: #fff; font-size: 0.78rem; font-weight: 600; border-radius: 999px; transition: background .25s, transform .25s; }
+.home-dark .btn-white:hover { background: #e768b8; opacity: 1; }
+.home-dark .btn-ghost { padding: 13px 28px; border-color: rgba(255,255,255,.15); color: rgba(255,255,255,.85); font-size: 0.78rem; font-weight: 600; border-radius: 999px; }
+.home-dark .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+.home-dark .cta-band-back { display: inline-block; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,.15); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,.55); text-decoration: none; transition: color .25s, border-color .25s; }
+.home-dark .cta-band-back:hover { color: var(--gold); border-color: var(--gold); }
+
+/* Blogs — matches /index3: flat/transparent cards, rounded pill tags,
+   rounded thumbnails, pink CTA links that turn gold on hover, equal card
+   heights via line-clamp, and a working horizontal slider. */
+.home-dark .blogs-grid { display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 4px; }
+.home-dark .blogs-grid::-webkit-scrollbar { display: none; }
+.home-dark .blog-card { background: transparent; flex: 0 0 calc((100% - 48px) / 3); scroll-snap-align: start; }
+.home-dark .blog-thumb { border-radius: 12px; }
+.home-dark .blog-thumb-tag { border-radius: 999px; background: rgba(10,10,13,.75); backdrop-filter: blur(4px); color: var(--gold); font-weight: 700; letter-spacing: 0.1em; padding: 6px 14px; bottom: 14px; left: 14px; }
+.home-dark .blog-date { color: rgba(240,240,242,.4); }
+.home-dark .blog-excerpt { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.home-dark .blog-link { color: #d34ba4; transition: color .25s; }
+.home-dark .blog-card:hover .blog-link { color: var(--gold); }
+.home-dark .blog-card:hover .blog-title { color: #f0f0f2; }
+.home-dark .blogs-slider-nav { display: flex; align-items: center; justify-content: center; gap: 20px; margin-top: 48px; }
+.home-dark .blogs-arrow { width: 40px; height: 40px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 2px solid rgba(255,255,255,.18); background: transparent; color: #f0f0f2; cursor: pointer; transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s; }
+.home-dark .blogs-arrow:hover { background: var(--magenta); border-color: var(--magenta); color: #fff; transform: translateY(-2px); }
+.home-dark .blogs-slider-track { position: relative; width: 160px; height: 3px; background: rgba(255,255,255,.12); border-radius: 999px; overflow: hidden; }
+.home-dark .blogs-slider-fill { position: absolute; top: 0; bottom: 0; background: var(--gold); border-radius: 999px; transition: left .15s linear; }
+
+@media (max-width: 768px) {
+  .home-dark .blog-card { flex-basis: 88%; }
 }
 
 /* ─── RESPONSIVE ────────────────────────── */
@@ -509,7 +548,7 @@
   .about-right .about-badges { justify-content: center; }
   .services-grid { grid-template-columns: 1fr 1fr; }
   .reviews-grid, .blogs-grid { grid-template-columns: 1fr 1fr; }
-  .case-card { flex-basis: calc((100% - 24px) / 2); }
+  .case-card, .home-dark .blog-card { flex-basis: calc((100% - 24px) / 2); }
   .why-inner { gap: 48px; }
   .expertise-left { text-align: center; }
   .expertise-left .btn-primary { margin: 0 auto; }
@@ -586,8 +625,8 @@
   .blogs-header { flex-direction: row; align-items: center; gap: 12px; }
   .blogs-header .btn-outline { width: auto; padding: 8px 16px; font-size: 0.72rem; white-space: nowrap; flex-shrink: 0; }
   .blogs-h2 { font-size: clamp(2.4rem, 9vw, 3.2rem); }
-  #cta-band { padding: 56px 18px; text-align: center; }
-  .cta-band-h2 { font-size: clamp(2.4rem, 9vw, 3.2rem); }
+  #cta-band, .home-dark #cta-band { padding: 56px 18px; text-align: center; }
+  .cta-band-h2, .home-dark .cta-band-h2 { font-size: clamp(2.4rem, 9vw, 3.2rem); }
   .cta-band-sub { font-size: 0.9rem; }
   .cta-band-actions { flex-direction: column; gap: 12px; align-items: center; }
   .cta-band-actions .btn-white, .cta-band-actions .btn-ghost { width: 100%; max-width: 320px; justify-content: center; }
