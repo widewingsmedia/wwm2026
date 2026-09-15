@@ -210,7 +210,7 @@ export default function DigitalMarketingServicesPage() {
             {SERVICES.map((s, i) => (
               <Link key={s.slug} href={s.slug} className="svc-row" data-reveal data-reveal-delay={String(i * 60)}>
                 <span className="svc-row-title">{s.title}</span>
-                <svg className="svc-row-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg className="svc-row-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.25">
                   <path d="M7 17L17 7M9 7h8v8"/>
                 </svg>
               </Link>
@@ -244,7 +244,7 @@ export default function DigitalMarketingServicesPage() {
       <section className="svc-cta">
         <CtaCanvas />
         <div data-reveal className="svc-cta-inner">
-          <h2 className="svc-cta-h2">Have Any Project in Mind?</h2>
+          <h2 className="svc-cta-h2">Have Any <em>Project</em> in Mind?</h2>
           <p className="svc-cta-sub">
             Let&apos;s discuss how we can drive measurable growth for your business.
           </p>

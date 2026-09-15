@@ -781,6 +781,7 @@
   margin-bottom: 16px;
   white-space: nowrap;
 }
+.svc-cta-h2 em { font-style: normal; color: #d34ba4; }
 .svc-cta-sub {
   font-family: 'Calibri', 'Nexa', sans-serif;
   font-size: 17px;
