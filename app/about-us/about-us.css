@@ -663,28 +663,53 @@
   color: var(--cream);
 }
 .au-cta-h2-dark { color: #f0f0f2; }
-.au-ticket {
+.au-cta-actions {
   margin-top: 38px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.au-ticket {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
-  padding: 16px 34px;
+  gap: 8px;
+  padding: 13px 28px;
   border: none;
-  border-radius: 0;
+  border-radius: 999px;
   color: #fff;
-  background: #a73184;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  font-size: 14px;
+  background: #d34ba4;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  font-size: 0.78rem;
   text-decoration: none;
   text-transform: uppercase;
   transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.2s ease;
 }
 .au-ticket:hover {
   transform: translateY(-2px);
-  background: #fff;
-  color: #111;
+  background: #e768b8;
   box-shadow: 0 10px 30px -8px rgba(0,0,0,0.45);
+}
+.au-cta-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.15);
+  color: rgba(255,255,255,.85);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  font-size: 0.78rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: border-color 0.25s, color 0.25s, transform 0.25s;
+}
+.au-cta-ghost:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold);
+  color: var(--gold);
 }
 
 /* ─── MOBILE ──────────────────────────── */

@@ -202,7 +202,10 @@ function CtaSection() {
       <CtaCanvas />
       <div className="au-cta-content" style={{ position: 'relative', zIndex: 1 }}>
         <h2 data-reveal className="au-cta-h2 au-cta-h2-dark">Ready to write the next scene for your brand?</h2>
-        <Link data-reveal data-reveal-delay="120" href="/contact" className="au-ticket">Free Consultation &nbsp;→</Link>
+        <div data-reveal data-reveal-delay="120" className="au-cta-actions">
+          <Link href="/contact" className="au-ticket">Free Consultation &nbsp;→</Link>
+          <Link href="#au-team" className="au-cta-ghost">Team Members</Link>
+        </div>
       </div>
     </section>
   );
