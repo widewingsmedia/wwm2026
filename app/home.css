@@ -451,6 +451,10 @@
   --ink-soft: rgba(240, 240, 242, .68);
   color: #f0f0f2;
 }
+.home-dark .section-label { color: rgba(244, 243, 239, 0.55); font-weight: 300; }
+@media (max-width: 560px) {
+  .home-dark .section-label { color: rgba(244, 243, 239, 0.85); }
+}
 .home-dark #clients { background: #0a0a0a; border-top-color: rgba(255,255,255,.08); border-bottom-color: rgba(255,255,255,.08); }
 .home-dark .ticker-label { color: rgba(240,240,242,.4); }
 

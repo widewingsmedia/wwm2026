@@ -289,7 +289,7 @@ export default function HomePage({ posts }: { posts: Post[] }) {
         <div className="container" style={{position:'relative',zIndex:1}}>
           <div className="expertise-grid">
             <div className="expertise-left">
-              <span className="section-label">03 — Our Expertise</span>
+              <span className="section-label">Our Expertise</span>
               <h2 className="expertise-h2">Results-Driven<br/><span className="gradient-text">Digital Marketing</span><br/>Agency in Dubai</h2>
               <p className="expertise-body">We specialize in creating and executing result-driven digital marketing campaigns that go beyond basic social media management, SEO, and Google Ads. We transform how companies leverage digital opportunities and guide them toward increased brand awareness, lead generation, and revenue growth.</p>
               <Link href="/about-us/" className="btn-primary">Learn About Us</Link>
