@@ -1,0 +1,38 @@
+/* Companion layout CSS for card-fan-carousel.tsx. The component only ships
+   Tailwind utility classes for the arrows/dots — the fan itself needs a
+   sized, centered stacking context for GSAP to transform (x/y in rem,
+   matching getHeightMultiplier's breakpoints below) into the fanned-out
+   arrangement. Cards are centered with the standalone CSS `translate`
+   property (not `transform`) so GSAP's own transform writes never fight it. */
+.fan-layout {
+  position: relative;
+  height: 28rem;
+}
+.fan-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 10.5rem;
+  aspect-ratio: 3 / 4;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.4);
+  will-change: transform;
+}
+@media (min-width: 480px) {
+  .fan-layout { height: 32rem; }
+  .fan-card { width: 12rem; }
+}
+@media (min-width: 640px) {
+  .fan-layout { height: 36rem; }
+  .fan-card { width: 14rem; }
+}
+@media (min-width: 768px) {
+  .fan-layout { height: 42rem; }
+  .fan-card { width: 16.5rem; }
+}
+@media (min-width: 1024px) {
+  .fan-layout { height: 46rem; }
+  .fan-card { width: 19rem; }
+}
