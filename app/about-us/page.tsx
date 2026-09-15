@@ -280,7 +280,7 @@ export default function AboutUsPage() {
         <div className="au-mission-bg" />
         <div className="au-mission-inner">
           <div className="au-mission-left">
-            <div data-reveal className="au-eyebrow"><span className="dot" />OUR MISSION</div>
+            <div data-reveal className="au-eyebrow">OUR MISSION</div>
             <h2 data-reveal data-reveal-delay="80" className="au-mission-h2">We believe in<br /><em>limitless potential.</em></h2>
             <p data-reveal data-reveal-delay="160" className="au-mission-intro">
               At Wide Wings Media, our mission is to help brands break free from boundaries
@@ -366,7 +366,7 @@ export default function AboutUsPage() {
       {/* ── TEAM ── */}
       <section id="au-team" className="au-wrap">
         <div data-reveal className="au-cast-head">
-          <div className="au-eyebrow"><span className="dot" />FEATURING</div>
+          <div className="au-eyebrow">FEATURING</div>
           <h2>Expert Team Members</h2>
           <p>The best people to support your project</p>
         </div>
