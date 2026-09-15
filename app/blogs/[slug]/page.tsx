@@ -94,7 +94,6 @@ const PAGE_TITLES: Record<string, string> = {
 /* ── per-post featured-image crop override — most posts crop fine centered;
    only override here when a specific image needs the focal point shifted. ── */
 const FEATURED_IMAGE_POSITION: Record<string, string> = {
-  'ai-seo-uae-businesses': 'center 15%',
 };
 
 /* ── per-post content map ── */
