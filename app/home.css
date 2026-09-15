@@ -480,6 +480,24 @@
 .home-dark .blog-card { background: #16162a; }
 .home-dark .blog-date { color: rgba(240,240,242,.4); }
 
+/* Flatten every text gradient (section headings, stat numbers, quotes) to
+   solid gold — the hero's own "Captivate" shimmer (.hw.grad .hw-inner) is
+   intentionally left alone, it isn't a .gradient-text/em element. */
+.home-dark .gradient-text,
+.home-dark .stat-number,
+.home-dark .about-card-quote em,
+.home-dark .about-stat-num,
+.home-dark .flip-item,
+.home-dark .flip-item.flip-active,
+.home-dark .cta-band-h2 em {
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: initial;
+  color: var(--gold);
+  animation: none;
+}
+
 /* ─── RESPONSIVE ────────────────────────── */
 @media (max-width: 1024px) {
   #hero .hero-inner { grid-template-columns: 1fr; text-align: center; }
