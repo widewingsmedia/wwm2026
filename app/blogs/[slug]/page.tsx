@@ -91,6 +91,12 @@ const PAGE_TITLES: Record<string, string> = {
   'newsletters-that-convert': 'Newsletters That Convert: Best Practices for UAE Marketers',
 };
 
+/* ── per-post featured-image crop override — most posts crop fine centered;
+   only override here when a specific image needs the focal point shifted. ── */
+const FEATURED_IMAGE_POSITION: Record<string, string> = {
+  'ai-seo-uae-businesses': 'center 15%',
+};
+
 /* ── per-post content map ── */
 const CONTENT: Record<string, React.ReactNode> = {
 
@@ -6524,7 +6530,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               alt={post.title}
               width={1200}
               height={480}
-              style={{ width: '100%', height: 'auto', aspectRatio: '2.5 / 1', objectFit: 'cover' }}
+              style={{ width: '100%', height: 'auto', aspectRatio: '2.5 / 1', objectFit: 'cover', objectPosition: FEATURED_IMAGE_POSITION[slug] ?? 'center' }}
               priority
             />
           </div>
