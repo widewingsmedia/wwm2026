@@ -485,6 +485,7 @@
 .home-dark #expertise { background: #0a0a1a; }
 .home-dark .exp-card { background: #16162a; border-color: rgba(255,255,255,.09); }
 
+.home-dark #services { background: linear-gradient(180deg, #131320 0%, #000000 100%); }
 .home-dark .svc-face-front { background: #16162a; }
 .home-dark .svc-tags span { border-color: rgba(255,255,255,.15); color: rgba(240,240,242,.5); }
 .home-dark .btn-svc-more { color: #f0f0f2; border-color: rgba(255,255,255,.35); }
