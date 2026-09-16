@@ -67,7 +67,6 @@
 #contact-hero .hero-inner { position: relative; z-index: 3; width: 100%; max-width: 860px; margin: 0 auto; padding: 140px 40px 80px; display: flex; flex-direction: column; align-items: center; }
 #contact-hero .hero-badge { display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(207,168,33,.4); padding: 7px 18px; margin-bottom: 28px; background: rgba(207,168,33,.07); }
 #contact-hero .hero-badge span { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
-#contact-hero .hero-badge-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: pulse 2s infinite; }
 #contact-hero .hero-title { font-family: 'Nexa', 'Calibri', sans-serif; font-size: clamp(2.6rem, 5vw, 4.2rem); font-weight: 900; line-height: 1.05; color: #fff; margin-bottom: 20px; letter-spacing: -0.02em; text-transform: uppercase; }
 #contact-hero .hero-title em { font-style: normal; background: linear-gradient(135deg, #b62d83 0%, #cfa821 60%, #c33b31 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 #contact-hero .hero-subtitle { font-family: 'Nexa','Calibri',sans-serif; font-size: 1.05rem; font-weight: 300; color: rgba(255,255,255,.6); line-height: 1.7; max-width: 560px; }
@@ -299,7 +298,7 @@ select.form-control option { background: #1a1a2e; color: #f0f0f2; }
   user-select: none;
 }
 #cta-strip .container { position: relative; z-index: 1; }
-.cta-label { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+.cta-label { font-family: 'Nexa', 'Arial Black', sans-serif; font-size: 0.85rem; font-weight: 300; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(244, 243, 239, 0.55); margin-bottom: 20px; }
 .cta-h2 { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 900; line-height: 1.1; letter-spacing: 0.02em; margin-bottom: 20px; color: #ffffff; }
 .cta-body { font-size: 1rem; font-weight: 300; color: rgba(255,255,255,.5); max-width: 480px; margin: 0 auto 48px; line-height: 1.7; }
 .cta-actions { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
@@ -437,4 +436,7 @@ select.form-control option { background: #1a1a2e; color: #f0f0f2; }
   .cta-actions { flex-direction: row; flex-wrap: nowrap; gap: 12px; }
   .btn-cta-primary, .btn-cta-outline { padding: 16px 20px; font-size: 0.68rem; flex: 1; justify-content: center; }
   .map-container { height: 320px; }
+}
+@media (max-width: 560px) {
+  .cta-label { color: rgba(244, 243, 239, 0.85); }
 }

@@ -102,7 +102,6 @@ export default function ContactPage() {
         </div>
         <div className="hero-inner">
           <div className="hero-badge">
-            <div className="hero-badge-dot"></div>
             <span>Contact Us</span>
           </div>
           <h1 className="hero-title">
