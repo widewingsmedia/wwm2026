@@ -83,7 +83,6 @@
   background: rgba(207,168,33,.07);
 }
 #hero .hero-badge span { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
-#hero .hero-badge-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: pulse 2s infinite; }
 .hero-h1 {
   font-size: clamp(4rem, 8vw, 8.5rem);
   font-weight: 900;

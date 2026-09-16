@@ -238,7 +238,6 @@ export default function HomePage({ posts }: { posts: Post[] }) {
         <div className="hero-inner">
           <div className="hero-content">
             <div className="hero-badge">
-              <div className="hero-badge-dot"></div>
               <span>Dubai&apos;s Award-Winning Agency</span>
             </div>
             <h1 className="hero-h1" id="hero-h1">
