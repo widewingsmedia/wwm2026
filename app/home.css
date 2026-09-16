@@ -497,9 +497,11 @@
   z-index: 0;
   overflow: visible;
   border-radius: 18px;
-  background: #0a0a12;
+  background: rgba(10,10,18,0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255,255,255,0.08);
-  transition: transform .3s;
+  transition: transform .3s, background .3s;
 }
 .home-dark .exp-card::after {
   content: '';
