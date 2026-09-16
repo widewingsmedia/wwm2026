@@ -440,7 +440,7 @@
 .cta-band-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
 .cta-band-h2 { font-size: clamp(2.4rem, 4vw, 3.8rem); font-weight: 800; color: #fff; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 20px; }
 .cta-band-h2 em { font-style: normal; background: var(--grad-brand); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.cta-band-sub { font-size: 1rem; color: rgba(255,255,255,.55); max-width: 500px; margin: 0 auto 40px; line-height: 1.7; }
+.cta-band-sub { font-size: 1.08rem; color: rgba(255,255,255,.55); max-width: 500px; margin: 0 auto 40px; line-height: 1.7; }
 .cta-band-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 .btn-white { display: inline-flex; align-items: center; gap: 8px; padding: 15px 36px; background: #fff; color: var(--navy); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; transition: opacity .2s, transform .2s; }
 .btn-white:hover { opacity: .9; transform: translateY(-2px); }
