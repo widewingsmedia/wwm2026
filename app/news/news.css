@@ -67,7 +67,7 @@
 /* ── Section ── */
 .nws-section {
   padding: 80px 0 100px;
-  background: #f5f5f7;
+  background: #0d0d1a;
 }
 
 /* ── Grid ── */
@@ -86,17 +86,17 @@
 .nws-card {
   display: grid;
   grid-template-columns: 480px 1fr;
-  background: #fff;
+  background: rgba(255,255,255,0.03);
   border-radius: 16px;
   overflow: hidden;
-  border: 1px solid #e8e8e8;
+  border: 1px solid rgba(255,255,255,0.08);
   text-decoration: none;
   transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
 }
 .nws-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-  border-color: #d0b0e0;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  border-color: rgba(167,49,132,0.5);
 }
 
 /* Image */
@@ -152,8 +152,8 @@
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #a73184;
-  background: #f5edf9;
+  color: #e768b8;
+  background: rgba(167,49,132,0.18);
   padding: 5px 12px;
   border-radius: 6px;
   width: fit-content;
@@ -163,7 +163,7 @@
   font-family: Nexa, sans-serif;
   font-size: clamp(1rem, 1.8vw, 1.2rem);
   font-weight: 700;
-  color: #111;
+  color: #f0f0f2;
   line-height: 1.45;
   margin: 0;
 }
@@ -175,7 +175,7 @@
   font-family: Nexa, sans-serif;
   font-size: 0.82rem;
   font-weight: 700;
-  color: #a73184;
+  color: #e768b8;
   transition: gap 0.2s;
 }
 .nws-card:hover .nws-card-read { gap: 10px; }
