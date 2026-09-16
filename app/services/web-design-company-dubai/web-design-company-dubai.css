@@ -14,14 +14,14 @@
 }
 
 .wad-page .cb-faq-item {
-  background: #fff;
-  border: 1px solid #ebebeb !important;
-  border-bottom: 1px solid #ebebeb !important;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
   border-radius: 12px;
   padding: 4px 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
-.wad-page .cb-faq-item:first-child { border-top: 1px solid #ebebeb !important; }
+.wad-page .cb-faq-item:first-child { border-top: 1px solid rgba(255,255,255,0.08) !important; }
 
 .wad-page .cb-faq-q {
   display: flex;
@@ -111,7 +111,7 @@ details[open] .wad-faq-icon {
   font-family: Nexa, sans-serif;
   font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 800;
-  color: #0d0d20;
+  color: #f0f0f2;
   text-transform: uppercase;
   line-height: 1.15;
   margin: 0 0 20px;
@@ -125,8 +125,8 @@ details[open] .wad-faq-icon {
   gap: 20px;
 }
 .wad-intro-3card {
-  background: #fff;
-  border: 1px solid #ebebeb;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius: 16px;
   padding: 28px 24px;
   position: relative;
@@ -134,14 +134,14 @@ details[open] .wad-faq-icon {
   transition: box-shadow 0.25s, transform 0.25s;
 }
 .wad-intro-3card:hover {
-  box-shadow: 0 8px 32px rgba(167,49,132,0.1);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
   transform: translateY(-4px);
 }
 .wad-intro-3card-num {
   font-family: Nexa, sans-serif;
   font-size: 2.5rem;
   font-weight: 900;
-  color: rgba(167,49,132,0.08);
+  color: rgba(167,49,132,0.3);
   line-height: 1;
   margin-bottom: 12px;
 }
@@ -173,10 +173,10 @@ details[open] .wad-faq-icon {
 .wad-editorial-para {
   font-family: Calibri, sans-serif;
   font-size: 1.05rem;
-  color: #444;
+  color: rgba(244, 243, 239, 0.7);
   line-height: 1.8;
   padding: 24px 0;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
   position: relative;
 }
 .wad-editorial-para:first-child { padding-top: 0; }
@@ -203,13 +203,13 @@ details[open] .wad-faq-icon {
   font-family: Nexa, sans-serif;
   font-size: clamp(1.5rem, 2.5vw, 2.2rem);
   font-weight: 800;
-  color: #2a2a2a;
+  color: #f0f0f2;
   line-height: 1.2;
   margin: 0 0 12px;
   text-transform: uppercase;
 }
 .wad-exp-title-purple {
-  color: #7b2d8b;
+  color: #e768b8;
 }
 .wad-exp-section-img-wrap {
   width: 100%;
@@ -221,7 +221,6 @@ details[open] .wad-faq-icon {
   max-height: 320px;
   object-fit: contain;
   display: block;
-  mix-blend-mode: multiply;
 }
 
 /* ── Deliver card — icon + title on same row ── */
@@ -392,22 +391,22 @@ details[open] .wad-faq-icon {
   50%       { transform: translateY(-18px) scale(1.04); }
 }
 
-/* ── CTA — white background override ── */
+/* ── CTA — was a white background override, now dark to match the page ── */
 .wad-cta-white.cb-cta {
-  background: #ffffff;
+  background: #0d0d1a;
 }
 .wad-cta-white.cb-cta::before { display: none; }
-.wad-cta-white .cb-cta-h2 { color: #0d0d20; }
-.wad-cta-white .cb-cta-body { color: #555; }
+.wad-cta-white .cb-cta-h2 { color: #f0f0f2; }
+.wad-cta-white .cb-cta-body { color: rgba(244, 243, 239, 0.68); }
 .wad-cta-white .cb-cta-outline {
-  border-color: #0d0d20 !important;
-  color: #0d0d20 !important;
+  border-color: rgba(255,255,255,0.3) !important;
+  color: rgba(255,255,255,0.7) !important;
 }
 .wad-cta-white .cb-cta-outline:hover {
-  background: #0d0d20 !important;
-  color: #fff !important;
+  background: #ffffff !important;
+  color: #141416 !important;
 }
-.wad-cta-white .section-label { color: #a73184 !important; }
+.wad-cta-white .section-label { color: rgba(244, 243, 239, 0.55) !important; }
 
 /* ══════════════════════════════════════
    LIGHT HERO (page-specific override)
@@ -418,7 +417,7 @@ details[open] .wad-faq-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f4f3ef;
+  background: #0d0d20;
   overflow: hidden;
 }
 
@@ -456,10 +455,10 @@ details[open] .wad-faq-icon {
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #999;
+  color: rgba(255,255,255,0.75);
   margin-bottom: 48px;
 }
-.wad-hero-breadcrumb a { color: #999; text-decoration: none; transition: color 0.2s; }
+.wad-hero-breadcrumb a { color: rgba(255,255,255,0.75); text-decoration: none; transition: color 0.2s; }
 .wad-hero-breadcrumb a:hover { color: #a73184; }
 .wad-hero-breadcrumb span:last-child { color: #a73184; }
 
@@ -480,7 +479,7 @@ details[open] .wad-faq-icon {
   font-size: clamp(2.8rem, 6.5vw, 5.2rem);
   font-weight: 900;
   line-height: 1.0;
-  color: #0d0d20;
+  color: #fff;
   margin: 0 0 18px;
   text-transform: uppercase;
   letter-spacing: -0.01em;
@@ -490,7 +489,7 @@ details[open] .wad-faq-icon {
 .wad-hero-service-tag {
   font-family: Calibri, sans-serif;
   font-size: 1rem;
-  color: #888;
+  color: rgba(255,255,255,0.6);
   margin: 0 0 28px;
   letter-spacing: 0.04em;
 }
@@ -499,7 +498,7 @@ details[open] .wad-faq-icon {
 .wad-hero-sub {
   font-family: Calibri, sans-serif;
   font-size: 1.08rem;
-  color: #555;
+  color: rgba(255,255,255,0.6);
   line-height: 1.75;
   max-width: 580px;
   margin: 0 0 44px;
@@ -519,16 +518,16 @@ details[open] .wad-faq-icon {
   align-items: center;
   gap: 10px;
   padding: 17px 42px;
-  background: #0d0d20;
+  background: #d34ba4;
   color: #fff;
   border-radius: 100px;
   transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 6px 28px rgba(13,13,32,0.2);
+  box-shadow: 0 6px 28px rgba(167,49,132,0.35);
 }
 .wad-hero-btn:hover {
-  background: #1e1e3a;
+  background: #e768b8;
   transform: translateY(-2px);
-  box-shadow: 0 10px 36px rgba(13,13,32,0.3);
+  box-shadow: 0 10px 36px rgba(167,49,132,0.45);
 }
 
 @media (max-width: 640px) {
@@ -543,7 +542,7 @@ details[open] .wad-faq-icon {
 .wad-medical-card .wad-para {
   font-family: Calibri, sans-serif;
   font-size: clamp(1rem, 1.8vw, 1.08rem);
-  color: #444;
+  color: rgba(244, 243, 239, 0.7);
   line-height: 1.85;
   margin: 0 0 14px;
 }
@@ -672,15 +671,15 @@ details[open] .wad-faq-icon {
   letter-spacing: 0.06em;
   padding: 8px 16px;
   border-radius: 100px;
-  border: 1px solid #e0e0e0;
-  background: #fff;
-  color: #555;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+  color: rgba(244, 243, 239, 0.65);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   transition: transform 0.2s, box-shadow 0.2s;
 }
-.wad-chip:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.10); }
+.wad-chip:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
 .wad-chip--magenta { border-color: rgba(167,49,132,0.3); color: #a73184; background: rgba(167,49,132,0.06); }
-.wad-chip--gold    { border-color: rgba(207,168,33,0.35); color: #a08210; background: rgba(207,168,33,0.07); }
+.wad-chip--gold    { border-color: rgba(207,168,33,0.35); color: #cfa821; background: rgba(207,168,33,0.1); }
 
 /* ══════════════════════════════════════
    BROWSER MOCKUP
@@ -857,10 +856,10 @@ details[open] .wad-faq-icon {
   grid-template-columns: 1fr 1fr;
   gap: 0;
   margin-top: 48px;
-  border: 1px solid #f0f0f0;
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 32px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 32px rgba(0,0,0,0.25);
 }
 
 .wad-intro-2col-left,
@@ -871,7 +870,7 @@ details[open] .wad-faq-icon {
   gap: 0;
 }
 .wad-intro-2col-left {
-  border-right: 1px solid #f0f0f0;
+  border-right: 1px solid rgba(255,255,255,0.08);
   position: relative;
 }
 
@@ -914,7 +913,7 @@ details[open] .wad-faq-icon {
 .wad-intro-2col-left .wad-para {
   padding-bottom: 20px;
   margin-bottom: 20px;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
   position: relative;
 }
 .wad-expertise-left .wad-para:last-child,
@@ -950,11 +949,11 @@ details[open] .wad-faq-icon {
 
 /* ── Medical highlight card ── */
 .wad-medical-card {
-  background: #fff;
-  border: 1px solid #ebebeb;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius: 20px;
   padding: 32px;
-  box-shadow: 0 12px 60px rgba(167,49,132,0.09);
+  box-shadow: 0 12px 60px rgba(0,0,0,0.3);
   position: sticky;
   top: 100px;
   overflow: hidden;
@@ -975,7 +974,7 @@ details[open] .wad-faq-icon {
   gap: 16px;
   margin-bottom: 24px;
   padding-bottom: 20px;
-  border-bottom: 1px solid #f5edf9;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
 .wad-medical-icon {
@@ -994,17 +993,17 @@ details[open] .wad-faq-icon {
 .wad-medical-card-header h3 {
   font-size: clamp(1rem, 1.9vw, 1.2rem);
   font-weight: 700;
-  color: #111;
+  color: #f0f0f2;
   margin: 0;
   line-height: 1.35;
   padding-top: 4px;
 }
 
 .wad-medical-card .wad-para {
-  color: #555; font-size: 0.97rem;
+  color: rgba(244, 243, 239, 0.68); font-size: 0.97rem;
   padding-bottom: 16px;
   margin-bottom: 16px;
-  border-bottom: 1px solid #f5edf9;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 .wad-medical-card .wad-para:last-of-type {
   border-bottom: none; padding-bottom: 0; margin-bottom: 0;
@@ -1094,8 +1093,8 @@ details[open] .wad-faq-icon {
 @media (max-width: 560px) { .wad-hosting-grid { grid-template-columns: 1fr; } }
 
 .wad-hosting-card {
-  background: #fff;
-  border: 1px solid #ebebeb;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius: 16px;
   padding: 28px 24px 24px;
   transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
@@ -1137,9 +1136,9 @@ details[open] .wad-faq-icon {
 .wad-hosting-icon svg { width: 100%; height: 100%; }
 
 .wad-hosting-card h3 {
-  font-size: 1rem; font-weight: 700; color: #111; margin: 0 0 10px;
+  font-size: 1rem; font-weight: 700; color: #f0f0f2; margin: 0 0 10px;
 }
-.wad-hosting-card p { font-size: 0.95rem; margin: 0 0 16px; color: #555; }
+.wad-hosting-card p { font-size: 0.95rem; margin: 0 0 16px; color: rgba(244, 243, 239, 0.68); }
 
 .wad-hosting-arrow {
   color: #a73184;
@@ -1222,7 +1221,7 @@ details[open] .wad-faq-icon {
 }
 @media (max-width: 640px) {
   .wad-intro-2col { grid-template-columns: 1fr; }
-  .wad-intro-2col-left { border-right: none; border-bottom: 1px solid #f0f0f0; }
+  .wad-intro-2col-left { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
   .wad-chip-row { gap: 8px; }
 }
 
@@ -1245,7 +1244,7 @@ details[open] .wad-faq-icon {
   font-family: Nexa, sans-serif;
   font-size: clamp(1.9rem, 3vw, 2.6rem);
   font-weight: 900;
-  color: #0d0d20;
+  color: #f0f0f2;
   line-height: 1.1;
   margin: 0 0 20px;
   text-transform: uppercase;
@@ -1266,7 +1265,7 @@ details[open] .wad-faq-icon {
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #a73184;
+  color: #e768b8;
   margin: 0;
 }
 
@@ -1277,22 +1276,22 @@ details[open] .wad-faq-icon {
 }
 
 .wad-exp-card {
-  background: #fff;
-  border: 1px solid #ebebeb;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius: 16px;
   padding: 28px 24px;
   transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
 }
 .wad-exp-card:hover {
-  border-color: rgba(167,49,132,0.25);
+  border-color: rgba(167,49,132,0.4);
   transform: translateY(-3px);
-  box-shadow: 0 10px 36px rgba(167,49,132,0.08);
+  box-shadow: 0 10px 36px rgba(0,0,0,0.3);
 }
 
 .wad-exp-card-text {
   font-family: Calibri, sans-serif;
   font-size: 0.97rem;
-  color: #444;
+  color: rgba(244, 243, 239, 0.7);
   line-height: 1.8;
   margin: 0;
 }
@@ -1375,11 +1374,11 @@ details[open] .wad-faq-icon {
 }
 
 .wad-acc-item {
-  border-bottom: 1px solid #ebebeb;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
   overflow: hidden;
   transition: background 0.25s;
 }
-.wad-acc-item:first-child { border-top: 1px solid #ebebeb; }
+.wad-acc-item:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
 
 .wad-acc-trigger {
   width: 100%;
@@ -1418,15 +1417,15 @@ details[open] .wad-faq-icon {
   font-family: Nexa, sans-serif;
   font-size: 1rem;
   font-weight: 700;
-  color: #111;
+  color: #f0f0f2;
   line-height: 1.35;
   transition: color 0.2s;
 }
-.wad-acc-item--open .wad-acc-title { color: #a73184; }
+.wad-acc-item--open .wad-acc-title { color: #e768b8; }
 
 .wad-acc-chevron {
   flex-shrink: 0;
-  color: #bbb;
+  color: rgba(244, 243, 239, 0.4);
   transition: transform 0.3s ease, color 0.25s;
 }
 .wad-acc-item--open .wad-acc-chevron {
@@ -1441,7 +1440,7 @@ details[open] .wad-faq-icon {
 .wad-acc-text {
   font-family: Calibri, sans-serif;
   font-size: 1rem;
-  color: #555;
+  color: rgba(244, 243, 239, 0.68);
   line-height: 1.8;
   margin: 0;
   animation: wadAccBodyIn 0.3s ease both;

@@ -1,7 +1,7 @@
 /* social-media-management page — page-specific overrides only */
 
 /* ── INTRO EDITORIAL ── */
-.smm-intro-section { background: #fff; }
+.smm-intro-section { background: #0d0d1a; }
 .smm-intro-editorial {
   display: grid;
   grid-template-columns: 30fr 70fr;
@@ -12,7 +12,7 @@
   font-family: Nexa, sans-serif;
   font-size: clamp(2rem, 3.5vw, 3rem);
   font-weight: 900;
-  color: #0d0d20;
+  color: #f0f0f2;
   line-height: 1.15;
   text-transform: uppercase;
   margin: 0 0 24px;
@@ -31,7 +31,7 @@
 .smm-intro-right p {
   font-family: Calibri, sans-serif;
   font-size: 1.05rem;
-  color: #444;
+  color: rgba(244, 243, 239, 0.7);
   line-height: 1.7;
   margin: 0;
 }
@@ -137,13 +137,13 @@
   font-family: Nexa, sans-serif;
   font-size: 1rem;
   font-weight: 700;
-  color: #0d0d20;
+  color: #f0f0f2;
   margin: 0 0 6px;
 }
 .smm-exp-desc {
   font-family: Calibri, sans-serif;
   font-size: 0.97rem;
-  color: #555;
+  color: rgba(244, 243, 239, 0.65);
   line-height: 1.65;
   margin: 0;
 }
@@ -160,7 +160,7 @@
   font-family: Nexa, sans-serif;
   font-size: clamp(1.6rem, 2.8vw, 2.4rem);
   font-weight: 900;
-  color: #0d0d20;
+  color: #f0f0f2;
   line-height: 1.2;
   text-transform: uppercase;
   margin: 0 0 24px;
@@ -170,7 +170,7 @@
 .smm-dedicated-sub {
   font-family: Calibri, sans-serif;
   font-size: 1.05rem;
-  color: #555;
+  color: rgba(244, 243, 239, 0.68);
   line-height: 1.75;
   margin: 0;
 }
@@ -183,11 +183,11 @@
   display: flex;
   align-items: flex-start;
   gap: 16px;
-  background: #fff;
-  border: 1px solid #ebebeb;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius: 12px;
   padding: 20px 22px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   transition: box-shadow 0.3s, border-color 0.3s;
 }
 .smm-dedicated-point:hover {
@@ -209,7 +209,7 @@
 .smm-dedicated-point p {
   font-family: Calibri, sans-serif;
   font-size: 1rem;
-  color: #333;
+  color: rgba(244, 243, 239, 0.7);
   line-height: 1.65;
   margin: 0;
 }

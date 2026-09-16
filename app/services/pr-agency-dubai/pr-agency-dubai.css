@@ -1,7 +1,7 @@
 /* pr-management page — page-specific overrides only */
 
 /* ── INTRO EDITORIAL 30/70 ── */
-.prm-intro-section { background: #fff; }
+.prm-intro-section { background: #0d0d1a; }
 .prm-intro-editorial {
   display: grid;
   grid-template-columns: 30fr 70fr;
@@ -12,7 +12,7 @@
   font-family: Nexa, sans-serif;
   font-size: clamp(2rem, 3.5vw, 3rem);
   font-weight: 900;
-  color: #0d0d20;
+  color: #f0f0f2;
   line-height: 1.15;
   text-transform: uppercase;
   margin: 0 0 24px;
@@ -31,7 +31,7 @@
 .prm-intro-right p {
   font-family: Calibri, sans-serif;
   font-size: 1.05rem;
-  color: #444;
+  color: rgba(244, 243, 239, 0.7);
   line-height: 1.7;
   margin: 0;
 }
@@ -50,7 +50,7 @@
   font-family: Nexa, sans-serif;
   font-size: clamp(1.8rem, 3vw, 2.6rem);
   font-weight: 900;
-  color: #0d0d20;
+  color: #f0f0f2;
   line-height: 1.2;
   text-transform: uppercase;
   margin: 0 0 20px;
@@ -58,7 +58,7 @@
 .prm-process-sub {
   font-family: Calibri, sans-serif;
   font-size: 1.05rem;
-  color: #555;
+  color: rgba(244, 243, 239, 0.68);
   line-height: 1.75;
   margin: 0 0 32px;
 }
@@ -68,11 +68,11 @@
   display: flex;
   align-items: center;
   gap: 20px;
-  background: #fff;
-  border: 1px solid #ebebeb;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius: 12px;
   padding: 20px 24px;
-  box-shadow: 0 2px 12px rgba(167,49,132,0.06);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
   transition: box-shadow 0.25s, border-color 0.25s;
 }
 .prm-process-card:hover {
@@ -95,7 +95,7 @@
 .prm-process-card-text {
   font-family: Calibri, sans-serif;
   font-size: 0.98rem;
-  color: #444;
+  color: rgba(244, 243, 239, 0.7);
   line-height: 1.65;
   margin: 0;
 }

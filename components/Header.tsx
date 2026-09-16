@@ -45,7 +45,25 @@ export default function Header() {
 
   const isActive = (href: string) => pathname === href;
 
-  const DARK_PAGES = ['/', '/about-us', '/about-us/', '/digital-marketing-services', '/digital-marketing-services/', '/insights', '/insights/', '/news', '/news/', '/contact', '/contact/', '/index2', '/index2/', '/index3', '/index3/'];
+  const SERVICE_SLUGS = [
+    'branding-agency-dubai',
+    'web-design-company-dubai',
+    'ppc-advertising-company-dubai',
+    'social-media-marketing-agency-in-dubai',
+    'content-creation-graphic-design',
+    'email-marketing-dubai',
+    'seo-services-dubai',
+    'outdoor-advertising-dubai',
+    'analytics-performance-marketing',
+    'pr-agency-dubai',
+  ];
+  const DARK_PAGES = [
+    '/', '/about-us', '/about-us/',
+    '/digital-marketing-services', '/digital-marketing-services/',
+    '/insights', '/insights/', '/news', '/news/', '/contact', '/contact/',
+    '/index2', '/index2/', '/index3', '/index3/',
+    ...SERVICE_SLUGS.flatMap(s => [`/${s}`, `/${s}/`]),
+  ];
   const isDarkPage = DARK_PAGES.includes(pathname);
 
   return (
