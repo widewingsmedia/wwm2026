@@ -3,7 +3,9 @@
 /* ── Hero ── */
 .nws-hero {
   position: relative;
-  background: #0d0d20;
+  background-image: linear-gradient(rgba(13,13,32,0.8), rgba(13,13,32,0.88)), url('/back1.jpg');
+  background-size: cover;
+  background-position: center;
   padding: 140px 0 80px;
   overflow: hidden;
 }
