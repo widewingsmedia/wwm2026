@@ -482,7 +482,11 @@
 .home-dark #clients { background: #0a0a0a; border-top-color: rgba(255,255,255,.08); border-bottom-color: rgba(255,255,255,.08); }
 .home-dark .ticker-label { color: rgba(240,240,242,.4); }
 
-.home-dark #expertise { background: #0a0a1a; }
+.home-dark #expertise {
+  background-image: linear-gradient(rgba(10,10,26,0.88), rgba(10,10,26,0.92)), url('/back8.jpg');
+  background-size: cover;
+  background-position: center;
+}
 .home-dark .exp-card { background: #16162a; border-color: rgba(255,255,255,.09); }
 
 .home-dark #services { background: linear-gradient(180deg, #131320 0%, #000000 100%); }
