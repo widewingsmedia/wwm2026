@@ -483,7 +483,7 @@
 .home-dark .ticker-label { color: rgba(240,240,242,.4); }
 
 .home-dark #expertise {
-  background-image: linear-gradient(rgba(4,4,10,0.96), rgba(4,4,10,0.98)), url('/back8.jpg');
+  background-image: linear-gradient(rgba(10,10,22,0.8), rgba(10,10,22,0.86)), url('/back8.jpg');
   background-size: cover;
   background-position: center;
 }
