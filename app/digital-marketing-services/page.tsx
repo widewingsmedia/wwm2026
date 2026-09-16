@@ -127,7 +127,7 @@ export default function DigitalMarketingServicesPage() {
     <>
       <SchemaScripts blocks={PAGE_SCHEMA} />
       {/* ── HERO ── */}
-      <section className="svc-hero">
+      <section className="svc-hero svc-hero-dms">
         <div className="svc-hero-blob" aria-hidden="true" />
         <div className="svc-hero-sparks" aria-hidden="true">
           <span className="svc-spark" style={{left:'12%',top:'18%','--sc':'#FF6B5B','--sz':'3px','--op':'0.65','--sd':'2.1s','--dl':'0s'} as React.CSSProperties} />
