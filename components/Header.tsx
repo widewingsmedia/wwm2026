@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import LogoWhite from './LogoWhite';
+import { POSTS } from '@/app/blogs/posts-data';
 
 export default function Header() {
   const pathname = usePathname();
@@ -63,6 +64,7 @@ export default function Header() {
     '/insights', '/insights/', '/news', '/news/', '/contact', '/contact/',
     '/index2', '/index2/', '/index3', '/index3/',
     ...SERVICE_SLUGS.flatMap(s => [`/${s}`, `/${s}/`]),
+    ...POSTS.flatMap(p => [`/${p.slug}`, `/${p.slug}/`]),
   ];
   const isDarkPage = DARK_PAGES.includes(pathname);
 
