@@ -6,7 +6,9 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: #0d0d20;
+  background-image: linear-gradient(rgba(13,13,32,0.8), rgba(13,13,32,0.88)), url('/back10.jpg');
+  background-size: cover;
+  background-position: center;
   text-align: center;
 }
 /* dot grid */
