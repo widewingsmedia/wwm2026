@@ -1,7 +1,8 @@
-export default function LogoWhite({ width = 160, height = 64, className = '', uid = 'a' }: { width?: number; height?: number; className?: string; uid?: string }) {
+export default function LogoWhite({ width = 160, height = 64, className = '', uid = 'a', animate = false }: { width?: number; height?: number; className?: string; uid?: string; animate?: boolean }) {
   const p = `lw-${uid}-`;
+  const svgClassName = [className, animate ? 'lw-assemble' : ''].filter(Boolean).join(' ');
   return (
-    <svg className={className} width={width} height={height} viewBox="0 0 432.3 217.67" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" aria-label="Wide Wings Media">
+    <svg className={svgClassName} width={width} height={height} viewBox="0 0 432.3 217.67" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" aria-label="Wide Wings Media">
       <defs>
         <linearGradient id={`${p}g1`} x1="49.91" y1="54.47" x2="118.05" y2="157" gradientUnits="userSpaceOnUse">
           <stop offset="0" stopColor="#6ba0ba"/><stop offset="1" stopColor="#2e2e62"/>

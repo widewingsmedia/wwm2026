@@ -262,7 +262,7 @@ export default function HomePage({ posts }: { posts: Post[] }) {
             <div className="hero-logo-display">
               <div className="hero-orbit hero-orbit-1"><div className="orbit-dot od1"></div><div className="orbit-dot od2"></div><div className="orbit-dot od3"></div></div>
               <div className="hero-orbit hero-orbit-2"></div>
-              <LogoWhite width={340} height={340} uid="hero" />
+              <LogoWhite width={340} height={340} uid="hero" animate />
             </div>
           </div>
         </div>

@@ -135,6 +135,29 @@
 .hero-logo-display svg { width: 240px; max-width: 80%; height: auto; overflow: visible; position: relative; z-index: 2; filter: drop-shadow(0 0 40px rgba(167,49,132,.5)); animation: float 6s ease-in-out infinite; }
 @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
 
+/* Logo wing-assembly entrance: feathers fly in from top / bottom-left and join */
+@keyframes lwWingFromTop { 0% { transform: translate(24px, -200px); opacity: 0; } 100% { transform: translate(0,0); opacity: 1; } }
+@keyframes lwWingFromBottomLeft { 0% { transform: translate(-200px, 150px); opacity: 0; } 100% { transform: translate(0,0); opacity: 1; } }
+.hero-logo-display svg.lw-assemble polygon {
+  animation-duration: 1.1s;
+  animation-timing-function: cubic-bezier(0.16,1,0.3,1);
+  animation-fill-mode: both;
+}
+.hero-logo-display svg.lw-assemble polygon:nth-child(1)  { animation-name: lwWingFromTop;        animation-delay: 0.05s; }
+.hero-logo-display svg.lw-assemble polygon:nth-child(2)  { animation-name: lwWingFromTop;        animation-delay: 0.12s; }
+.hero-logo-display svg.lw-assemble polygon:nth-child(3)  { animation-name: lwWingFromTop;        animation-delay: 0.19s; }
+.hero-logo-display svg.lw-assemble polygon:nth-child(4)  { animation-name: lwWingFromTop;        animation-delay: 0.26s; }
+.hero-logo-display svg.lw-assemble polygon:nth-child(5)  { animation-name: lwWingFromTop;        animation-delay: 0.33s; }
+.hero-logo-display svg.lw-assemble polygon:nth-child(6)  { animation-name: lwWingFromTop;        animation-delay: 0.4s; }
+.hero-logo-display svg.lw-assemble polygon:nth-child(7)  { animation-name: lwWingFromBottomLeft; animation-delay: 0.15s; }
+.hero-logo-display svg.lw-assemble polygon:nth-child(8)  { animation-name: lwWingFromBottomLeft; animation-delay: 0.22s; }
+.hero-logo-display svg.lw-assemble polygon:nth-child(9)  { animation-name: lwWingFromBottomLeft; animation-delay: 0.29s; }
+.hero-logo-display svg.lw-assemble polygon:nth-child(10) { animation-name: lwWingFromBottomLeft; animation-delay: 0.36s; }
+.hero-logo-display svg.lw-assemble polygon:nth-child(11) { animation-name: lwWingFromBottomLeft; animation-delay: 0.43s; }
+.hero-logo-display svg.lw-assemble polygon:nth-child(12) { animation-name: lwWingFromBottomLeft; animation-delay: 0.5s; }
+.hero-logo-display svg.lw-assemble text { animation: lwTextFade 0.6s ease-out both; animation-delay: 0.75s; }
+@keyframes lwTextFade { 0% { opacity: 0; } 100% { opacity: 1; } }
+
 .hero-orbit { position: absolute; border-radius: 50%; top: 50%; left: 50%; }
 .hero-orbit-1 { width: 420px; height: 420px; transform: translate(-50%,-50%); border: 1px solid rgba(167,49,132,.25); box-shadow: 0 0 0 1px rgba(207,168,33,.08) inset; animation: spin 22s linear infinite; }
 .hero-orbit-2 { width: 300px; height: 300px; transform: translate(-50%,-50%); border: 1px dashed rgba(207,168,33,.2); animation: spin 14s linear infinite reverse; }
