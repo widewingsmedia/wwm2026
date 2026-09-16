@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import './contact.css';
 import SchemaScripts from '@/components/SchemaScripts';
+import WingFlightCanvas from '@/components/WingFlightCanvas';
 import { getPageSchema } from '@/lib/schema';
 
 const PAGE_SCHEMA = getPageSchema('contact-us');
@@ -100,6 +101,7 @@ export default function ContactPage() {
             <div key={i} className="contact-spark" style={{ left:s.l, top:s.t, '--sc':s.c, '--sz':s.sz, '--op':s.op, '--sd':s.sd, '--dl':s.dl } as React.CSSProperties} />
           ))}
         </div>
+        <WingFlightCanvas className="contact-wing-canvas" transparent duration={18000} />
         <div className="hero-inner">
           <div className="hero-badge">
             <span>Contact Us</span>

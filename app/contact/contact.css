@@ -54,6 +54,7 @@
 }
 @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .5; transform: scale(1.4); } }
 .contact-hero-sparks { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+.contact-wing-canvas { z-index: 2; }
 .contact-spark {
   position: absolute;
   width: var(--sz, 3px); height: var(--sz, 3px);
