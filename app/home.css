@@ -490,6 +490,7 @@
 .home-dark .svc-tags span { border-color: rgba(255,255,255,.15); color: rgba(240,240,242,.5); }
 .home-dark .btn-svc-more { color: #f0f0f2; border-color: rgba(255,255,255,.35); }
 .home-dark .btn-svc-more::after { background: #f0f0f2; }
+.home-dark .btn-svc-more:hover { color: #141416; }
 
 .home-dark #about { background: #0a0a1a; }
 .home-dark .about-h2 { color: #f0f0f2; }
