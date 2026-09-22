@@ -12,8 +12,16 @@ export async function getAllPosts(): Promise<Post[]> {
   // a real code-defined one.
   const dynamicFiltered = dynamic
     .filter(d => !POSTS.some(s => s.slug === d.slug))
+    // Newest admin-created post first, so it surfaces at the top of the
+    // grid and in the "Recent Posts" sidebar (which just takes the first
+    // few of whatever list it's given).
+    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
     .map(({ slug, title, excerpt, category, image, cta, publishAt }) => ({
       slug, title, excerpt, category, image, cta, publishAt,
     }));
-  return [...POSTS, ...dynamicFiltered];
+  // Admin-created posts are put ahead of the hardcoded POSTS list so a post
+  // published live through the admin panel actually reads as "recent" —
+  // otherwise it always landed after 58+ older hardcoded posts and never
+  // appeared in "Recent Posts".
+  return [...dynamicFiltered, ...POSTS];
 }
