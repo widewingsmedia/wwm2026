@@ -62,7 +62,6 @@ export default function Header() {
     '/', '/about-us', '/about-us/',
     '/digital-marketing-services', '/digital-marketing-services/',
     '/insights', '/insights/', '/news', '/news/', '/contact', '/contact/',
-    '/index2', '/index2/', '/index3', '/index3/',
     ...SERVICE_SLUGS.flatMap(s => [`/${s}`, `/${s}/`]),
     ...POSTS.flatMap(p => [`/${p.slug}`, `/${p.slug}/`]),
   ];
