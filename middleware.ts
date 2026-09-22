@@ -30,10 +30,6 @@ export async function middleware(req: NextRequest) {
     return res;
   }
 
-  // /heropage is a standalone page — middleware only needs to run
-  // so the x-pathname header is set and the root layout drops the site chrome.
-  if (pathname.startsWith('/heropage')) return res;
-
   if (!pathname.startsWith('/admin')) return res;
   // trailingSlash: true means the live URL is /admin/login/ — match both forms,
   // otherwise the login page redirects to itself in an infinite loop
@@ -52,4 +48,4 @@ export async function middleware(req: NextRequest) {
   return res;
 }
 
-export const config = { matcher: ['/admin/:path*', '/leadsheet/:path*', '/heropage/:path*'] };
+export const config = { matcher: ['/admin/:path*', '/leadsheet/:path*'] };
