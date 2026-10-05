@@ -9,13 +9,10 @@ export const revalidate = 300;
 
 export default async function Page() {
   const [posts, hiddenSlugs] = await Promise.all([getAllPosts(), getHiddenSlugs()]);
-  // getAllPosts() returns posts in the order they were added (hardcoded
-  // entries first, newest at the bottom, then admin-uploaded ones appended
-  // after) — so the latest published posts are at the end of the list.
+  // getAllPosts() returns posts newest-first (sorted by publishAt/createdAt).
   const latestPosts = posts
     .filter(p => isPublished(p) && !hiddenSlugs.includes(p.slug))
-    .slice(-6)
-    .reverse();
+    .slice(0, 6);
 
   return <HomePage posts={latestPosts} />;
 }
