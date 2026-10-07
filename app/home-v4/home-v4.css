@@ -237,7 +237,12 @@ html:has(.v4-root) body {
   bottom: clamp(140px, 22vh, 210px);
   max-width: 760px;
 }
-.v4-hero-intro { max-width: 1200px; } /* room for the larger "Connect. Create." line */
+.v4-hero-intro { max-width: 1200px; }
+/* first-paint state (before GSAP runs): only chapter 1 is on screen, and the
+   headline waits for the web fonts so no stacked text or Arial flash on refresh */
+.v4-hero-intro { visibility: hidden; }
+.v4-chapter { opacity: 0; transform: translateY(60px); }
+.v4-hero-img:not(:first-child) { opacity: 0; } /* room for the larger "Connect. Create." line */
 .v4-eyebrow {
   display: flex;
   align-items: center;

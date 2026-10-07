@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
+import Link from './PlainLink';
 import type { Post } from '../blogs/posts-data';
 
 const pad2 = (n: number) => String(n).padStart(2, '0');

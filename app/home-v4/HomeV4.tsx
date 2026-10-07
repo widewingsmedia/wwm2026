@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
+import Link from './PlainLink';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
@@ -234,6 +234,7 @@ export default function HomeV4({ posts }: { posts: Post[] }) {
     const root = rootRef.current;
     if (!root) return;
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let splitHeadlines = () => {};
 
     const ctx = gsap.context(() => {
       const smoother = reduce
@@ -245,12 +246,9 @@ export default function HomeV4({ posts }: { posts: Post[] }) {
       // Headline line masks are padded below (and pulled back with a negative margin) so
       // descenders like g / y aren't clipped by the tight display line-height.
       const padMasks = (masks: Element[]) => gsap.set(masks, { paddingBottom: '0.22em', marginBottom: '-0.22em', paddingTop: '0.04em', marginTop: '-0.04em' });
-      const h1 = SplitText.create('.v4-hero-title', { type: 'lines', mask: 'lines' });
-      padMasks(h1.masks);
       gsap.timeline({ defaults: { ease: 'expo.out' } })
         .from('.v4-hero-img', { scale: 1.2, duration: 2.6, ease: 'power2.out' }, 0)
         .from('.v4-eyebrow', { x: -20, opacity: 0, duration: 1 }, 0.3)
-        .from(h1.lines, { yPercent: 135, duration: 1.3, stagger: 0.1 }, 0.35)
         .from('.v4-hero-sub, .v4-hero-ctas > *', { y: 24, opacity: 0, duration: 1.1, stagger: 0.08 }, 0.6)
         .from('.v4-tab', { y: 20, opacity: 0, duration: 1, stagger: 0.06 }, 0.8)
         .from('.v4-header > *', { y: -16, opacity: 0, duration: 1, stagger: 0.06 }, 0.5);
@@ -292,12 +290,24 @@ export default function HomeV4({ posts }: { posts: Post[] }) {
         tl.to({}, { duration: 0.7 }, n - 1); // hold the last chapter before releasing
       }
 
+      /* ---------- headline line reveals ---------- */
+      // Splitting into lines must wait for the web fonts: measured with the
+      // fallback font the line breaks come out wrong (and Arial flashes on refresh).
+      // The hero headline stays hidden in CSS until this runs.
+      splitHeadlines = () => {
+        const h1 = SplitText.create('.v4-hero-title', { type: 'lines', mask: 'lines' });
+        padMasks(h1.masks);
+        gsap.set('.v4-hero-intro', { visibility: 'visible' });
+        gsap.from(h1.lines, { yPercent: 135, duration: 1.3, stagger: 0.1, ease: 'expo.out', delay: 0.15 });
+        gsap.utils.toArray<HTMLElement>('[data-lines]').forEach(el => {
+          const s = SplitText.create(el, { type: 'lines', mask: 'lines' });
+          padMasks(s.masks);
+          gsap.from(s.lines, { yPercent: 135, duration: 1.25, stagger: 0.08, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 86%', once: true } });
+        });
+        ScrollTrigger.refresh();
+      };
+
       /* ---------- reveals ---------- */
-      gsap.utils.toArray<HTMLElement>('[data-lines]').forEach(el => {
-        const s = SplitText.create(el, { type: 'lines', mask: 'lines' });
-        padMasks(s.masks);
-        gsap.from(s.lines, { yPercent: 135, duration: 1.25, stagger: 0.08, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 86%', once: true } });
-      });
       gsap.utils.toArray<HTMLElement>('[data-rise]').forEach(el => {
         gsap.from(el, { y: 28, opacity: 0, duration: 1.1, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
       });
@@ -399,10 +409,14 @@ export default function HomeV4({ posts }: { posts: Post[] }) {
         });
       });
 
-      document.fonts?.ready.then(() => ScrollTrigger.refresh());
     }, root);
 
+    let dead = false;
+    if (document.fonts) document.fonts.ready.then(() => { if (!dead) ctx.add(() => splitHeadlines()); });
+    else ctx.add(() => splitHeadlines());
+
     return () => {
+      dead = true;
       ctx.revert();
       smootherRef.current = null;
       heroSTRef.current = null;
