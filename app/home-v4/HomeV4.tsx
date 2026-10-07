@@ -16,20 +16,26 @@ import type { Post } from '../blogs/posts-data';
 import './home-v4.css';
 
 // All copy is taken from the live home page (app/Home.tsx) and site data.
-const CHAPTERS = [
+// `art`: illustrations whose subject sits off to one side of the file. On desktop
+// they're drawn smaller with that subject placed mid-screen (clear of the
+// service list on the right): fx = subject centre as a fraction of the image
+// width, ar = image aspect ratio, h = drawn height, cx = where the subject lands.
+type Art = { fx: number; ar: number; h: string; cx: string };
+const CHAPTERS: { tab: string; title: string; tagline: string; img: string; art?: Art }[] = [
   { tab: 'Web', title: 'Web & App.', tagline: 'Web Dev · App Dev · UX Design · E-commerce', img: '/back2.jpg' },
-  { tab: 'Branding', title: 'Branding.', tagline: 'Brand Identity · Positioning · Visual Design', img: '/back8.jpg' },
-  { tab: 'Social', title: 'Social.', tagline: 'Content · Engagement · Community', img: '/back4.jpg' },
-  { tab: 'Performance', title: 'Performance.', tagline: 'SEO · Rankings · Traffic', img: '/back10.jpg' },
+  { tab: 'Branding', title: 'Branding.', tagline: 'Brand Identity · Positioning · Visual Design', img: '/home-v4/hero-branding.jpg', art: { fx: 0.68, ar: 1920 / 869, h: '74vh', cx: '46vw' } },
+  { tab: 'Social', title: 'Social.', tagline: 'Content · Engagement · Community', img: '/home-v4/hero-social.jpg', art: { fx: 0.46, ar: 1920 / 768, h: '50vh', cx: '43vw' } },
+  { tab: 'Performance', title: 'Performance.', tagline: 'SEO · Rankings · Traffic', img: '/home-v4/hero-performance.jpg', art: { fx: 0.67, ar: 1920 / 1080, h: '78vh', cx: '46vw' } },
 ];
 
 // The six services shown on the live home page (app/Home.tsx), copy + tags as-is.
-const SERVICES: { title: string; desc: string; img: string; tags: string[]; href: string }[] = [
+// pos: background-position for illustrations whose subject sits off-centre
+const SERVICES: { title: string; desc: string; img: string; pos?: string; tags: string[]; href: string }[] = [
   { title: 'Web & App Development', desc: 'High-performing websites and mobile applications — fast, secure, and user-first.', img: '/back6.jpg', tags: ['Web Dev', 'App Dev', 'UX Design', 'E-commerce'], href: '/web-design-company-dubai/' },
-  { title: 'Creative & Branding', desc: 'Brands that look sharp, speak clearly, and actually perform — from identity to execution.', img: '/back8.jpg', tags: ['Brand Identity', 'Positioning', 'Visual Design'], href: '/branding-agency-dubai/' },
+  { title: 'Creative & Branding', desc: 'Brands that look sharp, speak clearly, and actually perform — from identity to execution.', img: '/home-v4/hero-branding.jpg', pos: '68% center', tags: ['Brand Identity', 'Positioning', 'Visual Design'], href: '/branding-agency-dubai/' },
   { title: 'Paid Advertising & Media', desc: 'Campaigns planned, executed, and optimized to maximize reach, conversions, and ROI.', img: '/back1.jpg', tags: ['Google Ads', 'Media Buying', 'PPC'], href: '/ppc-advertising-company-dubai/' },
-  { title: 'Social Media Management', desc: 'Strategic content, consistent engagement, and platform-specific growth tactics.', img: '/back4.jpg', tags: ['Content', 'Engagement', 'Community'], href: '/social-media-marketing-agency-in-dubai/' },
-  { title: 'SEO & Performance', desc: 'Rank higher, attract quality traffic, and improve long-term digital performance.', img: '/back7.jpg', tags: ['SEO', 'Rankings', 'Traffic'], href: '/seo-services-dubai/' },
+  { title: 'Social Media Management', desc: 'Strategic content, consistent engagement, and platform-specific growth tactics.', img: '/home-v4/hero-social.jpg', pos: '46% center', tags: ['Content', 'Engagement', 'Community'], href: '/social-media-marketing-agency-in-dubai/' },
+  { title: 'SEO & Performance', desc: 'Rank higher, attract quality traffic, and improve long-term digital performance.', img: '/home-v4/hero-performance.jpg', pos: '67% center', tags: ['SEO', 'Rankings', 'Traffic'], href: '/seo-services-dubai/' },
   { title: 'OOH & PR Management', desc: 'Impactful out-of-home advertising and PR campaigns that amplify your brand.', img: '/back3.jpg', tags: ['Billboards', 'Media Relations', 'OOH'], href: '/outdoor-advertising-dubai/' },
 ];
 
@@ -526,7 +532,14 @@ export default function HomeV4({ posts }: { posts: Post[] }) {
             <section className="v4-hero" id="top">
               <div className="v4-hero-media" aria-hidden="true">
                 {CHAPTERS.map(c => (
-                  <div key={c.tab} className="v4-hero-img" style={{ backgroundImage: `url('${c.img}')` }} />
+                  <div
+                    key={c.tab}
+                    className={`v4-hero-img ${c.art ? 'is-art' : ''}`}
+                    style={{
+                      backgroundImage: `url('${c.img}')`,
+                      ...(c.art && { '--fx': c.art.fx, '--ar': c.art.ar, '--h': c.art.h, '--cx': c.art.cx }),
+                    } as React.CSSProperties}
+                  />
                 ))}
                 <div className="v4-hero-shade" />
               </div>
@@ -886,7 +899,7 @@ export default function HomeV4({ posts }: { posts: Post[] }) {
                 <div className="v4-svx-panel" aria-hidden="true">
                   {SERVICES.map((sv, i) => (
                     <div key={sv.title} className={`v4-svx-slide ${i === activeSvc ? 'is-active' : ''}`}>
-                      <div className="v4-svx-img" style={{ backgroundImage: `url('${sv.img}')` }} />
+                      <div className="v4-svx-img" style={{ backgroundImage: `url('${sv.img}')`, backgroundPosition: sv.pos }} />
                       <div className="v4-svx-shade" />
                       <span className="v4-svx-bignum">{pad2(i + 1)}</span>
                       <div className="v4-svx-body">
