@@ -43,7 +43,7 @@ export default async function RootLayout({
 }>) {
   const headersList = await headers();
   const pathname = headersList.get('x-pathname') ?? '';
-  const hideChrome = pathname.startsWith('/admin') || pathname.startsWith('/leadsheet');
+  const hideChrome = pathname.startsWith('/admin') || pathname.startsWith('/leadsheet') || pathname.startsWith('/home-v4');
 
   return (
     <html lang="en">

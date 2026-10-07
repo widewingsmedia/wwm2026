@@ -30,6 +30,10 @@ export async function middleware(req: NextRequest) {
     return res;
   }
 
+  // /home-v4 is a standalone preview page — middleware only needs to run so the
+  // x-pathname header is set and the root layout drops the site chrome.
+  if (pathname.startsWith('/home-v4')) return res;
+
   if (!pathname.startsWith('/admin')) return res;
   // trailingSlash: true means the live URL is /admin/login/ — match both forms,
   // otherwise the login page redirects to itself in an infinite loop
@@ -48,4 +52,4 @@ export async function middleware(req: NextRequest) {
   return res;
 }
 
-export const config = { matcher: ['/admin/:path*', '/leadsheet/:path*'] };
+export const config = { matcher: ['/admin/:path*', '/leadsheet/:path*', '/home-v4/:path*'] };
