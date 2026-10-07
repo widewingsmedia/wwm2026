@@ -10,6 +10,7 @@ import LogoWhite from '@/components/LogoWhite';
 import BlogRail from './BlogRail';
 import ReviewRail from './ReviewRail';
 import SmokeCanvas from './SmokeCanvas';
+import WingMark from './WingMark';
 import { CASE_STUDIES } from '../case-studies/cases-data';
 import type { Post } from '../blogs/posts-data';
 import './home-v4.css';
@@ -86,12 +87,21 @@ const TALK_CONTACTS = [
 
 const CLIENTS = ['Zaina Cafe', 'Saudi German Hospital', 'Batterjee Properties', 'House of Santoba', 'Bex Beauty', 'SGH Group'];
 
+// Full-screen menu: live-site header items (+ Case Studies), each with a
+// one-line note and a preview image shown on hover.
 const MENU = [
-  { label: 'Services', href: '/digital-marketing-services/' },
-  { label: 'About Us', href: '/about-us/' },
-  { label: 'Case Studies', href: '/case-studies' },
-  { label: 'Insights', href: '/insights/' },
-  { label: 'Contact', href: '/contact/' },
+  { label: 'Services', href: '/digital-marketing-services/', note: 'What we do', img: '/back8.jpg' },
+  { label: 'About Us', href: '/about-us/', note: 'Who we are', img: '/Reem.jpg' },
+  { label: 'Case Studies', href: '/case-studies/', note: 'Our work', img: '/home-v4/zaina-cafe-poster.jpg' },
+  { label: 'Insights', href: '/insights/', note: 'Blogs & ideas', img: '/back2.jpg' },
+  { label: 'News', href: '/news/', note: 'Latest updates', img: '/News/img.jpeg' },
+  { label: 'Contact', href: '/contact/', note: "Let's talk", img: '/back3.jpg' },
+];
+const SOCIALS = [
+  { label: 'Instagram', href: 'https://www.instagram.com/wide.wings.media/' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/wide-wings-media-advertising/' },
+  { label: 'Facebook', href: 'https://www.facebook.com/widewingsadvertising' },
+  { label: 'X', href: 'https://x.com/Wide_WingsMedia/' },
 ];
 
 // Success-stories bento: Zaina Cafe film in the centre, the other stories
@@ -135,6 +145,7 @@ export default function HomeV4({ posts }: { posts: Post[] }) {
   const smootherRef = useRef<ScrollSmoother | null>(null);
   const heroSTRef = useRef<ScrollTrigger | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [menuHot, setMenuHot] = useState(0);
   const [chapter, setChapter] = useState(0);
   const [activeSvc, setActiveSvc] = useState(0);
   const [dubaiTime, setDubaiTime] = useState('');
@@ -249,7 +260,7 @@ export default function HomeV4({ posts }: { posts: Post[] }) {
       gsap.timeline({ defaults: { ease: 'expo.out' } })
         .from('.v4-hero-img', { scale: 1.2, duration: 2.6, ease: 'power2.out' }, 0)
         .from('.v4-eyebrow', { x: -20, opacity: 0, duration: 1 }, 0.3)
-        .from('.v4-hero-sub, .v4-hero-ctas > *', { y: 24, opacity: 0, duration: 1.1, stagger: 0.08 }, 0.6)
+        .from('.v4-hero-sub, .v4-hero-ctas > *', { y: 24, opacity: 0, duration: 1.1, stagger: 0.08, clearProps: 'transform,opacity' }, 0.6)
         .from('.v4-tab', { y: 20, opacity: 0, duration: 1, stagger: 0.06 }, 0.8)
         .from('.v4-header > *', { y: -16, opacity: 0, duration: 1, stagger: 0.06 }, 0.5);
 
@@ -440,26 +451,70 @@ export default function HomeV4({ posts }: { posts: Post[] }) {
       </header>
 
       <div id="v4-menu" className={`v4-menu ${menuOpen ? 'is-open' : ''}`} aria-hidden={!menuOpen}>
+        <div className="v4-menu-aura" aria-hidden="true"><i /><i /></div>
         <div className="v4-menu-top">
-          <span className="v4-mono">Menu</span>
+          <span className="v4-menu-logo"><LogoWhite width={124} height={62} uid="v4menu" /></span>
           <button type="button" className="v4-menu-btn" onClick={() => setMenuOpen(false)} tabIndex={menuOpen ? 0 : -1}>
             Close <span aria-hidden="true" className="v4-plus is-x">+</span>
           </button>
         </div>
-        <nav aria-label="Primary">
-          <ol>
-            {MENU.map((m, i) => (
-              <li key={m.label} style={{ '--d': `${0.08 + i * 0.06}s` } as React.CSSProperties}>
-                <Link href={m.href} tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)}>
-                  <span className="v4-mono">{pad2(i + 1)}</span>{m.label}
-                </Link>
-              </li>
-            ))}
-          </ol>
-        </nav>
-        <div className="v4-menu-foot v4-mono">
-          <a href="mailto:info@wide-wings.ae" tabIndex={menuOpen ? 0 : -1}>info@wide-wings.ae</a>
-          <a href="https://wa.me/971555657609" target="_blank" rel="noopener" tabIndex={menuOpen ? 0 : -1}>WhatsApp ↗</a>
+
+        <div className="v4-menu-body">
+          <nav aria-label="Primary" className="v4-menu-nav">
+            <ul>
+              {MENU.map((m, i) => (
+                <li key={m.label} style={{ '--d': `${0.22 + i * 0.06}s` } as React.CSSProperties}>
+                  <Link
+                    href={m.href}
+                    tabIndex={menuOpen ? 0 : -1}
+                    onClick={() => setMenuOpen(false)}
+                    onPointerEnter={() => setMenuHot(i)}
+                    onFocus={() => setMenuHot(i)}
+                  >
+                    {/* rolling label: the gold copy slides up on hover */}
+                    <span className="v4-menu-roll" data-text={m.label}><span>{m.label}</span></span>
+                    <span className="v4-menu-note">{m.note}</span>
+                    <span className="v4-menu-go" aria-hidden="true"><Arrow /></span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <aside className="v4-menu-side">
+            <div className="v4-menu-preview" aria-hidden="true">
+              {MENU.map((m, i) => (
+                <div key={m.label} className={`v4-menu-shot ${menuHot === i ? 'is-on' : ''}`} style={{ backgroundImage: `url('${m.img}')` }}>
+                  {m.label === 'Contact' && (
+                    <span className="v4-menu-shot-logo"><LogoWhite width={280} height={141} uid="v4menucontact" /></span>
+                  )}
+                </div>
+              ))}
+              <span className="v4-menu-caption">{MENU[menuHot].label} <i>— {MENU[menuHot].note}</i></span>
+            </div>
+            <div className="v4-menu-info">
+              <div>
+                <small>Email</small>
+                <a href="mailto:info@wide-wings.ae" tabIndex={menuOpen ? 0 : -1}>info@wide-wings.ae</a>
+              </div>
+              <div>
+                <small>Call</small>
+                <a href="tel:+97143352645" tabIndex={menuOpen ? 0 : -1}>+971 4 335 2645</a>
+              </div>
+              <div>
+                <small>WhatsApp</small>
+                <a href="https://wa.me/971555657609" target="_blank" rel="noopener" tabIndex={menuOpen ? 0 : -1}>+971 55 565 7609</a>
+              </div>
+            </div>
+            <div className="v4-menu-social">
+              {SOCIALS.map(so => (
+                <a key={so.label} href={so.href} target="_blank" rel="noopener" tabIndex={menuOpen ? 0 : -1}>{so.label}</a>
+              ))}
+            </div>
+            <Link href="/contact/" className="v4-pill v4-pill-block" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)}>
+              Free Consultation <span className="v4-pill-dot"><Arrow /></span>
+            </Link>
+          </aside>
         </div>
       </div>
 
@@ -494,8 +549,8 @@ export default function HomeV4({ posts }: { posts: Post[] }) {
 
               <div className="v4-hero-chapters" aria-live="polite">
                 {CHAPTERS.map((c, i) => (
-                  <div key={c.tab} className="v4-chapter" aria-hidden={i === 0 || i !== chapter}>
-                    <div className="v4-chapter-title">{c.title}</div>
+                  <div key={c.tab} className={`v4-chapter ${i === chapter ? 'is-current' : ''}`} aria-hidden={i === 0 || i !== chapter}>
+                    <div className="v4-chapter-title"><WingMark uid={`ch${i}`} />{c.title}</div>
                     <div className="v4-chapter-tag v4-mono">{c.tagline}</div>
                   </div>
                 ))}
@@ -528,7 +583,7 @@ export default function HomeV4({ posts }: { posts: Post[] }) {
 
             {/* 01 — OUR EXPERTISE: bento with live micro-visuals */}
             <section className="v4-section v4-expertise">
-              <SmokeCanvas className="v4-exp-smoke" alpha={0.16} />
+              <SmokeCanvas className="v4-exp-smoke" alpha={0.1} />
               <div className="v4-exp-bento">
                 <div className="v4-exp-copy">
                   <div className="v4-kicker" data-rise>Our expertise</div>

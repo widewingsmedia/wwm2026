@@ -42,7 +42,7 @@ void main() {
   float f = fbm(p + 3.2 * r);
 
   // thin wisps: keep the denser folds of the warped field
-  float d = smoothstep(0.42, 1.05, f * f * 1.7 + 0.28 * length(q));
+  float d = smoothstep(0.62, 1.15, f * f * 1.7 + 0.28 * length(q));
   // heavier near the bottom, thinning out as it rises
   d *= mix(1.0, 0.25, smoothstep(0.0, 1.0, uv.y));
 
