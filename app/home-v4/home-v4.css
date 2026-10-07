@@ -1676,10 +1676,19 @@ html:has(.v4-root) body {
   .v4-exp-copy, .v4-exp-perf { grid-column: 1 / -1 !important; }
   .v4-exp-team { grid-column: 1 / -1 !important; }
 }
+@media (max-width: 899px) and (max-height: 600px) {
+  .v4-eyebrow { display: none; }
+}
 @media (max-width: 899px) {
   .v4-header-cta { display: none; }
   .v4-pill { min-width: 0; width: 100%; }
-  .v4-hero-intro, .v4-hero-chapters { bottom: 150px; }
+  .v4-hero-intro, .v4-hero-chapters { bottom: 132px; }
+  /* phones: keep the hero copy clear of the logo on short (browser-chrome) screens */
+  .v4-hero-title { font-size: clamp(2.4rem, 11.5vw, 3.4rem); }
+  .v4-hero-sub { font-size: 1rem; margin: 18px 0 22px !important; }
+  .v4-hero-ctas { flex-wrap: nowrap; gap: 14px; }
+  .v4-hero-ctas .v4-pill { width: auto; flex: 1; }
+  .v4-hero-ctas .v4-ghost { font-size: 0; gap: 0; } /* just the round arrow; label stays for screen readers */
   .v4-tabs { gap: 10px; }
   .v4-tab-num { font-size: 1.15rem; }
   .v4-tab-label { font-size: 0.82rem; }
