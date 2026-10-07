@@ -533,7 +533,7 @@ export default function HomeV4({ posts }: { posts: Post[] }) {
 
               <div className="v4-hero-intro">
                 <div className="v4-eyebrow"><i />Dubai&apos;s Award-Winning Agency</div>
-                <h1 className="v4-hero-title">Connect. <span className="v4-thin">Create.</span><br /><em>Captivate.</em></h1>
+                <h1 className="v4-hero-title">Connect <span className="v4-thin">Create</span><br /><em>Captivate</em></h1>
                 <p className="v4-hero-sub">
                   Unlock your brand&apos;s potential with our proven marketing expertise. From strategy to execution, we drive measurable growth.
                 </p>

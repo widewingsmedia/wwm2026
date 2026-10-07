@@ -409,7 +409,7 @@ html:has(.v4-root) body {
   line-height: 1;
   letter-spacing: -0.035em;
 }
-/* "Create." in Nexa ExtraLight against the heavy words around it */
+/* "Create" in Nexa ExtraLight against the heavy words around it */
 .v4-hero-title .v4-thin { font-weight: 200; letter-spacing: -0.02em; }
 .v4-hero-title em, .v4-h2 em { font-style: normal; color: var(--accent); }
 .v4-hero-sub {
