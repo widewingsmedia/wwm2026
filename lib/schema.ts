@@ -15,6 +15,197 @@ export const SITEWIDE_SCHEMA = (oldSiteData as Record<string, OldSitePage>).home
 // Hand-authored schema for pages that don't exist on the old site (new/rewritten
 // blog posts) — takes priority over the scraped old-site data below.
 const CUSTOM_SCHEMA: Record<string, Record<string, unknown>[]> = {
+  // Homepage schema supplied with the Oct 2026 SEO copy (replaces the scraped old-site block).
+  home: [{
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://wide-wings.ae/#organization",
+        "name": "Wide Wings Media",
+        "url": "https://wide-wings.ae/",
+        "logo": {
+          "@type": "ImageObject",
+          "@id": "https://wide-wings.ae/#logo",
+          "url": "https://wide-wings.ae/logo.png",
+          "width": 512,
+          "height": 512
+        },
+        "description": "Wide Wings Media is a digital marketing agency in Dubai providing SEO, PPC, social media marketing, web development, branding, content and other digital marketing services.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "22 Street, Al Quoz Industrial Area, Dubai, United Arab Emirates",
+          "addressLocality": "Dubai",
+          "addressCountry": "AE"
+        },
+        "telephone": "+971-4-335-2645",
+        "email": "info@wide-wings.ae",
+        "sameAs": [
+          "https://www.linkedin.com/company/wide-wings-media-advertising/",
+          "https://www.instagram.com/wide.wings.media/",
+          "https://www.facebook.com/widewingsadvertising",
+          "https://x.com/Wide_WingsMedia/"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+971-4-335-2645",
+          "contactType": "Customer Support",
+          "areaServed": "AE"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://wide-wings.ae/#website",
+        "url": "https://wide-wings.ae/",
+        "name": "Wide Wings Media",
+        "publisher": {
+          "@id": "https://wide-wings.ae/#organization"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://wide-wings.ae/#homepage",
+        "url": "https://wide-wings.ae/",
+        "name": "Digital Marketing Agency in Dubai | Wide Wings Media",
+        "description": "Digital marketing agency in Dubai helping businesses grow through SEO, PPC, social media, web development and performance-driven digital strategies.",
+        "isPartOf": {
+          "@id": "https://wide-wings.ae/#website"
+        },
+        "about": {
+          "@id": "https://wide-wings.ae/#organization"
+        }
+      }
+    ]
+  }],
+  // SEO Strategy for UAE Startups — schema supplied with the SEO sub pages doc (Oct 2026).
+  'seo-strategy-for-uae-startups': [
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "@id": "https://wide-wings.ae/seo-strategy-for-uae-startups/#article",
+          "url": "https://wide-wings.ae/seo-strategy-for-uae-startups/",
+          "headline": "SEO Strategy for UAE Startups",
+          "description": "Explore an SEO strategy for UAE startups covering keywords, technical SEO, content, local markets, Arabic SEO, and a practical 90-day plan.",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://wide-wings.ae/seo-strategy-for-uae-startups/"
+          },
+          "author": {
+            "@type": "Organization",
+            "@id": "https://wide-wings.ae/#organization"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "@id": "https://wide-wings.ae/#organization"
+          },
+          "isPartOf": {
+            "@type": "WebSite",
+            "@id": "https://wide-wings.ae/#website"
+          },
+          "inLanguage": "en",
+          "articleSection": "SEO",
+          "keywords": [
+            "SEO strategy for UAE startups",
+            "SEO for startups",
+            "startup SEO",
+            "UAE startup SEO",
+            "SEO strategy for startups",
+            "SEO for UAE startups"
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://wide-wings.ae/seo-strategy-for-uae-startups/#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://wide-wings.ae/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "SEO Strategy for UAE Startups",
+              "item": "https://wide-wings.ae/seo-strategy-for-uae-startups/"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://wide-wings.ae/seo-strategy-for-uae-startups/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is the best SEO strategy for a UAE startup?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "There is no single best strategy; the right one depends on your business model, market and stage. For most startups, the strongest approach is to confirm search demand, choose a clear market and language, build strong core pages, fix the technical basics and measure enquiries rather than rankings alone. Content and authority come next."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is SEO worth it for a UAE startup?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "It is worth it when people already search for what you offer and you can invest consistently for several months. If your category has little search demand or you need revenue immediately, SEO is better treated as a supporting channel until those conditions change."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Should I target Dubai or the whole UAE?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Target the market you can actually serve. If customers come to you or you deliver within one emirate, focus there. If you sell or deliver nationwide, target the UAE, and only create emirate-specific pages where you genuinely operate and have something specific to say."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does every UAE startup need Arabic SEO?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. It depends on who your customers are, whether there is Arabic search demand for your terms and whether you can maintain Arabic content to a high standard. Many startups start in English and add Arabic pages once demand is validated."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is local SEO relevant to SaaS startups?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Usually not. Local SEO matters most for businesses that serve customers in a specific area, such as clinics, salons and home services. SaaS startups normally gain more from product pages, use-case pages and problem-led content."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What should a startup do first with a small SEO budget?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Fix the technical basics, make sure your core product or service pages clearly match what customers search for, and set up Search Console and conversion tracking. Leave large content programmes and link building until those foundations are in place."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Should startups use SEO or Google Ads?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Often both, for different jobs. Google Ads brings immediate traffic and helps identify which keywords convert, while SEO builds visibility that continues without paying for every click. The right balance depends on your budget, timeline and how much search demand exists for your offer."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How can a startup improve its Google rankings in the UAE?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Start with the pages that matter most to your business. Make sure Google can index them, that each one clearly matches what customers search for, and that related pages link to each other. Then look for searches where you already rank on page two and improve those pages before writing new ones. Consistent, relevant improvements tend to move rankings more than any single tactic."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
   'best-time-to-post-on-instagram-in-uae': [
     {
       '@context': 'https://schema.org',

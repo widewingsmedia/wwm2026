@@ -6,9 +6,13 @@ const SERVICE_SLUGS = [
   'web-design-company-dubai',
   'ppc-advertising-company-dubai',
   'social-media-marketing-agency-in-dubai',
-  'content-creation-graphic-design',
+  'content-creation-dubai',
+  'graphic-design-services-dubai',
   'email-marketing-dubai',
   'seo-services-dubai',
+  'local-seo-services-dubai',
+  'local-seo-services-in-abu-dhabi',
+  'b2b-seo-services-in-dubai',
   'outdoor-advertising-dubai',
   'analytics-performance-marketing',
   'pr-agency-dubai',
@@ -19,7 +23,7 @@ const LEGACY_SERVICE_REDIRECTS: Record<string, string> = {
   'web-app-development': 'web-design-company-dubai',
   'paid-advertising': 'ppc-advertising-company-dubai',
   'social-media-management': 'social-media-marketing-agency-in-dubai',
-  'content-creation': 'content-creation-graphic-design',
+  'content-creation': 'content-creation-dubai',
   'email-sms-crm': 'email-marketing-dubai',
   'seo-performance': 'seo-services-dubai',
   'ooh-advertising': 'outdoor-advertising-dubai',
@@ -33,6 +37,17 @@ const LEGACY_SERVICE_REDIRECTS: Record<string, string> = {
   'outdoor-advertising': 'outdoor-advertising-dubai',
   'social-media-services': 'social-media-marketing-agency-in-dubai',
   'creative-services': 'branding-agency-dubai',
+};
+
+// "Website Page Actions – SEO & Content" sheet (Oct 2026). The brief asks for
+// server-side 301s specifically, so these use statusCode 301 rather than
+// Next's default permanent 308.
+const PAGE_ACTION_REDIRECTS: Record<string, string> = {
+  'local-seo-agency-for-startups': 'local-seo-services-dubai',
+  'systematic-search-engine-optimization': 'seo-services-dubai',
+  'reliable-paid-ads-agency-in-dubai': 'ppc-advertising-company-dubai',
+  'ppc-for-ecommerce-dubai': 'ppc-advertising-company-dubai',
+  'content-creation-graphic-design': 'content-creation-dubai',
 };
 
 const nextConfig: NextConfig = {
@@ -56,6 +71,11 @@ const nextConfig: NextConfig = {
         source: `/${from}`,
         destination: `/${to}/`,
         permanent: true,
+      })),
+      ...Object.entries(PAGE_ACTION_REDIRECTS).map(([from, to]) => ({
+        source: `/${from}`,
+        destination: `/${to}/`,
+        statusCode: 301 as const,
       })),
       { source: '/services', destination: '/digital-marketing-services/', permanent: true },
       { source: '/services/:slug', destination: '/:slug/', permanent: true },

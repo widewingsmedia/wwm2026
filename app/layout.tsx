@@ -21,11 +21,13 @@ const STATIC_DEFAULTS: Metadata = {
 
 export async function generateMetadata(): Promise<Metadata> {
   const seo = await getPageMetadata('home');
+  // getPageMetadata may return { absolute } for titles that already carry the brand
+  const homeTitle = seo.title && typeof seo.title === 'object' && 'absolute' in seo.title ? seo.title.absolute : seo.title;
   return {
     ...STATIC_DEFAULTS,
     ...seo,
-    title: seo.title
-      ? { default: seo.title as string, template: '%s | Wide Wings Media' }
+    title: homeTitle
+      ? { default: homeTitle as string, template: '%s | Wide Wings Media' }
       : { default: 'Wide Wings Media: Leading Digital Marketing Agency in Dubai', template: '%s | Wide Wings Media' },
     openGraph: {
       type: 'website',

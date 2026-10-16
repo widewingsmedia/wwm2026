@@ -11,12 +11,16 @@ const SERVICES = [
   { title: 'Creative & Branding', slug: '/branding-agency-dubai/' },
   { title: 'Paid Advertising & Media Buying', slug: '/ppc-advertising-company-dubai/' },
   { title: 'Social Media Management', slug: '/social-media-marketing-agency-in-dubai/' },
-  { title: 'Content Creation & Graphic Design', slug: '/content-creation-graphic-design/' },
-  { title: 'Email, SMS & CRM Marketing', slug: '/email-marketing-dubai/' },
-  { title: 'SEO & Performance Management', slug: '/seo-services-dubai/' },
-  { title: 'OOH Advertising', slug: '/outdoor-advertising-dubai/' },
-  { title: 'Analytics & Performance Marketing', slug: '/analytics-performance-marketing/' },
-  { title: 'PR Management', slug: '/pr-agency-dubai/' },
+  { title: 'Content Creation', slug: '/content-creation-dubai/' },
+  { title: 'Graphic Design', slug: '/graphic-design-services-dubai/' },
+  { title: 'Email Marketing', slug: '/email-marketing-dubai/' },
+  { title: 'SEO Services', slug: '/seo-services-dubai/' },
+  { title: 'Local SEO Services in Dubai', slug: '/local-seo-services-dubai/' },
+  { title: 'Local SEO Services in Abu Dhabi', slug: '/local-seo-services-in-abu-dhabi/' },
+  { title: 'B2B SEO Services in Dubai', slug: '/b2b-seo-services-in-dubai/' },
+  { title: 'Outdoor Advertising', slug: '/outdoor-advertising-dubai/' },
+  { title: 'Conversion Rate Optimization', slug: '/analytics-performance-marketing/' },
+  { title: 'PR Agency', slug: '/pr-agency-dubai/' },
 ];
 
 export function buildLlmsTxt(): string {

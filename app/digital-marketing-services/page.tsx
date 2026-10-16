@@ -36,7 +36,7 @@ const SERVICES = [
   {
     num: '05',
     title: 'Content Creation & Graphic Design',
-    slug: '/content-creation-graphic-design',
+    slug: '/content-creation-dubai',
     desc: 'Compelling visuals, videos, and copy that stop the scroll. Our creative team produces content that drives engagement and reflects your brand perfectly.',
   },
   {

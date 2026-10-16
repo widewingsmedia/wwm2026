@@ -5,6 +5,10 @@ import { getSeoOverride } from './admin/seo-kv';
 // Matches the canonical URL base already hardcoded in lib/admin/store.ts's makeSeo().
 export const SITE_URL = 'https://wide-wings.ae';
 
+// Client-supplied meta titles without the brand name that must not get the
+// layout's " | Wide Wings Media" suffix (Oct 2026 copy docs).
+const EXACT_TITLE_PAGES = new Set(['web-app-development', 'ooh-advertising']);
+
 // Resolves the SEO data for a page: an admin-saved override (Vercel KV) takes
 // priority, falling back to the hardcoded defaults in lib/admin/store.ts.
 export async function resolveSeoData(pageId: string): Promise<SeoData | undefined> {
@@ -26,7 +30,12 @@ export function seoDataToMetadata(seo: SeoData): Metadata {
     .filter(Boolean) as string[];
 
   return {
-    title: seo.metaTitle || undefined,
+    // The root layout appends " | Wide Wings Media" to every title. Titles that
+    // already carry the brand, or were specified word-for-word by the client,
+    // are used as-is so the brand isn't doubled.
+    title: seo.metaTitle
+      ? (/wide wings/i.test(seo.metaTitle) || EXACT_TITLE_PAGES.has(seo.pageId) ? { absolute: seo.metaTitle } : seo.metaTitle)
+      : undefined,
     description: seo.metaDescription || undefined,
     keywords: keywords.length ? keywords : undefined,
     alternates: seo.canonicalUrl ? { canonical: seo.canonicalUrl } : undefined,
