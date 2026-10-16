@@ -75,9 +75,11 @@ function perRow(n: number, max: number) {
 }
 const rowStyle = (n: number, max: number) => ({ '--per': perRow(n, max) } as React.CSSProperties);
 
-// Faint brand mark filling the empty space under a split heading;
-// hidden by CSS when the space left is too small for it.
-const SplitMark = () => <span className="sd-split-mark" aria-hidden="true"><i /></span>;
+// Rough length of the rendered copy, to tell short text sections from long ones.
+const textLen = (bs: Block[]): number => bs.reduce((n, b) =>
+  n + ('p' in b ? plain(b.p).length + 80 : 'ul' in b ? plain(b.ul.join(' ')).length + 50 * b.ul.length : 'ol' in b ? plain(b.ol.join(' ')).length + 50 * b.ol.length : 0), 0);
+// Paragraph that opens with a bold phrase ("**B2B companies** usually need...")
+const isLeadP = (b: Block) => 'p' in b && /^\*\*[^*]+\*\*/.test(b.p);
 
 const slugify = (s: string) => s.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const plain = (s: string) => s.replace(/\*\*/g, '').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
@@ -231,12 +233,9 @@ function SectionView({ s, alt, variant = 'cards' }: { s: Section; alt: boolean; 
     return (
       <section className={cls} id={id}>
         <div className="container sd-split sd-split--list">
-          <div className="sd-split-side">
-            <div className="sd-split-h">
-              <h2 className="cb-section-h2 sd-h2"><TwoTone text={s.h2} /></h2>
-              {lead.length > 0 && <div className="sd-lead"><Blocks blocks={lead} /></div>}
-            </div>
-            <SplitMark />
+          <div className="sd-split-h">
+            <h2 className="cb-section-h2 sd-h2"><TwoTone text={s.h2} /></h2>
+            {lead.length > 0 && <div className="sd-lead"><Blocks blocks={lead} /></div>}
           </div>
           <div className="sd-split-body">
             {subs.map((b, i) => (
@@ -304,14 +303,42 @@ function SectionView({ s, alt, variant = 'cards' }: { s: Section; alt: boolean; 
     );
   }
 
-  // text section: heading left, copy right
+  // long text: heading on top so there's no empty column beside the copy.
+  // Bold-led paragraphs become cards; plain copy flows in two balanced columns.
+  if (textLen(s.blocks) > 650) {
+    const first = s.blocks.findIndex(isLeadP);
+    let end = first;
+    while (end !== -1 && end < s.blocks.length && isLeadP(s.blocks[end])) end++;
+    const cards = first !== -1 && end - first >= 2;
+    return (
+      <section className={cls} id={id}>
+        <div className="container">
+          <div className="sd-head">
+            <h2 className="cb-section-h2 sd-h2"><TwoTone text={s.h2} /></h2>
+            {cards && first > 0 && <div className="sd-lead"><Blocks blocks={s.blocks.slice(0, first)} /></div>}
+          </div>
+          {cards ? (
+            <>
+              <div className="sd-cards sd-cards--lead" style={rowStyle(end - first, 3)}>
+                {s.blocks.slice(first, end).map((b, i) => (
+                  <article key={i} className="sd-card"><Blocks blocks={[b]} /></article>
+                ))}
+              </div>
+              {end < s.blocks.length && <div className="sd-after"><Blocks blocks={s.blocks.slice(end)} /></div>}
+            </>
+          ) : (
+            <div className="sd-cols"><Blocks blocks={s.blocks} /></div>
+          )}
+        </div>
+      </section>
+    );
+  }
+
+  // short text section: heading left, copy right
   return (
     <section className={cls} id={id}>
       <div className="container sd-split">
-        <div className="sd-split-side">
-          <h2 className="cb-section-h2 sd-h2 sd-split-h"><TwoTone text={s.h2} /></h2>
-          <SplitMark />
-        </div>
+        <h2 className="cb-section-h2 sd-h2 sd-split-h"><TwoTone text={s.h2} /></h2>
         <div className="sd-split-body"><Blocks blocks={s.blocks} /></div>
       </div>
     </section>
