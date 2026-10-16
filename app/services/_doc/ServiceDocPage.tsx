@@ -75,6 +75,10 @@ function perRow(n: number, max: number) {
 }
 const rowStyle = (n: number, max: number) => ({ '--per': perRow(n, max) } as React.CSSProperties);
 
+// Faint brand mark filling the empty space under a split heading;
+// hidden by CSS when the space left is too small for it.
+const SplitMark = () => <span className="sd-split-mark" aria-hidden="true"><i /></span>;
+
 const slugify = (s: string) => s.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const plain = (s: string) => s.replace(/\*\*/g, '').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
 
@@ -227,9 +231,12 @@ function SectionView({ s, alt, variant = 'cards' }: { s: Section; alt: boolean; 
     return (
       <section className={cls} id={id}>
         <div className="container sd-split sd-split--list">
-          <div className="sd-split-h">
-            <h2 className="cb-section-h2 sd-h2"><TwoTone text={s.h2} /></h2>
-            {lead.length > 0 && <div className="sd-lead"><Blocks blocks={lead} /></div>}
+          <div className="sd-split-side">
+            <div className="sd-split-h">
+              <h2 className="cb-section-h2 sd-h2"><TwoTone text={s.h2} /></h2>
+              {lead.length > 0 && <div className="sd-lead"><Blocks blocks={lead} /></div>}
+            </div>
+            <SplitMark />
           </div>
           <div className="sd-split-body">
             {subs.map((b, i) => (
@@ -301,7 +308,10 @@ function SectionView({ s, alt, variant = 'cards' }: { s: Section; alt: boolean; 
   return (
     <section className={cls} id={id}>
       <div className="container sd-split">
-        <h2 className="cb-section-h2 sd-h2 sd-split-h"><TwoTone text={s.h2} /></h2>
+        <div className="sd-split-side">
+          <h2 className="cb-section-h2 sd-h2 sd-split-h"><TwoTone text={s.h2} /></h2>
+          <SplitMark />
+        </div>
         <div className="sd-split-body"><Blocks blocks={s.blocks} /></div>
       </div>
     </section>
