@@ -66,11 +66,11 @@
 
 /* sections */
 .sd-section { padding: 96px 0; }
-.sd-head { max-width: 860px; margin: 0 0 48px; }
+.sd-head { margin: 0 0 48px; }
 .sd-h2 { margin-bottom: 20px; }
 .sd-lead .sd-p { font-size: clamp(1.1rem, 1.35vw, 1.25rem); color: rgba(244, 243, 239, 0.82); }
 .sd-split-body > .sd-p { font-size: 1.1rem; }
-.sd-after { max-width: 860px; margin-top: 36px; }
+.sd-after { margin-top: 36px; }
 
 
 /* heading-left / copy-right */
