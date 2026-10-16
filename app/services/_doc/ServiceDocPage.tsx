@@ -3,6 +3,7 @@ import Link from 'next/link';
 import SchemaScripts from '@/components/SchemaScripts';
 import type { Block, Cta, Section, ServiceDoc } from './types';
 import { TitleIcon } from './TitleIcon';
+import FaqTabs from './FaqTabs';
 import '../services.css';
 import '../service-page.css';
 import './service-doc.css';
@@ -145,6 +146,7 @@ function Steps({ steps }: { steps: { title: string; body: string }[] }) {
     <ol className="sd-steps" style={rowStyle(steps.length, 4)}>
       {steps.map((s, i) => (
         <li key={i} className="sd-step">
+          <TitleIcon title={plain(s.title)} />
           <h3 className="sd-step-title"><Rich text={s.title} /></h3>
           {s.body && <p className="sd-p"><Rich text={s.body} /></p>}
         </li>
@@ -188,20 +190,11 @@ function SectionView({ s, alt, variant = 'cards' }: { s: Section; alt: boolean; 
   if (isFaq(s)) {
     return (
       <section className={cls} id={id}>
-        <div className="container cb-faq-wrap">
-          <span className="section-label">FAQ</span>
-          <h2 className="cb-section-h2"><TwoTone text={s.h2} /></h2>
-          <div className="cb-faq-list">
-            {subs.map((f, i) => (
-              <details key={i} className="cb-faq-item">
-                <summary className="cb-faq-q">
-                  <span>{plain(f.h3).replace(/^\d+\.\s*/, '')}</span>
-                  <span className="cb-faq-icon" aria-hidden="true">+</span>
-                </summary>
-                <div className="sd-faq-a"><Blocks blocks={f.blocks} /></div>
-              </details>
-            ))}
-          </div>
+        <div className="container">
+          <FaqTabs
+            heading={<TwoTone text={s.h2} />}
+            items={subs.map(f => ({ q: plain(f.h3).replace(/^\d+\.\s*/, ''), a: <Blocks blocks={f.blocks} /> }))}
+          />
         </div>
       </section>
     );
@@ -266,7 +259,8 @@ function SectionView({ s, alt, variant = 'cards' }: { s: Section; alt: boolean; 
             <ol className="sd-steps" style={rowStyle(subs.length, 4)}>
               {subs.map((b, i) => (
                 <li key={i} className="sd-step">
-                          <h3 className="sd-step-title">{plain(b.h3).replace(/^\d+\.\s*/, '')}</h3>
+                  <TitleIcon title={plain(b.h3).replace(/^\d+\.\s*/, '')} />
+                  <h3 className="sd-step-title">{plain(b.h3).replace(/^\d+\.\s*/, '')}</h3>
                   <Blocks blocks={b.blocks} />
                 </li>
               ))}

@@ -315,15 +315,115 @@
 }
 .sd-btn-ghost:hover { background: #fff; color: #0a0a1a; }
 
-/* FAQ answer (may hold lists / several paragraphs) */
-.sd-faq-a { padding: 0 32px 20px 0; }
-.sd-faq-a .sd-p { font-size: 0.98rem; }
+/* FAQ: question list + answer panel */
+.sd-faq {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(32px, 4vw, 56px);
+  align-items: start;
+}
+.sd-faq-list { list-style: none; margin: 36px 0 0; padding: 0; border-top: 1px solid var(--sd-line); }
+.sd-faq-list li { border-bottom: 1px solid var(--sd-line); }
+.sd-faq-list button {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 18px 18px;
+  background: none;
+  border: 0;
+  color: #e6e6ea;
+  font: 700 1.02rem/1.4 'Nexa', 'Calibri', sans-serif;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.sd-faq-list button > span { flex: 1; }
+.sd-faq-list button svg { flex: none; width: 16px; height: 16px; color: rgba(255, 255, 255, 0.4); transition: transform 0.25s ease, color 0.25s ease; }
+.sd-faq-list button:hover { background: rgba(255, 255, 255, 0.04); }
+.sd-faq-list button:hover svg { transform: translateX(4px); color: #cfa821; }
+.sd-faq-list li.is-active button { background: #cfa821; color: #0a0a1a; }
+.sd-faq-list li.is-active button svg { color: #0a0a1a; }
+.sd-faq-inline { display: none; }
+
+.sd-faq-panel {
+  position: sticky;
+  top: 110px;
+  overflow: hidden;
+  padding: clamp(32px, 4vw, 52px);
+  border-radius: 28px;
+  border: 1px solid rgba(207, 168, 33, 0.22);
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px) 0 0 / 44px 44px,
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px) 0 0 / 44px 44px,
+    linear-gradient(150deg, #17172e 0%, #0c0c1e 100%);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
+}
+.sd-faq-num {
+  position: absolute;
+  top: -18px;
+  right: -6px;
+  font: 800 clamp(7rem, 12vw, 11rem)/1 'Nexa', 'Calibri', sans-serif;
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(207, 168, 33, 0.18);
+  pointer-events: none;
+  user-select: none;
+}
+.sd-faq-body { position: relative; animation: sd-faq-in 0.45s ease both; }
+@keyframes sd-faq-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.sd-faq-count {
+  display: block;
+  margin-bottom: 18px;
+  font: 700 0.78rem/1 'Nexa', 'Calibri', sans-serif;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #cfa821;
+}
+.sd-faq-q {
+  max-width: 88%;
+  margin: 0 0 22px;
+  font: 800 clamp(1.5rem, 2.4vw, 2.2rem)/1.2 'Nexa', 'Calibri', sans-serif;
+  color: #fff;
+}
+.sd-faq-a .sd-p, .sd-faq-a li { font-size: 1.08rem; }
+.sd-faq-nav { position: relative; display: flex; align-items: center; gap: 14px; margin-top: 36px; }
+.sd-faq-btn {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: none;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+.sd-faq-btn svg { width: 18px; height: 18px; }
+.sd-faq-btn:hover { background: #cfa821; border-color: #cfa821; color: #0a0a1a; }
+.sd-faq-dots { display: flex; align-items: center; gap: 7px; margin-left: 18px; flex-wrap: wrap; }
+.sd-faq-dots button {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: 0;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: width 0.3s ease, background 0.3s ease;
+}
+.sd-faq-dots button.is-active { width: 34px; background: #cfa821; }
+@media (prefers-reduced-motion: reduce) { .sd-faq-body { animation: none; } }
 
 /* closing CTA */
 .sd-cta-body { margin: 0 0 34px; }
 .sd-cta-body .sd-p { color: rgba(255, 255, 255, 0.7); }
 
 @media (max-width: 899px) {
+  .sd-faq { grid-template-columns: 1fr; }
+  .sd-faq-panel { display: none; }
+  .sd-faq-list li.is-active .sd-faq-inline { display: block; padding: 18px 18px 22px; background: rgba(255, 255, 255, 0.03); }
+  .sd-faq-list li.is-active button svg { transform: rotate(90deg); }
   .sd-hero .svc-hero-inner { padding: 120px 18px 56px; }
   .sd-hero-lead .sd-p { font-size: 1rem; line-height: 1.55; margin-bottom: 14px; }
   .sd-hero-lead { margin-bottom: 28px; }
@@ -338,3 +438,5 @@
   .sd-cards > .sd-card, .sd-steps > .sd-step { min-width: 100%; }
   .sd-card { padding: 24px 20px; }
 }
+.sd-step .sd-ico { margin-bottom: 18px; }
+.sd-step:hover .sd-ico { background: #cfa821; color: #0a0a1a; }

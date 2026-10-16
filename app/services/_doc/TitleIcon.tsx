@@ -31,10 +31,31 @@ const ICONS: Record<string, React.ReactNode> = {
   play: <><rect x="2" y="5" width="20" height="14" rx="3" /><path d="m10 9 5 3-5 3z" /></>,
   cart: <><circle cx="8" cy="21" r="1" /><circle cx="19" cy="21" r="1" /><path d="M2 2h3l2.7 12.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 7H6" /></>,
   briefcase: <><rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" /></>,
+  rocket: <><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" /><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" /><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" /></>,
+  check: <><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></>,
+  bulb: <><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" /><path d="M9 18h6M10 22h4" /></>,
   sparkle: <path d="M12 3l1.9 5.8L20 10l-6.1 1.2L12 17l-1.9-5.8L4 10l6.1-1.2z" />,
 };
 
 const RULES: [RegExp, string][] = [
+  // process steps
+  [/^(discovery|understand)|research/i, 'search'],
+  [/wireframe/i, 'layout'],
+  [/^development/i, 'code'],
+  [/launch|delivery|execute/i, 'rocket'],
+  [/handover/i, 'wrench'],
+  [/feedback|revision/i, 'message'],
+  [/approval/i, 'check'],
+  [/^brief|narrative/i, 'file'],
+  [/concept|hypothesis/i, 'bulb'],
+  [/production/i, 'camera'],
+  [/media list/i, 'users'],
+  [/outreach/i, 'megaphone'],
+  [/measur|monitor/i, 'chart'],
+  [/^optimi[sz](e|ation)/i, 'trending'],
+  [/^testing$/i, 'refresh'],
+  [/strategi[sz]e/i, 'target'],
+  // services
   [/review|quality/i, 'star'],
   [/crisis|reputation/i, 'shield'],
   [/google business/i, 'pin'],
