@@ -52,6 +52,21 @@ function SmartLink({ href, children, className }: { href: string; children: Reac
   );
 }
 
+const SMALL_WORDS = new Set(['a', 'an', 'the', '&', 'and', 'of', 'in', 'for', 'to', 'with', 'by', 'on', 'at', 'or', 'your', 'our', 'is', 'not']);
+
+// Headings in two colours: the last words in gold (site-wide .gradient-text style).
+function TwoTone({ text }: { text: string }) {
+  const t = plain(text).trim();
+  const words = t.split(/\s+/);
+  if (words.length < 2) return <span className="gradient-text">{t}</span>;
+  // "Quick Answers: SEO Cost…" -> gold after the colon
+  const colon = words.findIndex(w => w.endsWith(':'));
+  let at = colon > -1 && colon < words.length - 1 ? colon + 1 : words.length - Math.max(1, Math.floor(words.length / 2));
+  // never start the gold part on a small joining word ("a", "&", "in", …)
+  while (at < words.length - 1 && SMALL_WORDS.has(words[at].toLowerCase())) at++;
+  return <>{words.slice(0, at).join(' ')} <span className="gradient-text">{words.slice(at).join(' ')}</span></>;
+}
+
 const slugify = (s: string) => s.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const plain = (s: string) => s.replace(/\*\*/g, '').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
 
@@ -70,7 +85,7 @@ function List({ items, ordered }: { items: string[]; ordered?: boolean }) {
     <Tag className={ordered ? 'sd-olist' : 'sd-checklist'}>
       {items.map((it, i) => (
         <li key={i}>
-          {ordered ? <span className="sd-olist-n">{String(i + 1).padStart(2, '0')}</span> : <span className="sd-check" aria-hidden="true" />}
+          <span className="sd-check" aria-hidden="true" />
           <span><Rich text={it} /></span>
         </li>
       ))}
@@ -115,7 +130,6 @@ function Steps({ steps }: { steps: { title: string; body: string }[] }) {
     <ol className="sd-steps">
       {steps.map((s, i) => (
         <li key={i} className="sd-step">
-          <span className="sd-step-n">{String(i + 1).padStart(2, '0')}</span>
           <h3 className="sd-step-title"><Rich text={s.title} /></h3>
           {s.body && <p className="sd-p"><Rich text={s.body} /></p>}
         </li>
@@ -141,7 +155,14 @@ type H3Block = { h3: string; blocks: Block[] };
 const isH3 = (b: Block): b is H3Block => 'h3' in b;
 const isFaq = (s: Section) => /faq|frequently asked/i.test(s.h2);
 
-function SectionView({ s, alt }: { s: Section; alt: boolean }) {
+type GroupVariant = 'cards' | 'rows' | 'split';
+const GROUP_VARIANTS: GroupVariant[] = ['cards', 'rows', 'split'];
+const isGroup = (s: Section) => {
+  const subs = s.blocks.filter(isH3);
+  return !isFaq(s) && subs.length >= 2 && !(subs.length >= 3 && subs.every(b => /^\d+\.\s/.test(plain(b.h3))));
+};
+
+function SectionView({ s, alt, variant = 'cards' }: { s: Section; alt: boolean; variant?: GroupVariant }) {
   const subs = s.blocks.filter(isH3);
   const lead = s.blocks.slice(0, s.blocks.findIndex(isH3) === -1 ? s.blocks.length : s.blocks.findIndex(isH3));
   const after = subs.length ? s.blocks.slice(s.blocks.lastIndexOf(subs[subs.length - 1]) + 1) : [];
@@ -154,7 +175,7 @@ function SectionView({ s, alt }: { s: Section; alt: boolean }) {
       <section className={cls} id={id}>
         <div className="container cb-faq-wrap">
           <span className="section-label">FAQ</span>
-          <h2 className="cb-section-h2"><Rich text={s.h2} /></h2>
+          <h2 className="cb-section-h2"><TwoTone text={s.h2} /></h2>
           <div className="cb-faq-list">
             {subs.map((f, i) => (
               <details key={i} className="cb-faq-item">
@@ -171,6 +192,51 @@ function SectionView({ s, alt }: { s: Section; alt: boolean }) {
     );
   }
 
+  // H3 groups that aren't a process: rotate presentations down the page so
+  // consecutive groups don't all read as the same grid of boxes
+  if (subs.length >= 2 && !numbered && variant === 'rows') {
+    return (
+      <section className={cls} id={id}>
+        <div className="container">
+          <div className="sd-head">
+            <h2 className="cb-section-h2 sd-h2"><TwoTone text={s.h2} /></h2>
+            {lead.length > 0 && <div className="sd-lead"><Blocks blocks={lead} /></div>}
+          </div>
+          <div className="sd-rows">
+            {subs.map((b, i) => (
+              <article key={i} className="sd-row">
+                <h3 className="sd-row-title"><Rich text={b.h3} /></h3>
+                <div className="sd-row-body"><Blocks blocks={b.blocks} /></div>
+              </article>
+            ))}
+          </div>
+          {after.length > 0 && <div className="sd-after"><Blocks blocks={after} /></div>}
+        </div>
+      </section>
+    );
+  }
+  if (subs.length >= 2 && !numbered && variant === 'split') {
+    return (
+      <section className={cls} id={id}>
+        <div className="container sd-split sd-split--list">
+          <div className="sd-split-h">
+            <h2 className="cb-section-h2 sd-h2"><TwoTone text={s.h2} /></h2>
+            {lead.length > 0 && <div className="sd-lead"><Blocks blocks={lead} /></div>}
+          </div>
+          <div className="sd-split-body">
+            {subs.map((b, i) => (
+              <article key={i} className="sd-item">
+                <h3 className="sd-h3"><Rich text={b.h3} /></h3>
+                <Blocks blocks={b.blocks} />
+              </article>
+            ))}
+            {after.length > 0 && <div className="sd-after"><Blocks blocks={after} /></div>}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   // H3 groups: numbered titles -> process steps, otherwise a card grid
   if (subs.length >= 2) {
     const dense = subs.some(b => b.blocks.length > 2 || b.blocks.some(x => 'ul' in x || 'ol' in x));
@@ -178,15 +244,14 @@ function SectionView({ s, alt }: { s: Section; alt: boolean }) {
       <section className={cls} id={id}>
         <div className="container">
           <div className="sd-head">
-            <h2 className="cb-section-h2 sd-h2"><Rich text={s.h2} /></h2>
+            <h2 className="cb-section-h2 sd-h2"><TwoTone text={s.h2} /></h2>
             {lead.length > 0 && <div className="sd-lead"><Blocks blocks={lead} /></div>}
           </div>
           {numbered ? (
             <ol className="sd-steps">
               {subs.map((b, i) => (
                 <li key={i} className="sd-step">
-                  <span className="sd-step-n">{String(i + 1).padStart(2, '0')}</span>
-                  <h3 className="sd-step-title">{plain(b.h3).replace(/^\d+\.\s*/, '')}</h3>
+                          <h3 className="sd-step-title">{plain(b.h3).replace(/^\d+\.\s*/, '')}</h3>
                   <Blocks blocks={b.blocks} />
                 </li>
               ))}
@@ -195,7 +260,6 @@ function SectionView({ s, alt }: { s: Section; alt: boolean }) {
             <div className={`sd-cards${dense ? ' sd-cards--dense' : ''}`}>
               {subs.map((b, i) => (
                 <article key={i} className="sd-card">
-                  <span className="sd-card-n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
                   <h3 className="sd-h3"><Rich text={b.h3} /></h3>
                   <Blocks blocks={b.blocks} />
                 </article>
@@ -215,7 +279,7 @@ function SectionView({ s, alt }: { s: Section; alt: boolean }) {
       <section className={cls} id={id}>
         <div className="container">
           <div className="sd-head">
-            <h2 className="cb-section-h2 sd-h2"><Rich text={s.h2} /></h2>
+            <h2 className="cb-section-h2 sd-h2"><TwoTone text={s.h2} /></h2>
             {wideAt > 0 && <div className="sd-lead"><Blocks blocks={s.blocks.slice(0, wideAt)} /></div>}
           </div>
           <Blocks blocks={s.blocks.slice(wideAt, wideAt + 1)} />
@@ -229,7 +293,7 @@ function SectionView({ s, alt }: { s: Section; alt: boolean }) {
   return (
     <section className={cls} id={id}>
       <div className="container sd-split">
-        <h2 className="cb-section-h2 sd-h2 sd-split-h"><Rich text={s.h2} /></h2>
+        <h2 className="cb-section-h2 sd-h2 sd-split-h"><TwoTone text={s.h2} /></h2>
         <div className="sd-split-body"><Blocks blocks={s.blocks} /></div>
       </div>
     </section>
@@ -243,7 +307,7 @@ function FinalCta({ s }: { s: Section }) {
     <section className="cb-cta sd-cta" id={slugify(s.h2)}>
       <div className="container cb-cta-inner">
         <span className="section-label">Let&apos;s Talk</span>
-        <h2 className="cb-cta-h2"><Rich text={s.h2} /></h2>
+        <h2 className="cb-cta-h2"><TwoTone text={s.h2} /></h2>
         <div className="sd-cta-body"><Blocks blocks={rest} /></div>
         <Buttons ctas={ctas.length ? ctas : [DEFAULT_CTA, { label: 'WhatsApp Us', href: 'https://wa.me/971555657609' }]} />
       </div>
@@ -283,7 +347,7 @@ export default function ServiceDocPage({ page }: { page: ServiceDoc }) {
             )}
             <span>{page.crumb}</span>
           </nav>
-          <h1 className="svc-hero-h1 sd-h1">{page.h1}</h1>
+          <h1 className="svc-hero-h1 sd-h1"><TwoTone text={page.h1} /></h1>
           {page.tagline && <p className="sd-tagline"><Rich text={page.tagline} /></p>}
           <div className="sd-hero-lead"><Blocks blocks={heroLead} /></div>
           <Buttons ctas={heroCtas.length ? heroCtas : [DEFAULT_CTA]} />
@@ -296,7 +360,12 @@ export default function ServiceDocPage({ page }: { page: ServiceDoc }) {
         </section>
       )}
 
-      {body.map((s, i) => <SectionView key={i} s={s} alt={i % 2 === 0} />)}
+      {(() => {
+        let g = 0;
+        return body.map((s, i) => (
+          <SectionView key={i} s={s} alt={i % 2 === 0} variant={isGroup(s) ? GROUP_VARIANTS[g++ % GROUP_VARIANTS.length] : undefined} />
+        ));
+      })()}
 
       {finalIsCta && <FinalCta s={last} />}
     </div>
