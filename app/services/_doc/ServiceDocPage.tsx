@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import SchemaScripts from '@/components/SchemaScripts';
 import type { Block, Cta, Section, ServiceDoc } from './types';
+import { TitleIcon } from './TitleIcon';
 import '../services.css';
 import '../service-page.css';
 import './service-doc.css';
@@ -219,7 +220,7 @@ function SectionView({ s, alt, variant = 'cards' }: { s: Section; alt: boolean; 
           <div className="sd-rows">
             {subs.map((b, i) => (
               <article key={i} className="sd-row">
-                <h3 className="sd-row-title"><Rich text={b.h3} /></h3>
+                <h3 className="sd-row-title"><TitleIcon title={plain(b.h3)} /><span><Rich text={b.h3} /></span></h3>
                 <div className="sd-row-body"><Blocks blocks={b.blocks} /></div>
               </article>
             ))}
@@ -274,7 +275,7 @@ function SectionView({ s, alt, variant = 'cards' }: { s: Section; alt: boolean; 
             <div className={`sd-cards${dense ? ' sd-cards--dense' : ''}`} style={rowStyle(subs.length, dense ? 2 : 3)}>
               {subs.map((b, i) => (
                 <article key={i} className="sd-card">
-                  <h3 className="sd-h3"><Rich text={b.h3} /></h3>
+                  <h3 className="sd-h3 sd-h3--ico"><TitleIcon title={plain(b.h3)} /><span><Rich text={b.h3} /></span></h3>
                   <Blocks blocks={b.blocks} />
                 </article>
               ))}
