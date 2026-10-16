@@ -3,7 +3,6 @@ import Link from 'next/link';
 import SchemaScripts from '@/components/SchemaScripts';
 import type { Block, Cta, Section, ServiceDoc } from './types';
 import { TitleIcon } from './TitleIcon';
-import FaqTabs from './FaqTabs';
 import '../services.css';
 import '../service-page.css';
 import './service-doc.css';
@@ -190,11 +189,20 @@ function SectionView({ s, alt, variant = 'cards' }: { s: Section; alt: boolean; 
   if (isFaq(s)) {
     return (
       <section className={cls} id={id}>
-        <div className="container">
-          <FaqTabs
-            heading={<TwoTone text={s.h2} />}
-            items={subs.map(f => ({ q: plain(f.h3).replace(/^\d+\.\s*/, ''), a: <Blocks blocks={f.blocks} /> }))}
-          />
+        <div className="container cb-faq-wrap">
+          <span className="section-label">FAQ</span>
+          <h2 className="cb-section-h2"><TwoTone text={s.h2} /></h2>
+          <div className="cb-faq-list">
+            {subs.map((f, i) => (
+              <details key={i} className="cb-faq-item">
+                <summary className="cb-faq-q">
+                  <span>{plain(f.h3).replace(/^\d+\.\s*/, '')}</span>
+                  <span className="cb-faq-icon" aria-hidden="true">+</span>
+                </summary>
+                <div className="sd-faq-a"><Blocks blocks={f.blocks} /></div>
+              </details>
+            ))}
+          </div>
         </div>
       </section>
     );
