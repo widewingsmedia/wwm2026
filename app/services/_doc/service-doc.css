@@ -22,13 +22,13 @@
 }
 .sd-tagline strong { font-weight: 700; }
 /* intro copy under the title */
-.sd-hero-lead { max-width: 920px; margin: 4px auto 36px; }
+.sd-hero-lead { max-width: 780px; margin: 4px auto 36px; }
 .sd-hero-lead .sd-p {
   font-family: 'Nexa', 'Calibri', sans-serif;
   font-weight: 300;
-  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
   line-height: 1.65;
-  color: rgba(244, 243, 239, 0.88);
+  color: rgba(244, 243, 239, 0.85);
   text-align: center;
   margin-bottom: 18px;
 }
@@ -68,7 +68,8 @@
 .sd-section { padding: 96px 0; }
 .sd-head { max-width: 860px; margin: 0 0 48px; }
 .sd-h2 { margin-bottom: 20px; }
-.sd-lead .sd-p { font-size: 1.1rem; }
+.sd-lead .sd-p { font-size: clamp(1.1rem, 1.35vw, 1.25rem); color: rgba(244, 243, 239, 0.82); }
+.sd-split-body > .sd-p { font-size: 1.1rem; }
 .sd-after { max-width: 860px; margin-top: 36px; }
 
 
@@ -82,12 +83,19 @@
 .sd-split-h { position: sticky; top: 110px; margin: 0; }
 
 /* cards */
-.sd-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-  gap: 18px;
+/* balanced grids: --per items per row (set inline), last row stretches,
+   min-width lets narrower screens wrap to fewer columns */
+.sd-cards, .sd-steps {
+  --gap: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
 }
-.sd-cards--dense { grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); }
+.sd-cards > .sd-card, .sd-steps > .sd-step {
+  flex: 1 1 calc((100% - (var(--per, 3) - 1) * var(--gap)) / var(--per, 3));
+  min-width: 250px;
+}
+.sd-cards--dense > .sd-card { min-width: 360px; }
 .sd-card {
   position: relative;
   padding: 30px 28px 28px;
@@ -174,10 +182,6 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 18px;
-  counter-reset: sd-step;
 }
 .sd-step {
   position: relative;
@@ -294,10 +298,10 @@
   .sd-section { padding: 64px 0; }
   .sd-split { grid-template-columns: 1fr; gap: 8px; }
   .sd-split-h { position: static; }
-  .sd-cards--dense { grid-template-columns: 1fr; }
+  .sd-cards--dense > .sd-card { min-width: 100%; }
   .sd-row { grid-template-columns: 1fr; gap: 10px; padding: 26px 0; }
 }
 @media (max-width: 560px) {
-  .sd-cards { grid-template-columns: 1fr; }
+  .sd-cards > .sd-card, .sd-steps > .sd-step { min-width: 100%; }
   .sd-card { padding: 24px 20px; }
 }

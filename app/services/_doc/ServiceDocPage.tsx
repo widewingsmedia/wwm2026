@@ -67,6 +67,14 @@ function TwoTone({ text }: { text: string }) {
   return <>{words.slice(0, at).join(' ')} <span className="gradient-text">{words.slice(at).join(' ')}</span></>;
 }
 
+// Items per row for a balanced grid: as close to `max` as possible while
+// keeping rows even (7 -> 4+3, 5 -> 3+2); the last row stretches to fill.
+function perRow(n: number, max: number) {
+  const rows = Math.ceil(n / max);
+  return Math.ceil(n / rows);
+}
+const rowStyle = (n: number, max: number) => ({ '--per': perRow(n, max) } as React.CSSProperties);
+
 const slugify = (s: string) => s.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const plain = (s: string) => s.replace(/\*\*/g, '').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
 
@@ -127,7 +135,7 @@ function Blocks({ blocks }: { blocks: Block[] }) {
 
 function Steps({ steps }: { steps: { title: string; body: string }[] }) {
   return (
-    <ol className="sd-steps">
+    <ol className="sd-steps" style={rowStyle(steps.length, 4)}>
       {steps.map((s, i) => (
         <li key={i} className="sd-step">
           <h3 className="sd-step-title"><Rich text={s.title} /></h3>
@@ -248,7 +256,7 @@ function SectionView({ s, alt, variant = 'cards' }: { s: Section; alt: boolean; 
             {lead.length > 0 && <div className="sd-lead"><Blocks blocks={lead} /></div>}
           </div>
           {numbered ? (
-            <ol className="sd-steps">
+            <ol className="sd-steps" style={rowStyle(subs.length, 4)}>
               {subs.map((b, i) => (
                 <li key={i} className="sd-step">
                           <h3 className="sd-step-title">{plain(b.h3).replace(/^\d+\.\s*/, '')}</h3>
@@ -257,7 +265,7 @@ function SectionView({ s, alt, variant = 'cards' }: { s: Section; alt: boolean; 
               ))}
             </ol>
           ) : (
-            <div className={`sd-cards${dense ? ' sd-cards--dense' : ''}`}>
+            <div className={`sd-cards${dense ? ' sd-cards--dense' : ''}`} style={rowStyle(subs.length, dense ? 2 : 3)}>
               {subs.map((b, i) => (
                 <article key={i} className="sd-card">
                   <h3 className="sd-h3"><Rich text={b.h3} /></h3>
@@ -317,11 +325,16 @@ function FinalCta({ s }: { s: Section }) {
 
 export default function ServiceDocPage({ page }: { page: ServiceDoc }) {
   const heroCtas = page.intro.flatMap(b => ('cta' in b ? b.cta : []));
-  // all intro copy sits in the hero, under the title
+  // hero keeps one intro paragraph; the rest leads the first section, under its title
   const introText = page.intro.filter(b => !('cta' in b));
+  const heroLead = introText.slice(0, 1);
+  const moreIntro = introText.slice(1);
   const last = page.sections[page.sections.length - 1];
   const finalIsCta = last && !isFaq(last) && !last.blocks.some(isH3);
-  const body = finalIsCta ? page.sections.slice(0, -1) : page.sections;
+  const sections = finalIsCta ? page.sections.slice(0, -1) : page.sections;
+  const body = moreIntro.length && sections.length && !isFaq(sections[0])
+    ? [{ ...sections[0], blocks: [...moreIntro, ...sections[0].blocks] }, ...sections.slice(1)]
+    : sections;
   const parent = page.parent === undefined ? { label: 'Services', href: '/digital-marketing-services/' } : page.parent;
 
   return (
@@ -348,7 +361,7 @@ export default function ServiceDocPage({ page }: { page: ServiceDoc }) {
           </nav>
           <h1 className="svc-hero-h1 sd-h1"><TwoTone text={page.h1} /></h1>
           {page.tagline && <p className="sd-tagline"><Rich text={page.tagline} /></p>}
-          <div className="sd-hero-lead"><Blocks blocks={introText} /></div>
+          <div className="sd-hero-lead"><Blocks blocks={heroLead} /></div>
           <Buttons ctas={heroCtas.length ? heroCtas : [DEFAULT_CTA]} />
         </div>
       </section>
