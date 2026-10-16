@@ -317,9 +317,8 @@ function FinalCta({ s }: { s: Section }) {
 
 export default function ServiceDocPage({ page }: { page: ServiceDoc }) {
   const heroCtas = page.intro.flatMap(b => ('cta' in b ? b.cta : []));
+  // all intro copy sits in the hero, under the title
   const introText = page.intro.filter(b => !('cta' in b));
-  const heroLead = introText.slice(0, 1);
-  const moreIntro = introText.slice(1);
   const last = page.sections[page.sections.length - 1];
   const finalIsCta = last && !isFaq(last) && !last.blocks.some(isH3);
   const body = finalIsCta ? page.sections.slice(0, -1) : page.sections;
@@ -349,16 +348,10 @@ export default function ServiceDocPage({ page }: { page: ServiceDoc }) {
           </nav>
           <h1 className="svc-hero-h1 sd-h1"><TwoTone text={page.h1} /></h1>
           {page.tagline && <p className="sd-tagline"><Rich text={page.tagline} /></p>}
-          <div className="sd-hero-lead"><Blocks blocks={heroLead} /></div>
+          <div className="sd-hero-lead"><Blocks blocks={introText} /></div>
           <Buttons ctas={heroCtas.length ? heroCtas : [DEFAULT_CTA]} />
         </div>
       </section>
-
-      {moreIntro.length > 0 && (
-        <section className="cb-section sd-intro">
-          <div className="container sd-intro-inner"><Blocks blocks={moreIntro} /></div>
-        </section>
-      )}
 
       {(() => {
         let g = 0;
