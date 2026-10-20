@@ -1,10 +1,9 @@
 import type { MetadataRoute } from 'next';
-import { store } from '@/lib/admin/store';
 import { isPublished } from '@/app/blogs/posts-data';
-import { CASE_STUDIES } from '@/app/case-studies/cases-data';
 import { SITE_URL } from '@/lib/seo';
 import { getAllPosts } from '@/lib/admin/all-posts';
 import { getHiddenSlugs } from '@/lib/admin/post-visibility-kv';
+import { LIST_DATE, SITEMAP_URLS } from '@/lib/sitemap-urls';
 
 // Re-checked periodically so scheduled posts (see posts-data.ts publishAt)
 // drop into the sitemap on their own, without a new deploy.
@@ -15,44 +14,38 @@ export const revalidate = 300;
 // preview deployment via a leaked sitemap URL.
 const isLive = process.env.NEXT_PUBLIC_SITE_LIVE === 'true';
 
-function withSlash(path: string): string {
-  return path.endsWith('/') ? path : `${path}/`;
-}
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   if (!isLive) return [];
 
-  const seoByPageId = new Map(store.seo.list().map(s => [s.pageId, s]));
+  const [posts, hiddenSlugs] = await Promise.all([getAllPosts(), getHiddenSlugs()]);
+  const postBySlug = new Map(posts.map(p => [p.slug, p]));
+  // a listed blog post that has since been hidden/unscheduled drops out
+  const live = (path: string) => {
+    const post = postBySlug.get(path.replace(/^\/|\/$/g, ''));
+    return !post || (isPublished(post) && !hiddenSlugs.includes(post.slug));
+  };
 
-  const staticPages: MetadataRoute.Sitemap = store.pages
-    .list()
-    .filter(p => p.status === 'published' && !seoByPageId.get(p.id)?.noindex)
-    .map(p => ({
-      url: `${SITE_URL}${p.slug === '/' ? '/' : withSlash(p.slug)}`,
-      lastModified: p.updatedAt,
-      changeFrequency: 'monthly' as const,
-      priority: p.slug === '/' ? 1 : 0.8,
+  // the SEO team's list (lib/sitemap-urls.ts), in their order and priorities
+  const listed: MetadataRoute.Sitemap = SITEMAP_URLS.filter(([path]) => live(path)).map(([path, priority]) => ({
+    url: `${SITE_URL}${path}`,
+    lastModified: LIST_DATE,
+    changeFrequency: 'daily' as const,
+    priority,
+  }));
+
+  // posts published after the list was made
+  const listedPaths = new Set(SITEMAP_URLS.map(([path]) => path));
+  const cutoff = new Date(`${LIST_DATE}T23:59:59+04:00`).getTime();
+  const newer: MetadataRoute.Sitemap = posts
+    .map(p => ({ p, at: p.publishAt ?? (p as { createdAt?: string }).createdAt }))
+    .filter(({ p, at }) => at && new Date(at).getTime() > cutoff && !listedPaths.has(`/${p.slug}/`)
+      && isPublished(p) && !hiddenSlugs.includes(p.slug))
+    .map(({ p, at }) => ({
+      url: `${SITE_URL}/${p.slug}/`,
+      lastModified: at!.slice(0, 10),
+      changeFrequency: 'daily' as const,
+      priority: 0.9,
     }));
 
-  const caseStudyPages: MetadataRoute.Sitemap = [
-    { url: `${SITE_URL}/case-studies/`, changeFrequency: 'monthly' as const, priority: 0.7 },
-    ...CASE_STUDIES.map(c => ({
-      url: `${SITE_URL}${withSlash(c.href)}`,
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    })),
-  ];
-
-  const [posts, hiddenSlugs] = await Promise.all([getAllPosts(), getHiddenSlugs()]);
-  const blogPages: MetadataRoute.Sitemap = posts.filter(p => isPublished(p) && !hiddenSlugs.includes(p.slug)).map(post => {
-    const seo = seoByPageId.get(`blog-${post.slug}`);
-    return {
-      url: `${SITE_URL}/${post.slug}/`,
-      changeFrequency: 'monthly' as const,
-      priority: 0.6,
-      ...(seo?.noindex ? { priority: 0 } : {}),
-    };
-  }).filter(p => p.priority !== 0);
-
-  return [...staticPages, ...caseStudyPages, ...blogPages];
+  return [listed[0], ...newer, ...listed.slice(1)].filter(Boolean);
 }

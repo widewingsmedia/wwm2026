@@ -6,11 +6,12 @@ const SERVICES = [
   "Creative & Branding",
   "Paid Advertising & Media Buying",
   "Social Media Management",
-  "Content Creation & Graphic Design",
-  "Email, SMS & CRM Marketing",
-  "SEO & Performance Management",
+  "Content Creation",
+  "Graphic Design",
+  "Email Marketing",
+  "SEO Services",
   "OOH Advertising",
-  "Analytics & Performance Marketing",
+  "Analytics & Conversion Optimization",
   "PR Management",
 ];
 
