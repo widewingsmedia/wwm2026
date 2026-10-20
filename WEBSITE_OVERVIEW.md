@@ -116,6 +116,11 @@ Root title template `'%s | Wide Wings Media'`.
 - `components/SchemaScripts.tsx` — renders page‑level `<script type="application/ld+json">`.
 - **New static pages** need registering in store `pages` + `seoData` (this also feeds
   the sitemap and the SEO Manager). Case‑study pages are not yet covered.
+- **Sitemap** (`app/sitemap.ts`) serves the SEO team's URL list in `lib/sitemap-urls.ts`
+  (Technical SEO doc, Oct 2026: 71 URLs + Graphic Design, their priorities, `daily`).
+  Posts published after its `LIST_DATE` are appended automatically. Pages not in that
+  list (case studies, `/contact/`, retired posts) are intentionally left out — to add a
+  page to the sitemap, add it to `lib/sitemap-urls.ts`.
 - Sitemap/robots/llms.txt only emit real content when `NEXT_PUBLIC_SITE_LIVE === 'true'`.
 
 ---
